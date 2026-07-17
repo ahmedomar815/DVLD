@@ -5,7 +5,8 @@ public class ApplicationTypeConfiguration:IEntityTypeConfiguration<ApplicationTy
     public void Configure(EntityTypeBuilder<ApplicationType> builder)
     {
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.Name).HasMaxLength(100);
+        builder.HasIndex(x => x.Name)
+       .IsUnique();
         builder.Property(x => x.Fees)
        .HasColumnType("decimal(18,2)");
     }
