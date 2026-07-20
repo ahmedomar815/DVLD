@@ -1,5 +1,42 @@
 [
   {
+    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "Method": "Create",
+    "RelativePath": "Application/create/{applicationTypeId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.Application.ApplicationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "Method": "Get",
+    "RelativePath": "Application/get/{applicaitonId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicaitonId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DVLD.Controllers.ApplicationTypeController",
     "Method": "Create",
     "RelativePath": "ApplicationType/add",

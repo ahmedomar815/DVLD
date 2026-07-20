@@ -57,6 +57,22 @@
               "target": "Package",
               "version": "[11.3.1, )"
             },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.24, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.24, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.24, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.17.0, )"
+            },
             "Mapster": {
               "target": "Package",
               "version": "[10.0.11, )"
@@ -73,6 +89,10 @@
               "target": "Package",
               "version": "[10.0.9, )"
             },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[10.0.9, )"
@@ -82,6 +102,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.9, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.17.0, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",

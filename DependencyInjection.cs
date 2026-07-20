@@ -1,11 +1,13 @@
 ﻿
 using DVLD.Auth;
 using DVLD.Persistence;
-using DVLD.Services;
+
+using Hangfire;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
@@ -30,9 +32,23 @@ public static class DependencyInjection
         services.AddScoped<IAuthServices,AuthServices>();
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
+        services.AddScoped<IApplicationService, ApplicationService>  ();
         services.AddOpenConfigApi();
         services.AddMapsterConfig();
         services.AddAuthCofig(configuration);
+        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IEmailSender, EmailService>();
+        services.AddBackgroundJobsConfig(configuration);
+        return services;
+    }
+    private static IServiceCollection AddBackgroundJobsConfig(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddHangfire(config => config
+    .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+    .UseSimpleAssemblyNameTypeSerializer()
+    .UseRecommendedSerializerSettings()
+    .UseSqlServerStorage(configuration.GetConnectionString("HangfireConnection")));
+        services.AddHangfireServer();
         return services;
     }
     private static IServiceCollection AddAuthCofig(this IServiceCollection services, IConfiguration configuration)
@@ -61,6 +77,8 @@ public static class DependencyInjection
 
    
 });
+        services.AddOptions<MailSettings>().BindConfiguration(nameof(MailSettings)).ValidateDataAnnotations().ValidateOnStart();
+
         return services;
     }
     private static IServiceCollection AddMapsterConfig(this IServiceCollection services)
