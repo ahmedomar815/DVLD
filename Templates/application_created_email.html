@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application Created</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333333;
+  }
+  .email-wrapper {
+    width: 100%;
+    background-color: #f4f6f8;
+    padding: 30px 0;
+  }
+  .email-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  .email-header {
+    background-color: #2563eb;
+    padding: 24px 32px;
+    text-align: center;
+  }
+  .email-header h1 {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+  }
+  .email-body {
+    padding: 32px;
+  }
+  .email-body p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+  }
+  .details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .details-table tr {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .details-table tr:last-child {
+    border-bottom: none;
+  }
+  .details-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  .details-table td.label {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #555555;
+    width: 40%;
+  }
+  .details-table td.value {
+    color: #111111;
+  }
+  .status-badge {
+    display: inline-block;
+    background-color: #dcfce7;
+    color: #16a34a;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .email-footer {
+    background-color: #f9fafb;
+    padding: 20px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: #888888;
+  }
+  .email-footer p {
+    margin: 4px 0;
+  }
+  @media only screen and (max-width: 600px) {
+    .email-body, .email-header, .email-footer {
+      padding: 20px !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="email-container">
+      <div class="email-header">
+        <h1>Application Created Successfully</h1>
+      </div>
+      <div class="email-body">
+        <p>Dear <strong>{{fullName}}</strong>,</p>
+        <p>We are pleased to inform you that your application has been successfully created by our team. Please find the details below:</p>
+
+        <table class="details-table">
+          <tr>
+            <td class="label">Full Name</td>
+            <td class="value">{{fullName}}</td>
+          </tr>
+          <tr>
+            <td class="label">User ID</td>
+            <td class="value">{{userID}}</td>
+          </tr>
+          <tr>
+            <td class="label">Application ID</td>
+            <td class="value">{{applicationId}}</td>
+          </tr>
+          <tr>
+            <td class="label">Country</td>
+            <td class="value">{{countryName}}</td>
+          </tr>
+          <tr>
+            <td class="label">Application Type</td>
+            <td class="value">{{applicationType}}</td>
+          </tr>
+          <tr>
+            <td class="label">Paid Fees</td>
+            <td class="value">{{paidFees}} <span class="status-badge">Paid</span></td>
+          </tr>
+          <tr>
+            <td class="label">Status</td>
+            <td class="value"><span class="status-badge">{{status}}</span></td>
+          </tr>
+        </table>
+
+        <p>Please keep this information for your records. If you have any questions or need to make changes, feel free to reach out to our support team and reference your Application ID.</p>
+        <p>Thank you for choosing our services.</p>
+      </div>
+      <div class="email-footer">
+        <p>&copy; {{currentYear}} {{organizationName}}. All rights reserved.</p>
+        <p>This is an automated email, please do not reply directly.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
