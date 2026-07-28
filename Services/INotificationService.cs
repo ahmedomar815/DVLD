@@ -2,5 +2,8 @@
 
 public interface INotificationService
 {
-    Task SendNewApplication(Application application);
+    Task SendNewApplication(string applicationId);
+    Task SendApplicationApproved(string applicationId);
+    Task SendApplicationRejected(string applicationId);
+    Task SendApplicationCancelled(string applicationId);
 }

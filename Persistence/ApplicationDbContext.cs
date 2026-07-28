@@ -16,6 +16,8 @@ public class ApplicationDbContext(IHttpContextAccessor httpContextAccessor, DbCo
 
     public DbSet<ApplicationType>ApplicationTypes { get; set; }
 
+    public DbSet<DrivingLicenseApplication> DrivingLicenseApplications { get; set; }
+    public DbSet<LicenseType> LicenseTypes { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

@@ -10,7 +10,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.SecondName).HasMaxLength(100);
         builder.Property(x => x.ThirdName).HasMaxLength(100);
         builder.Property(x => x.FourthName).HasMaxLength(100);
-
+        builder.HasIndex(x => x.Email).IsUnique();
         builder.HasOne(x => x.Country)
             .WithMany(c => c.Users)
             .HasForeignKey(x => x.CountryId)
@@ -20,6 +20,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .WithMany(c => c.Users)
             .HasForeignKey(x => x.CreatedById)
             .OnDelete(DeleteBehavior.Restrict);
-        builder.HasIndex(x=>x.NationalId).IsUnique();
+        builder.HasIndex(x => x.NationalId).IsUnique();
     }
 }
