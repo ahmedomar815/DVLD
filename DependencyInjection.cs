@@ -38,6 +38,7 @@ public static class DependencyInjection
         services.AddAuthCofig(configuration);
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IEmailSender, EmailService>();
+        services.AddScoped<IDrivingLicenseApplicationService, DrivingLicenseApplicationService>();
         services.AddBackgroundJobsConfig(configuration);
         return services;
     }

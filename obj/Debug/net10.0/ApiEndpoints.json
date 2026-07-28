@@ -1,8 +1,24 @@
 [
   {
     "ContainingType": "DVLD.Controllers.ApplicationController",
+    "Method": "Get",
+    "RelativePath": "Application/{applicaitonId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicaitonId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.ApplicationController",
     "Method": "Create",
-    "RelativePath": "Application/create/{applicationTypeId}",
+    "RelativePath": "Application/{applicationTypeId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -22,14 +38,46 @@
   },
   {
     "ContainingType": "DVLD.Controllers.ApplicationController",
-    "Method": "Get",
-    "RelativePath": "Application/get/{applicaitonId}",
-    "HttpMethod": "GET",
+    "Method": "Approve",
+    "RelativePath": "Application/approve/{applicationId}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "applicaitonId",
+        "Name": "applicationId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "Method": "Cancalle",
+    "RelativePath": "Application/cancale/{applicationId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "Method": "Reject",
+    "RelativePath": "Application/reject/{applicationId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationId",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -117,6 +165,22 @@
   },
   {
     "ContainingType": "DVLD.Controllers.AuthController",
+    "Method": "GetRefreshToken",
+    "RelativePath": "Auth/get-refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.Authentication.RefreshTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "Auth/login",
     "HttpMethod": "POST",
@@ -142,6 +206,38 @@
       {
         "Name": "request",
         "Type": "DVLD.Contracts.Authentication.RefreshTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.DrivingLicenseApplicationController",
+    "Method": "Create",
+    "RelativePath": "DrivingLicenseApplication",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.DrivingLicenseApplication.DrivingLicenseApplicaitonRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.DrivingLicenseApplicationController",
+    "Method": "Get",
+    "RelativePath": "DrivingLicenseApplication/{drivingLicenseApplicationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "drivingLicenseApplicationId",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

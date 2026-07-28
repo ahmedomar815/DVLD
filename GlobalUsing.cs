@@ -10,3 +10,4 @@ global using DVLD.Contracts.Application;
 global using DVLD.Services;
 global using DVLD.Extensions;
 global using DVLD.Settings;
+global using FluentValidation;

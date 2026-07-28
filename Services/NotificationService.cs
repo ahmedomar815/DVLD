@@ -1,31 +1,61 @@
 ﻿using DVLD.Helpers;
 using DVLD.Persistence;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace DVLD.Services;
 
-public class NotificationService(ApplicationDbContext context ,IEmailSender emailSender):INotificationService
+public class NotificationService(ApplicationDbContext context, IEmailSender emailSender) : INotificationService
 {
     private readonly ApplicationDbContext _context = context;
     private readonly IEmailSender _emailSender = emailSender;
 
-    public async Task SendNewApplication(Application application)
-    {
-        var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == application.UserId);
-        var country = await  _context.Countries.AsNoTracking().FirstOrDefaultAsync(a => a.Id == user!.CountryId);
-        var applicationType = await _context.ApplicationTypes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == application.ApplicationTypeId);
-        var placeHolders = new Dictionary<string, string>()
-        {
+    public Task SendNewApplication(string applicationId)
+        => SendStatusEmailAsync(applicationId, "application_created_email", "DVLD Application Already Created");
 
-            {"{{fullName}}", $"{user!.FirstName} {user.SecondName}  {user.ThirdName} {user.FourthName}"},
-            { "{{userID}}",user.Id },
-            {"{{applicationId}}",application.Id },
-            {"{{countryName}}",country!.Name },
-            {"{{applicationType}}",applicationType!.Name },
-            {"{{paidFees}} " ,applicationType.Fees.ToString() },
-            {"{{status}}" ,application.Status.ToString() }
+    public Task SendApplicationApproved(string applicationId)
+        => SendStatusEmailAsync(applicationId, "application_approved_email", "DVLD Application Approved");
+
+    public Task SendApplicationRejected(string applicationId)
+        => SendStatusEmailAsync(applicationId, "application_rejected_email", "DVLD Application Rejected");
+
+    public Task SendApplicationCancelled(string applicationId)
+        => SendStatusEmailAsync(applicationId, "application_cancelled_email", "DVLD Application Cancelled");
+
+    private async Task SendStatusEmailAsync(
+        string applicationId,
+        string templateName,
+        string subject)
+    {
+        var application = await _context.Applications
+            .AsNoTracking()
+            .Include(a => a.User)
+                .ThenInclude(u => u.Country)
+            .Include(a => a.ApplicationType)
+            .FirstOrDefaultAsync(x => x.Id == applicationId);
+
+        if (application is null)
+            return;
+
+        var user = application.User;
+        if (user is null || string.IsNullOrWhiteSpace(user.Email))
+            return;
+
+        var country = user.Country;
+        var applicationType = application.ApplicationType;
+
+        var placeHolders = new Dictionary<string, string>
+        {
+            { "{{fullName}}", $"{user.FirstName} {user.SecondName} {user.ThirdName} {user.FourthName}" },
+            { "{{userID}}", user.Id },
+            { "{{applicationId}}", application.Id },
+            { "{{countryName}}", country?.Name ?? string.Empty },
+            { "{{applicationType}}", applicationType?.Name ?? string.Empty },
+            { "{{paidFees}}", applicationType?.Fees.ToString() ?? string.Empty },
+            { "{{status}}", application.Status.ToString() }
         };
-        var body = EmailBodyBuilder.GenerateEmailBody("application_created_email", placeHolders);
-        await _emailSender.SendEmailAsync(user.Email!, "DVLD Application already created", body);
+
+        var body = EmailBodyBuilder.GenerateEmailBody(templateName, placeHolders);
+        await _emailSender.SendEmailAsync(user.Email!, subject, body);
     }
 }

@@ -38,7 +38,7 @@ namespace DVLD.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PaidFees")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -63,7 +63,10 @@ namespace DVLD.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Applications");
+                    b.ToTable("Applications", t =>
+                        {
+                            t.HasCheckConstraint("CK_Application_PaidFees_Positive", "[PaidFees] > 0");
+                        });
                 });
 
             modelBuilder.Entity("DVLD.Entities.ApplicationType", b =>
@@ -89,7 +92,11 @@ namespace DVLD.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("ApplicationTypes");
+                    b.ToTable("ApplicationTypes", t =>
+                        {
+                            t.HasCheckConstraint("CK_Application_PaidFees_Positive", "[Fees] > 0")
+                                .HasName("CK_Application_PaidFees_Positive1");
+                        });
                 });
 
             modelBuilder.Entity("DVLD.Entities.Country", b =>
@@ -111,6 +118,69 @@ namespace DVLD.Migrations
                         .IsUnique();
 
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.DrivingLicenseApplication", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("LicenseTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId")
+                        .IsUnique();
+
+                    b.HasIndex("LicenseTypeId")
+                        .IsUnique();
+
+                    b.ToTable("DrivingLicenseApplication");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.LicenseType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DefaultValidityLength")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<decimal>("Fees")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("MinimumAllowedAge")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("LicenseType", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_LicenseTypes_Fees", "[Fees] >= 0");
+
+                            t.HasCheckConstraint("CK_LicenseTypes_MinimumAllowedAge", "[MinimumAllowedAge] >= 18");
+                        });
                 });
 
             modelBuilder.Entity("DVLD.Entities.RefreshToken", b =>
@@ -157,7 +227,7 @@ namespace DVLD.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -195,6 +265,9 @@ namespace DVLD.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasIndex("CreatedById");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.HasIndex("NationalId")
                         .IsUnique();
@@ -236,6 +309,25 @@ namespace DVLD.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DVLD.Entities.DrivingLicenseApplication", b =>
+                {
+                    b.HasOne("Application", "Application")
+                        .WithOne("DrivingLicenseApplication")
+                        .HasForeignKey("DVLD.Entities.DrivingLicenseApplication", "ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DVLD.Entities.LicenseType", "LicenseType")
+                        .WithOne("DrivingLicenseApplication")
+                        .HasForeignKey("DVLD.Entities.DrivingLicenseApplication", "LicenseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+
+                    b.Navigation("LicenseType");
+                });
+
             modelBuilder.Entity("DVLD.Entities.RefreshToken", b =>
                 {
                     b.HasOne("User", null)
@@ -261,6 +353,11 @@ namespace DVLD.Migrations
                     b.Navigation("UsreCreated");
                 });
 
+            modelBuilder.Entity("Application", b =>
+                {
+                    b.Navigation("DrivingLicenseApplication");
+                });
+
             modelBuilder.Entity("DVLD.Entities.ApplicationType", b =>
                 {
                     b.Navigation("Applications");
@@ -269,6 +366,12 @@ namespace DVLD.Migrations
             modelBuilder.Entity("DVLD.Entities.Country", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.LicenseType", b =>
+                {
+                    b.Navigation("DrivingLicenseApplication")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("User", b =>
