@@ -1,3 +1,3 @@
 ﻿namespace DVLD.Contracts.LicenseType;
 
-public record LicenseTypeResponse(string Name, string Description, int MinimumAllowedAge, int DefaultValidityLength, decimal Fees);
+public record LicenseTypeResponse(int Id, string Name, string Description, int MinimumAllowedAge, int DefaultValidityLength, decimal Fees);

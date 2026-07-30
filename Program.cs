@@ -10,14 +10,14 @@ builder.Host.UseSerilog((context, config) =>
 });
 
 var app = builder.Build();
-IdentityModelEventSource.ShowPII = true;
+IdentityModelEventSource.ShowPII = app.Environment.IsDevelopment();
 
 if (app.Environment.IsDevelopment())
 {
    // app.MapOpenApi();
 }
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

@@ -242,5 +242,68 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "Method": "Create",
+    "RelativePath": "LicenseType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.LicenseType.LicenseTypeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "Method": "GetAll",
+    "RelativePath": "LicenseType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "Method": "Get",
+    "RelativePath": "LicenseType/{licenseTypeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "licenseTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "Method": "Update",
+    "RelativePath": "LicenseType/{licenseTypeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "licenseTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.LicenseType.LicenseTypeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
