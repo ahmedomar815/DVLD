@@ -2,7 +2,6 @@
 using DVLD.Persistence;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DVLD.Services;
 
@@ -41,6 +40,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
         await _context.SaveChangesAsync(cancellationToken);
         return Result.Success();
     }
+
     public async  Task<Result> Update(  int applicationTypeId, ApplicationTypeRequest request, CancellationToken cancellationToken)
 
     {

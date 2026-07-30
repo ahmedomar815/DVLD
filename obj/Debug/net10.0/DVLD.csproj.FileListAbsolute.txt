@@ -148,7 +148,6 @@ C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\DVLD.csproj.Up2Date
 C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\DVLD.dll
 C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\refint\DVLD.dll
@@ -190,3 +189,4 @@ C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\sv\Hangfire.Core.resources.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\tr-TR\Hangfire.Core.resources.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\zh-TW\Hangfire.Core.resources.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\zh\Hangfire.Core.resources.dll
+C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

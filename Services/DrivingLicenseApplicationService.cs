@@ -30,6 +30,7 @@ public class DrivingLicenseApplicationService(ApplicationDbContext context):IDri
                     )
                 ),
                 new LicenseTypeResponse(
+                    x.LicenseType.Id,
                     x.LicenseType.Name,
                     x.LicenseType.Description,
                     x.LicenseType.MinimumAllowedAge,

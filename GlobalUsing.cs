@@ -11,3 +11,4 @@ global using DVLD.Services;
 global using DVLD.Extensions;
 global using DVLD.Settings;
 global using FluentValidation;
+global using DVLD.Persistence;
