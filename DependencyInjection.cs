@@ -26,6 +26,8 @@ public static class DependencyInjection
         
         services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString));
+        services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>()
+;
         services.AddControllers();
         //services.AddOpenApi();
         services.AddHttpContextAccessor();
@@ -40,7 +42,9 @@ public static class DependencyInjection
         services.AddScoped<IEmailSender, EmailService>();
         services.AddScoped<IDrivingLicenseApplicationService, DrivingLicenseApplicationService>();
         services.AddScoped<ILicenseTypeService,LicenseTypeService>();
+        services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddBackgroundJobsConfig(configuration);
+
         return services;
     }
     private static IServiceCollection AddBackgroundJobsConfig(this IServiceCollection services, IConfiguration configuration)
@@ -76,8 +80,6 @@ public static class DependencyInjection
                ValidIssuer = jwtSettings.Issuer,
                ValidAudience = jwtSettings.Audience,
            };
-
-   
 });
         services.AddOptions<MailSettings>().BindConfiguration(nameof(MailSettings)).ValidateDataAnnotations().ValidateOnStart();
 

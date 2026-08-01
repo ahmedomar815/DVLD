@@ -10,7 +10,7 @@ public class LicenseTypeConfiguration : IEntityTypeConfiguration<LicenseType>
             table.HasCheckConstraint("CK_LicenseTypes_Fees", "[Fees] >= 0");
         });
 
-        builder.HasKey(x => x.Id);
+     
         builder.HasIndex(x => x.Name).IsUnique();
 
         builder.Property(x => x.Name)

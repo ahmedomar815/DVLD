@@ -9,25 +9,20 @@ public static class ResultExtesions
     {
         if(result.IsSuccess)
             throw new InvalidOperationException("Cannot convert success result to a problem");
-        var error = result.Error;
 
-        var problemDetails = new ProblemDetails
-        {
-            Status = error.StatusCode,
-            Title = error.Code,
-            Detail = error.Description
-            ,Extensions= new Dictionary<string, object>
+        var problem = Results.Problem(statusCode: result.Error.StatusCode);
+        var problemDetails = problem.GetType().GetProperty(nameof(ProblemDetails))!.GetValue(problem) as ProblemDetails;
+
+        problemDetails!.Extensions = new Dictionary<string, object?>
             {
-                 {
+                {
                     "errors",new[]
                     {
                         result.Error.Code,
                         result.Error.Description
                     }
                 }
-            }!
-        };
-
+            };
         return new ObjectResult(problemDetails);
     }
 }

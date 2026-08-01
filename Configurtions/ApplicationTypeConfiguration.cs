@@ -4,8 +4,7 @@ public class ApplicationTypeConfiguration:IEntityTypeConfiguration<ApplicationTy
 {
     public void Configure(EntityTypeBuilder<ApplicationType> builder)
     {
-        builder.HasKey(x => x.Id);
-
+       
         builder.HasIndex(x => x.Name)
        .IsUnique();
         builder.ToTable(t =>
