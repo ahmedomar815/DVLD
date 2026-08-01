@@ -11,7 +11,7 @@ public class JwtProvider(IOptions<JwtOptions> options,ILogger<JwtProvider> logge
     private readonly JwtOptions _options = options.Value;
     private readonly ILogger<JwtProvider> _logger = logger;
 
-    public (string Token, int ExpressIn) GenerateToken(User user)
+    public (string Token, int ExpressIn) GenerateToken(ApplicationUser user)
     {
         
 

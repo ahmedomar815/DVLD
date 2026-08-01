@@ -6,7 +6,7 @@ public class ApplicationConfiguration : IEntityTypeConfiguration<Application>
 {
     public void Configure(EntityTypeBuilder<Application> builder)
     {
-        builder.HasKey(x => x.Id);
+        
 
         builder.HasOne(x => x.User)
             .WithMany(u => u.Applications)

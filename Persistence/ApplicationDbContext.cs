@@ -1,25 +1,31 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Reflection;
 using System.Security.Claims;
 
 namespace DVLD.Persistence;
 
-public class ApplicationDbContext(IHttpContextAccessor httpContextAccessor, DbContextOptions<ApplicationDbContext> options) :DbContext(options)
+public class ApplicationDbContext(IHttpContextAccessor httpContextAccessor, DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser, ApplicationRole,string>(options)
 {
     private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
-    private readonly DbContextOptions<ApplicationDbContext> _options = options;
+    
 
-    public DbSet<User> Users { get; set; }
+
     public DbSet<Application> Applications { get; set; }
 
     public DbSet<Country>Countries { get; set; }
-
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<ApplicationType>ApplicationTypes { get; set; }
 
     public DbSet<DrivingLicenseApplication> DrivingLicenseApplications { get; set; }
     public DbSet<LicenseType> LicenseTypes { get; set; }
+    public DbSet<TestType> TestTypes { get; set; }
+    public DbSet<TestAppointment> TestAppointments { get; set; }
+    public DbSet<Test> Tests { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 

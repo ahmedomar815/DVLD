@@ -2,9 +2,9 @@
 
 namespace DVLD.Configurtions;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
         builder.Property(x => x.FirstName).HasMaxLength(100);
         builder.Property(x => x.SecondName).HasMaxLength(100);
@@ -21,5 +21,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey(x => x.CreatedById)
             .OnDelete(DeleteBehavior.Restrict);
         builder.HasIndex(x => x.NationalId).IsUnique();
+
     }
 }

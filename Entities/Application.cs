@@ -12,7 +12,7 @@ public class Application: AuditableEnitty
     public ApplicationStatus Status { get; set; } = ApplicationStatus.Pending;
     public ApplicationType ApplicationType { get; set; } = default!;
     public decimal PaidFees { get; set; } = default!;
-    public User User { get; set; } = default!;
+    public ApplicationUser User { get; set; } = default!;
     public DrivingLicenseApplication DrivingLicenseApplication = default!;
         
 }

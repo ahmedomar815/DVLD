@@ -2,11 +2,11 @@
 
 public class AuditableEnitty
 {
-    public User CreatedBy { get; set; } = default!;
+    public ApplicationUser CreatedBy { get; set; } = default!;
     public string CreatedById { get; set; } = default!;
 
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
-    public User? UpdatedBy { get; set; }
+    public ApplicationUser? UpdatedBy { get; set; }
     public string? UpdatedById { get; set; }
     public DateTime? UpdatedOn { get; set; }
 
