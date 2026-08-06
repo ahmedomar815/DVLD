@@ -26,13 +26,13 @@ public static class DependencyInjection
         
         services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString));
-        services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>()
-;
+        services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
         services.AddControllers();
         //services.AddOpenApi();
         services.AddHttpContextAccessor();
         services.AddScoped<IAuthServices,AuthServices>();
-        services.AddScoped<IJwtProvider, JwtProvider>();
+        services.AddSingleton<IJwtProvider, JwtProvider>();
         services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
         services.AddScoped<IApplicationService, ApplicationService>  ();
         services.AddOpenConfigApi();
@@ -43,6 +43,8 @@ public static class DependencyInjection
         services.AddScoped<IDrivingLicenseApplicationService, DrivingLicenseApplicationService>();
         services.AddScoped<ILicenseTypeService,LicenseTypeService>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddScoped<ITestTypeService, TestTypeService>();
+        services.AddScoped<ITestAppointmentService, TestAppointmentService>();
         services.AddBackgroundJobsConfig(configuration);
 
         return services;
@@ -64,12 +66,14 @@ public static class DependencyInjection
 
         services.AddAuthentication(options =>
         {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+          
+
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         })
       .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme ,options =>
        {
-
+           options.SaveToken = true;
            options.TokenValidationParameters = new TokenValidationParameters
            {
             ValidateIssuer = true,

@@ -76,6 +76,22 @@ namespace DVLD.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TestTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TestTypeTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    TestTypeDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    TestTypeFees = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -271,25 +287,26 @@ namespace DVLD.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RefreshToken",
+                name: "RefreshTokens",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ExpiresOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RevokedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    RevokedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
+                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RefreshToken_AspNetUsers_ApplicationUserId",
+                        name: "FK_RefreshTokens_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -316,6 +333,77 @@ namespace DVLD.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "TestAppointments",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaidFees = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    CreatedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TestTypeId = table.Column<int>(type: "int", nullable: false),
+                    DrivingLicenseApplicationId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestAppointments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestAppointments_AspNetUsers_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TestAppointments_DrivingLicenseApplications_DrivingLicenseApplicationId",
+                        column: x => x.DrivingLicenseApplicationId,
+                        principalTable: "DrivingLicenseApplications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TestAppointments_TestTypes_TestTypeId",
+                        column: x => x.TestTypeId,
+                        principalTable: "TestTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tests",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TestAppointmentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TestResult = table.Column<int>(type: "int", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    CreatedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tests_AspNetUsers_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Tests_TestAppointments_TestAppointmentId",
+                        column: x => x.TestAppointmentId,
+                        principalTable: "TestAppointments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Countries",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Egypt" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CountryId", "CreatedById", "Email", "EmailConfirmed", "FirstName", "FourthName", "IsDisabled", "LockoutEnabled", "LockoutEnd", "NationalId", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecondName", "SecurityStamp", "ThirdName", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "019f016b-5d2c-7838-8817-b9b9f916ab20", 0, "019f016b-5d2c-7838-8817-b9bb05c255fd", 1, null, "admin@dvld.com", true, "Admin", "Admin", false, false, null, "12099328323432", "ADMIN@DVLD.COM", null, "AQAAAAIAAYagAAAAEEHzKyIJPL0TIfoWgyTljHrOrXksVLJsfc7WAvE8VgVuSK/rIQEDjOdG7+VbEZNtZg==", null, false, "Admin", "019f016b-5d2c-7838-8817-b9ba67e52df0", "Admin", false, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Applications_ApplicationTypeId",
@@ -430,9 +518,41 @@ namespace DVLD.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_RefreshToken_ApplicationUserId",
-                table: "RefreshToken",
+                name: "IX_RefreshTokens_ApplicationUserId",
+                table: "RefreshTokens",
                 column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestAppointments_CreatedByUserId",
+                table: "TestAppointments",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestAppointments_DrivingLicenseApplicationId",
+                table: "TestAppointments",
+                column: "DrivingLicenseApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestAppointments_TestTypeId",
+                table: "TestAppointments",
+                column: "TestTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tests_CreatedByUserId",
+                table: "Tests",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tests_TestAppointmentId",
+                table: "Tests",
+                column: "TestAppointmentId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestTypes_TestTypeTitle",
+                table: "TestTypes",
+                column: "TestTypeTitle",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -454,13 +574,22 @@ namespace DVLD.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DrivingLicenseApplications");
+                name: "RefreshTokens");
 
             migrationBuilder.DropTable(
-                name: "RefreshToken");
+                name: "Tests");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "TestAppointments");
+
+            migrationBuilder.DropTable(
+                name: "DrivingLicenseApplications");
+
+            migrationBuilder.DropTable(
+                name: "TestTypes");
 
             migrationBuilder.DropTable(
                 name: "Applications");

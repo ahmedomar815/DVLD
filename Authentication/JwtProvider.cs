@@ -18,7 +18,7 @@ public class JwtProvider(IOptions<JwtOptions> options,ILogger<JwtProvider> logge
         Claim[] claims = new Claim[]
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-            new Claim(JwtRegisteredClaimNames.Name,user.FirstName),
+            new Claim(JwtRegisteredClaimNames.GivenName,user.FirstName),
             new Claim(JwtRegisteredClaimNames.Email,user.Email!),
             new  Claim(JwtRegisteredClaimNames.FamilyName,user.SecondName),
             new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())

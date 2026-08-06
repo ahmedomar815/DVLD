@@ -43,12 +43,12 @@ public class AuthServices(ApplicationDbContext context
         var refreshToken = new RefreshToken
         {
             Token = refreshTokenValue,
-            ExpiresOn = DateTime.UtcNow.AddDays(7),
+            ExpiresOn = DateTime.UtcNow.AddDays(_refreshTokenExpiryDays),
             ApplicationUserId=user.Id
         };
         user.RefreshTokens.Add(refreshToken);
     
-        await _context.SaveChangesAsync();
+        await _userManager.UpdateAsync(user);
 
         var response = new AuthResponse(
             user.FirstName, user.SecondName, user.ThirdName, user.FourthName,
