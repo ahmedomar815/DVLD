@@ -6,8 +6,8 @@ public class ApplicationUser : IdentityUser<string>
      public ApplicationUser()
      {
         Id = Guid.CreateVersion7().ToString();
-        SecurityStamp = Guid.CreateVersion7().ToString();
-    }
+        
+     }
     public string FirstName { get; set; } = default!;
     public string SecondName { get; set; } = default!;
     public string ThirdName { get; set; } = default!;

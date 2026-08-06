@@ -305,5 +305,116 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestAppointmentController",
+    "Method": "Get",
+    "RelativePath": "TestAppointment/()",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testAppointmentId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestAppointmentController",
+    "Method": "Create",
+    "RelativePath": "TestAppointment/()",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.TestAppointment.TestAppointmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "Method": "GetAll",
+    "RelativePath": "TestType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "Method": "Create",
+    "RelativePath": "TestType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.TestType.TestTypeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "Method": "Get",
+    "RelativePath": "TestType/{testTypeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "Method": "Update",
+    "RelativePath": "TestType/{testTypeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.TestType.TestTypeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "Method": "Delete",
+    "RelativePath": "TestType/{testTypeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

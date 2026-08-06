@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DVLD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260801161742_intial")]
-    partial class intial
+    [Migration("20260805235206_RenameTestTypeTitle")]
+    partial class RenameTestTypeTitle
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -212,6 +212,29 @@ namespace DVLD.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "019f016b-5d2c-7838-8817-b9b9f916ab20",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "019f016b-5d2c-7838-8817-b9bb05c255fd",
+                            CountryId = 1,
+                            Email = "admin@dvld.com",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            FourthName = "Admin",
+                            IsDisabled = false,
+                            LockoutEnabled = false,
+                            NationalId = "12099328323432",
+                            NormalizedEmail = "ADMIN@DVLD.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEHzKyIJPL0TIfoWgyTljHrOrXksVLJsfc7WAvE8VgVuSK/rIQEDjOdG7+VbEZNtZg==",
+                            PhoneNumberConfirmed = false,
+                            SecondName = "Admin",
+                            SecurityStamp = "019f016b-5d2c-7838-8817-b9ba67e52df0",
+                            ThirdName = "Admin",
+                            TwoFactorEnabled = false
+                        });
                 });
 
             modelBuilder.Entity("DVLD.Entities.ApplicationType", b =>
@@ -263,6 +286,13 @@ namespace DVLD.Migrations
                         .IsUnique();
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Egypt"
+                        });
                 });
 
             modelBuilder.Entity("DVLD.Entities.DrivingLicenseApplication", b =>
@@ -338,6 +368,7 @@ namespace DVLD.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ApplicationUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -357,7 +388,105 @@ namespace DVLD.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("RefreshToken");
+                    b.ToTable("RefreshTokens");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.Test", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CreatedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("TestAppointmentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TestResult")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("TestAppointmentId")
+                        .IsUnique();
+
+                    b.ToTable("Tests");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.TestAppointment", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DrivingLicenseApplicationId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("PaidFees")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TestTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("DrivingLicenseApplicationId");
+
+                    b.HasIndex("TestTypeId");
+
+                    b.ToTable("TestAppointments");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.TestType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<decimal>("Fees")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Title")
+                        .IsUnique();
+
+                    b.ToTable("TestTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -541,7 +670,55 @@ namespace DVLD.Migrations
                 {
                     b.HasOne("ApplicationUser", null)
                         .WithMany("RefreshTokens")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DVLD.Entities.Test", b =>
+                {
+                    b.HasOne("ApplicationUser", "ApplicationUser")
+                        .WithMany("Tests")
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DVLD.Entities.TestAppointment", "TestAppointment")
+                        .WithOne("Test")
+                        .HasForeignKey("DVLD.Entities.Test", "TestAppointmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("TestAppointment");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.TestAppointment", b =>
+                {
+                    b.HasOne("ApplicationUser", "ApplicationUser")
+                        .WithMany("TestAppointments")
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DVLD.Entities.DrivingLicenseApplication", "DrivingLicenseApplication")
+                        .WithMany("TestAppointments")
+                        .HasForeignKey("DrivingLicenseApplicationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DVLD.Entities.TestType", "TestType")
+                        .WithMany("TestAppointments")
+                        .HasForeignKey("TestTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("DrivingLicenseApplication");
+
+                    b.Navigation("TestType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -608,6 +785,10 @@ namespace DVLD.Migrations
 
                     b.Navigation("RefreshTokens");
 
+                    b.Navigation("TestAppointments");
+
+                    b.Navigation("Tests");
+
                     b.Navigation("UpdatedApplications");
 
                     b.Navigation("Users");
@@ -623,10 +804,25 @@ namespace DVLD.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("DVLD.Entities.DrivingLicenseApplication", b =>
+                {
+                    b.Navigation("TestAppointments");
+                });
+
             modelBuilder.Entity("DVLD.Entities.LicenseType", b =>
                 {
                     b.Navigation("DrivingLicenseApplication")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DVLD.Entities.TestAppointment", b =>
+                {
+                    b.Navigation("Test");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.TestType", b =>
+                {
+                    b.Navigation("TestAppointments");
                 });
 #pragma warning restore 612, 618
         }
