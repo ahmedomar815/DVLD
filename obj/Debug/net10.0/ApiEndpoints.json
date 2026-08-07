@@ -307,17 +307,17 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestAppointmentController",
-    "Method": "Get",
-    "RelativePath": "TestAppointment/()",
-    "HttpMethod": "GET",
+    "ContainingType": "DVLD.Controllers.TestController",
+    "Method": "Create",
+    "RelativePath": "Test",
+    "HttpMethod": "",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "testAppointmentId",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "DVLD.Contracts.Test.TestRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -325,11 +325,48 @@
   {
     "ContainingType": "DVLD.Controllers.TestAppointmentController",
     "Method": "Create",
-    "RelativePath": "TestAppointment/()",
+    "RelativePath": "TestAppointment",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.TestAppointment.TestAppointmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestAppointmentController",
+    "Method": "Get",
+    "RelativePath": "TestAppointment/{testAppointmentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testAppointmentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.TestAppointmentController",
+    "Method": "Update",
+    "RelativePath": "TestAppointment/{testAppointmentId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testAppointmentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
       {
         "Name": "request",
         "Type": "DVLD.Contracts.TestAppointment.TestAppointmentRequest",

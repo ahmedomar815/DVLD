@@ -5,7 +5,7 @@ public class TestAppointmentRequestValidator
 {
     public TestAppointmentRequestValidator()
     {
-        RuleFor(x => x.DateTime)
+        RuleFor(x => x.AppointmentDate)
             .NotEmpty()
             .Must(date => date > DateTime.Now)
             .WithMessage("Appointment date must be in the future");

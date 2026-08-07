@@ -8,7 +8,7 @@ public class DrivingLicenseApplicationRequestValidator:AbstractValidator<Driving
     public DrivingLicenseApplicationRequestValidator()
     {
          RuleFor(x=>x.LicenseTypeId).NotNull();
-         RuleFor(x=>x.applicationId).NotEmpty().NotNull();
+         RuleFor(x=>x.ApplicationId).NotEmpty().NotNull();
     }
 
 

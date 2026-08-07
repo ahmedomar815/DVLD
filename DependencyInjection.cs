@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 
@@ -46,7 +47,7 @@ public static class DependencyInjection
         services.AddScoped<ITestTypeService, TestTypeService>();
         services.AddScoped<ITestAppointmentService, TestAppointmentService>();
         services.AddBackgroundJobsConfig(configuration);
-
+        services.AddProblemDetails();
         return services;
     }
     private static IServiceCollection AddBackgroundJobsConfig(this IServiceCollection services, IConfiguration configuration)

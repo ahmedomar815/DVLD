@@ -25,7 +25,7 @@ public class DrivingLicenseApplicationService(ApplicationDbContext context):IDri
                         x.Application.User.SecondName,
                         x.Application.User.ThirdName,
                         x.Application.User.FourthName,
-                        x.Application.User.Email,
+                        x.Application.User.Email!,
                         x.Application.User.NationalId
                     )
                 ),
@@ -49,10 +49,12 @@ public class DrivingLicenseApplicationService(ApplicationDbContext context):IDri
     public async Task<Result> CreateAsync(DrivingLicenseApplicaitonRequest request, CancellationToken cancellationToken)
     {
         var applicationIsExist = await _context.Applications
-            .AnyAsync(x => x.Id == request.applicationId, cancellationToken);
+            .AnyAsync(x => x.Id == request.ApplicationId, cancellationToken);
         if (!applicationIsExist)
             return Result.Failure(ApplicationErrors.NotFound);
-
+        var usedApplication=await _context.DrivingLicenseApplications
+            .AnyAsync(x => x.ApplicationId == request.ApplicationId, cancellationToken);
+        if (usedApplication) return Result.Failure(DrivingLicenseApplicationErros.UsedApplication);
         var licenseTypeExist = await _context.LicenseTypes
             .AnyAsync(x => x.Id == request.LicenseTypeId, cancellationToken);
         if (!licenseTypeExist)

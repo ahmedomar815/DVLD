@@ -17,10 +17,10 @@ if (app.Environment.IsDevelopment())
    // app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
-//app.UseExceptionHandler();
+/*app.UseHttpsRedirection();*/
+app.UseExceptionHandler();
 app.UseAuthentication();
-
 app.MapControllers();
 app.UseAuthorization();
+
 app.Run();

@@ -2,7 +2,7 @@
 
 public enum TestResult
 {
-    Deferred=1,
-    Passed,
+    
+    Passed=1,
     Faild
 }

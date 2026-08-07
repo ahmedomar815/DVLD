@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DVLD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260805235206_RenameTestTypeTitle")]
-    partial class RenameTestTypeTitle
+    [Migration("20260807123013_intial")]
+    partial class intial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

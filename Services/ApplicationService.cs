@@ -25,6 +25,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
         return Result.Success<ApplicationResponse>(response);
 
     }
+
     public async Task<Result>Create(ApplicationRequest request, CancellationToken cancellationToken)
     {
 
