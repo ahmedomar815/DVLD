@@ -20,6 +20,6 @@ public class DrivingLicenseApplicationController(IDrivingLicenseApplicationServi
     public async Task<IActionResult> Create([FromBody]DrivingLicenseApplicaitonRequest request,CancellationToken cancellationToken)
     {
         var result = await _drivingLicenseApplicationService.CreateAsync(request,cancellationToken);
-        return result.IsSuccess ? Ok(result) : result.ToProblem();
+        return result.IsSuccess ? Ok() : result.ToProblem();
     }
 }

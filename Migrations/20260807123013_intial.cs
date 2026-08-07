@@ -81,9 +81,9 @@ namespace DVLD.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TestTypeTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    TestTypeDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    TestTypeFees = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Fees = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -549,9 +549,9 @@ namespace DVLD.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestTypes_TestTypeTitle",
+                name: "IX_TestTypes_Title",
                 table: "TestTypes",
-                column: "TestTypeTitle",
+                column: "Title",
                 unique: true);
         }
 

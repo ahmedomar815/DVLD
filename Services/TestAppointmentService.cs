@@ -1,6 +1,4 @@
-﻿using DVLD.Contracts.DrivingLicenseApplication;
-using DVLD.Contracts.LicenseType;
-using DVLD.Contracts.TestAppointment;
+﻿using DVLD.Contracts.TestAppointment;
 using Mapster;
 
 namespace DVLD.Services;
@@ -12,7 +10,7 @@ public class TestAppointmentService(ApplicationDbContext context):ITestAppointme
 
     public async Task<Result<TestAppointmentResponse>> GetAsync(string testAppointmentId, CancellationToken cancellationToken)
     {
-        throw new Exception("Not Implemented"); 
+        
         var testAppointment = await _context.TestAppointments.Include(x=>x.TestType).FirstOrDefaultAsync(x=>x.Id==testAppointmentId, cancellationToken);
         if(testAppointment is null)
         {
@@ -48,4 +46,18 @@ public class TestAppointmentService(ApplicationDbContext context):ITestAppointme
 
         return Result.Success(response);
     }
+
+    public async Task<Result>UpdateAsync(string testAppointmentId, TestAppointmentRequest request, CancellationToken cancellationToken)
+    {
+        var testAppointment = await _context.TestAppointments.FirstOrDefaultAsync(x => x.Id == testAppointmentId, cancellationToken);
+        if (testAppointment is null) return Result.Failure(TestAppointmentErrors.NotFound);
+        var IsTestTypeExist = await _context.TestTypes.AnyAsync(x => x.Id == request.TestTypeId);
+        if (!IsTestTypeExist) return Result.Failure(TestTypeErrors.NotFound);
+        var IsDrivingLicenseApplicationsExist = await _context.DrivingLicenseApplications.AnyAsync(x => x.Id == request.DrivingLicenseApplicationId);
+        if (!IsDrivingLicenseApplicationsExist) return Result.Failure(DrivingLicenseApplicationErros.NotFound);
+        testAppointment.Adapt(request);
+        await _context.SaveChangesAsync(cancellationToken);
+        return Result.Success();
+    }
+
 }

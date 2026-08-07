@@ -2,5 +2,5 @@
 
 namespace DVLD.Contracts.TestAppointment;
 
-public record TestAppointmentResponse (string Id, DateTime DateTime, decimal PaidFees,TestTypeResponse TestType);
+public record TestAppointmentResponse (string Id, DateTime AppointmentDate, decimal PaidFees,TestTypeResponse TestType);
 

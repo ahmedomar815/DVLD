@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\controllers\\testappointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:controllers\\testappointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\testappointment\\testappointmentrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\testappointment\\testappointmentrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\testappointment\\testappointmentrequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\testappointment\\testappointmentrequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\testappointment\\testappointmentresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\testappointment\\testappointmentresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,39 +26,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestAppointmentResponse.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\TestAppointment\\TestAppointmentResponse.cs",
+              "RelativeDocumentMoniker": "Contracts\\TestAppointment\\TestAppointmentResponse.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\TestAppointment\\TestAppointmentResponse.cs",
+              "RelativeToolTip": "Contracts\\TestAppointment\\TestAppointmentResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-07T16:04:03.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestAppointmentRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\TestAppointment\\TestAppointmentRequestValidator.cs",
+              "RelativeDocumentMoniker": "Contracts\\TestAppointment\\TestAppointmentRequestValidator.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\TestAppointment\\TestAppointmentRequestValidator.cs",
+              "RelativeToolTip": "Contracts\\TestAppointment\\TestAppointmentRequestValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-07T16:04:16.384Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Title": "TestAppointmentRequest.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\TestAppointment\\TestAppointmentRequest.cs",
+              "RelativeDocumentMoniker": "Contracts\\TestAppointment\\TestAppointmentRequest.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\TestAppointment\\TestAppointmentRequest.cs",
+              "RelativeToolTip": "Contracts\\TestAppointment\\TestAppointmentRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-02T21:11:18.975Z",
-              "IsPinned": true,
+              "WhenOpened": "2026-08-07T16:03:48.691Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "DependencyInjection.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\DependencyInjection.cs",
-              "RelativeToolTip": "DependencyInjection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Title": "TestAppointmentController.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\TestAppointmentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TestAppointmentController.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\TestAppointmentController.cs",
+              "RelativeToolTip": "Controllers\\TestAppointmentController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwB4AAABuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T19:32:02.359Z",
-              "IsPinned": true,
+              "WhenOpened": "2026-08-07T15:44:36.32Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         }
