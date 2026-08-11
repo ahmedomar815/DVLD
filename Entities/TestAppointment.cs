@@ -13,9 +13,10 @@ public class TestAppointment
     public string CreatedByUserId { get; set; } = string.Empty;
     public int TestTypeId { get; set; }
     public string DrivingLicenseApplicationId { get; set; } = string.Empty;
-
+    public string UserId { get; set; }= string.Empty;
     public DrivingLicenseApplication DrivingLicenseApplication { get; set; } = default!;
     public ApplicationUser ApplicationUser { get; set; } = default!;
+    public ApplicationUser AppointmentOwner { get; set; } = default!;
     public TestType TestType { get; set; } = default!;
     public Test? Test { get; set; }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DVLD.Migrations
 {
     /// <inheritdoc />
-    public partial class intial : Migration
+    public partial class inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -343,7 +343,8 @@ namespace DVLD.Migrations
                     PaidFees = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TestTypeId = table.Column<int>(type: "int", nullable: false),
-                    DrivingLicenseApplicationId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    DrivingLicenseApplicationId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -351,6 +352,12 @@ namespace DVLD.Migrations
                     table.ForeignKey(
                         name: "FK_TestAppointments_AspNetUsers_CreatedByUserId",
                         column: x => x.CreatedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TestAppointments_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -536,6 +543,11 @@ namespace DVLD.Migrations
                 name: "IX_TestAppointments_TestTypeId",
                 table: "TestAppointments",
                 column: "TestTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestAppointments_UserId",
+                table: "TestAppointments",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tests_CreatedByUserId",

@@ -22,6 +22,35 @@ public class NotificationService(ApplicationDbContext context, IEmailSender emai
     public Task SendApplicationCancelled(string applicationId)
         => SendStatusEmailAsync(applicationId, "application_cancelled_email", "DVLD Application Cancelled");
 
+    public async Task SendTestAppointment(string TestAppointmentId)
+    {
+        var data = await _context.TestAppointments
+       .Where(x => x.Id == TestAppointmentId)
+         .Select(x => new
+       {
+         TestTypeTitle = x.TestType.Title,
+         TestTypeDescription = x.TestType.Description,
+         x.AppointmentDate,
+         x.PaidFees,
+         Email=x.AppointmentOwner.Email,
+         OwnerFirstName = x.AppointmentOwner.FirstName,
+         OwnerSecondName = x.AppointmentOwner.SecondName,
+         OwnerThirdName = x.AppointmentOwner.ThirdName
+        })
+       .FirstOrDefaultAsync();
+
+        var placeholderValues = new Dictionary<string, string>
+        {
+            { "TestType", data!.TestTypeTitle },
+            {"Description", data.TestTypeDescription},
+            { "AppointmentDate", data.AppointmentDate.ToString() },
+            { "PaidFees",data.PaidFees.ToString()},
+            {"Name", data.OwnerFirstName + " " + data.OwnerSecondName+data.OwnerThirdName }
+
+        };
+           var body=EmailBodyBuilder.GenerateEmailBody("TestAppointmentConfirmation", placeholderValues);
+        await _emailSender.SendEmailAsync(data.Email!, "DVLD Test Appointment Confirmation", body);
+    }
     private async Task SendStatusEmailAsync(
         string applicationId,
         string templateName,
@@ -38,8 +67,7 @@ public class NotificationService(ApplicationDbContext context, IEmailSender emai
             return;
 
         var user = application.User;
-        if (user is null || string.IsNullOrWhiteSpace(user.Email))
-            return;
+        
 
         var country = user.Country;
         var applicationType = application.ApplicationType;
