@@ -3,10 +3,10 @@ using Mapster;
 
 namespace DVLD.Services;
 
-public class TestAppointmentService(ApplicationDbContext context):ITestAppointmentService
+public class TestAppointmentService(ApplicationDbContext context,INotificationService notificationService):ITestAppointmentService
 {
     private readonly ApplicationDbContext _context = context;
-
+    private readonly INotificationService _notificationService = notificationService;
 
     public async Task<Result<TestAppointmentResponse>> GetAsync(string testAppointmentId, CancellationToken cancellationToken)
     {

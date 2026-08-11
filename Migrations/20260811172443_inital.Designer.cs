@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DVLD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260807123013_intial")]
-    partial class intial
+    [Migration("20260811172443_inital")]
+    partial class inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -445,6 +445,10 @@ namespace DVLD.Migrations
                     b.Property<int>("TestTypeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedByUserId");
@@ -452,6 +456,8 @@ namespace DVLD.Migrations
                     b.HasIndex("DrivingLicenseApplicationId");
 
                     b.HasIndex("TestTypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("TestAppointments");
                 });
@@ -714,7 +720,15 @@ namespace DVLD.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("ApplicationUser", "AppointmentOwner")
+                        .WithMany("OwnedAppointments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("AppointmentOwner");
 
                     b.Navigation("DrivingLicenseApplication");
 
@@ -782,6 +796,8 @@ namespace DVLD.Migrations
                     b.Navigation("Applications");
 
                     b.Navigation("CreatedApplications");
+
+                    b.Navigation("OwnedAppointments");
 
                     b.Navigation("RefreshTokens");
 

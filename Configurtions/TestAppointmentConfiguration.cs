@@ -21,7 +21,12 @@ public class TestAppointmentConfiguration : IEntityTypeConfiguration<TestAppoint
             .HasForeignKey(x => x.TestTypeId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        
+
+        builder
+        .HasOne(x => x.AppointmentOwner)
+        .WithMany(x => x.OwnedAppointments)
+        .HasForeignKey(x => x.UserId)
+        .OnDelete(DeleteBehavior.Restrict);
     }
 
 }
