@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DVLD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260811172443_inital")]
-    partial class inital
+    [Migration("20260813233150_update license entity")]
+    partial class updatelicenseentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -295,6 +295,30 @@ namespace DVLD.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DVLD.Entities.Driver", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("Drivers");
+                });
+
             modelBuilder.Entity("DVLD.Entities.DrivingLicenseApplication", b =>
                 {
                     b.Property<string>("Id")
@@ -316,6 +340,63 @@ namespace DVLD.Migrations
                         .IsUnique();
 
                     b.ToTable("DrivingLicenseApplications");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.License", b =>
+                {
+                    b.Property<string>("LicenseNumber")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicaitonId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CreatedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DriverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateOnly>("ExpiryDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateOnly>("IssueDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("IssueReason")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LicenseTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("PaidFees")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("LicenseNumber");
+
+                    b.HasIndex("ApplicaitonId")
+                        .IsUnique();
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("DriverId")
+                        .IsUnique();
+
+                    b.HasIndex("LicenseTypeId")
+                        .IsUnique();
+
+                    b.ToTable("Licenses");
                 });
 
             modelBuilder.Entity("DVLD.Entities.LicenseType", b =>
@@ -653,21 +734,67 @@ namespace DVLD.Migrations
                     b.Navigation("UsreCreated");
                 });
 
+            modelBuilder.Entity("DVLD.Entities.Driver", b =>
+                {
+                    b.HasOne("ApplicationUser", "User")
+                        .WithOne()
+                        .HasForeignKey("DVLD.Entities.Driver", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("DVLD.Entities.DrivingLicenseApplication", b =>
                 {
                     b.HasOne("Application", "Application")
                         .WithOne("DrivingLicenseApplication")
                         .HasForeignKey("DVLD.Entities.DrivingLicenseApplication", "ApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DVLD.Entities.LicenseType", "LicenseType")
                         .WithOne("DrivingLicenseApplication")
                         .HasForeignKey("DVLD.Entities.DrivingLicenseApplication", "LicenseTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Application");
+
+                    b.Navigation("LicenseType");
+                });
+
+            modelBuilder.Entity("DVLD.Entities.License", b =>
+                {
+                    b.HasOne("Application", "Application")
+                        .WithOne()
+                        .HasForeignKey("DVLD.Entities.License", "ApplicaitonId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ApplicationUser", "CreatedByUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DVLD.Entities.Driver", "Driver")
+                        .WithOne()
+                        .HasForeignKey("DVLD.Entities.License", "DriverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DVLD.Entities.LicenseType", "LicenseType")
+                        .WithOne()
+                        .HasForeignKey("DVLD.Entities.License", "LicenseTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+
+                    b.Navigation("CreatedByUser");
+
+                    b.Navigation("Driver");
 
                     b.Navigation("LicenseType");
                 });
@@ -677,7 +804,7 @@ namespace DVLD.Migrations
                     b.HasOne("ApplicationUser", null)
                         .WithMany("RefreshTokens")
                         .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -740,7 +867,7 @@ namespace DVLD.Migrations
                     b.HasOne("ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -749,7 +876,7 @@ namespace DVLD.Migrations
                     b.HasOne("ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -758,7 +885,7 @@ namespace DVLD.Migrations
                     b.HasOne("ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -767,13 +894,13 @@ namespace DVLD.Migrations
                     b.HasOne("ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -782,7 +909,7 @@ namespace DVLD.Migrations
                     b.HasOne("ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

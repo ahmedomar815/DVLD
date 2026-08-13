@@ -23,6 +23,8 @@ public class ApplicationDbContext(IHttpContextAccessor httpContextAccessor, DbCo
     public DbSet<TestType> TestTypes { get; set; }
     public DbSet<TestAppointment> TestAppointments { get; set; }
     public DbSet<Test> Tests { get; set; }
+    public DbSet<Driver> Drivers { get; set; }
+    public DbSet<License> Licenses { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
        

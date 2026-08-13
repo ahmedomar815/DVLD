@@ -313,7 +313,7 @@ namespace DVLD.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("Driver");
+                    b.ToTable("Drivers");
                 });
 
             modelBuilder.Entity("DVLD.Entities.DrivingLicenseApplication", b =>
@@ -356,14 +356,14 @@ namespace DVLD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("ExpiryDate")
+                        .HasColumnType("date");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("IssueDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("IssueDate")
+                        .HasColumnType("date");
 
                     b.Property<int>("IssueReason")
                         .HasColumnType("int");
@@ -393,7 +393,7 @@ namespace DVLD.Migrations
                     b.HasIndex("LicenseTypeId")
                         .IsUnique();
 
-                    b.ToTable("License");
+                    b.ToTable("Licenses");
                 });
 
             modelBuilder.Entity("DVLD.Entities.LicenseType", b =>

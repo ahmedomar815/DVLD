@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\EXPRESS\\Desktop\\DVLD\\Migrations\\20260811222726_adding license and driver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20260811222726_adding license and driver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\license\\licenserequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\license\\licenserequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\entities\\license.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:entities\\license.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\configurtions\\licenseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:configurtions\\licenseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\configurtions\\driverconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:configurtions\\driverconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\license\\licneseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\license\\licneseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,75 +18,78 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "87a3e9fb-d40a-4be4-b710-73cd23c0913b",
+        "Display": 1,
+        "X": -194,
+        "Y": 245,
+        "Width": 1520,
+        "Height": 749,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LicneseResponse.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\License\\LicneseResponse.cs",
+              "RelativeDocumentMoniker": "Contracts\\License\\LicneseResponse.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\License\\LicneseResponse.cs",
+              "RelativeToolTip": "Contracts\\License\\LicneseResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAACEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-13T22:00:11.065Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "b92ca2b4-78c2-4c96-a747-f1d2d9d30af8",
+        "Display": 1,
+        "X": -201,
+        "Y": 340,
+        "Width": 1520,
+        "Height": 749,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20260811222726_adding license and driver.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Migrations\\20260811222726_adding license and driver.cs",
-              "RelativeDocumentMoniker": "Migrations\\20260811222726_adding license and driver.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Migrations\\20260811222726_adding license and driver.cs",
-              "RelativeToolTip": "Migrations\\20260811222726_adding license and driver.cs",
-              "ViewState": "AgIAANMAAAAAAAAAAAAQwA0AAAAsAAAAAAAAAA==",
+              "Title": "LicenseRequest.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\License\\LicenseRequest.cs",
+              "RelativeDocumentMoniker": "Contracts\\License\\LicenseRequest.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\License\\LicenseRequest.cs",
+              "RelativeToolTip": "Contracts\\License\\LicenseRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T22:27:26.888Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "License.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Entities\\License.cs",
-              "RelativeDocumentMoniker": "Entities\\License.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Entities\\License.cs",
-              "RelativeToolTip": "Entities\\License.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T22:26:59.411Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Persistence\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Persistence\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Persistence\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Persistence\\ApplicationDbContext.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBQAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T22:24:32.973Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LicenseConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Configurtions\\LicenseConfiguration.cs",
-              "RelativeDocumentMoniker": "Configurtions\\LicenseConfiguration.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Configurtions\\LicenseConfiguration.cs",
-              "RelativeToolTip": "Configurtions\\LicenseConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T22:11:27.06Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DriverConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Configurtions\\DriverConfiguration.cs",
-              "RelativeDocumentMoniker": "Configurtions\\DriverConfiguration.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Configurtions\\DriverConfiguration.cs",
-              "RelativeToolTip": "Configurtions\\DriverConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T22:09:47.533Z",
+              "WhenOpened": "2026-08-13T23:20:40.582Z",
               "EditorCaption": ""
             }
           ]
