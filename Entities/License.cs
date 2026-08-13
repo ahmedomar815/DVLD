@@ -6,8 +6,8 @@ public class License
     public string LicenseNumber { get; set; } = null!;
     public string ApplicaitonId { get; set; } = null!;
     public int LicenseTypeId { get; set; } 
-    public DateTime IssueDate { get; set; } = DateTime.Now;
-    public DateTime  ExpiryDate { get; set; } 
+    public DateOnly IssueDate { get; set; } 
+    public DateOnly ExpiryDate { get; set; } 
     public string Notes { get; set; } = null!;
     public string DriverId { get; set; } = null!;
     public decimal PaidFees { get; set; }
