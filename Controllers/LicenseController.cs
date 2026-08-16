@@ -1,7 +1,9 @@
-﻿using DVLD.Contracts.LicenseService;
+﻿using DVLD.Contracts.License;
+using DVLD.Contracts.LicenseService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace DVLD.Controllers;
 
@@ -18,11 +20,28 @@ public class LicenseController(ILicenseService licenseService) : ControllerBase
         var result = await _licenseService.GetAyncId(licenceId);
          return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
+    [HttpPost("")]
     public async Task<IActionResult> Create([FromBody] LicenseRequest request, CancellationToken cancellationToken)
     {
-        var userId = User.GetUserId();
+       
         
-        var result = await _licenseService.CreateAsync(userId!, request, cancellationToken);
+        var result = await _licenseService.CreateAsync(request, cancellationToken);
         return result.IsSuccess ? CreatedAtAction(nameof(Get), new { LicenceId = result.Value.LicenseNumber }, result.Value) : result.ToProblem();
+    }
+
+    [HttpPut("{licenseNumber}")]
+    public async Task<IActionResult> Update([FromRoute] string licenseNumber, [FromBody] LicenseUpdateRequest request, CancellationToken cancellationToken)
+    {
+       
+
+        var result = await _licenseService.UpdateAsync(licenseNumber, request, cancellationToken);
+        return result.IsSuccess ?NoContent() : result.ToProblem();
+    }
+
+    [HttpPut("disable/{licenseNumber}")]
+    public async Task<IActionResult> ToggleStatus([FromRoute] string licenseNumber, CancellationToken cancellationToken)
+    {
+        var result = await _licenseService.Disable(licenseNumber, cancellationToken);
+        return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 }
