@@ -41,6 +41,7 @@ public class ApplicationDbContext(IHttpContextAccessor httpContextAccessor, DbCo
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var entires = ChangeTracker.Entries<AuditableEnitty>();
+        
         var userId=_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
         foreach (var entry in entires)
         {

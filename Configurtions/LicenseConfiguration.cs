@@ -20,9 +20,6 @@ public class LicenseConfiguration : IEntityTypeConfiguration<License>
          .WithOne()
          .HasForeignKey<License>(x => x.DriverId);
 
-        builder.HasOne(x => x.CreatedByUser)
-         .WithMany()
-         .HasForeignKey(x => x.CreatedByUserId);
          
 
 
