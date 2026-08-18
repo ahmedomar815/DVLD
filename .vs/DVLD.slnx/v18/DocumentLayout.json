@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\controllers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:controllers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\driver\\driverresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\driver\\driverresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\application\\applicationresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\application\\applicationresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\services\\driverservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,20 +38,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DriverController.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\DriverController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DriverController.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\DriverController.cs",
-              "RelativeToolTip": "Controllers\\DriverController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABIAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "DriverResponse.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\Driver\\DriverResponse.cs",
+              "RelativeDocumentMoniker": "Contracts\\Driver\\DriverResponse.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\Driver\\DriverResponse.cs",
+              "RelativeToolTip": "Contracts\\Driver\\DriverResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-16T01:45:12.696Z",
+              "WhenOpened": "2026-08-18T01:44:20.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "ApplicationResponse.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\Application\\ApplicationResponse.cs",
+              "RelativeDocumentMoniker": "Contracts\\Application\\ApplicationResponse.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\Application\\ApplicationResponse.cs",
+              "RelativeToolTip": "Contracts\\Application\\ApplicationResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAB3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T01:42:59.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Persistence\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Persistence\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Persistence\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Persistence\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T00:49:24.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\UserService.cs",
+              "RelativeToolTip": "Services\\UserService.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAgwB8AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T23:40:55.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "DriverService.cs",
               "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\DriverService.cs",
               "RelativeDocumentMoniker": "Services\\DriverService.cs",

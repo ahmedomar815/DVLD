@@ -20,7 +20,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
             .FirstOrDefault(x => x.Id == applicationId);
         if (application is null) return Result.Failure<ApplicationResponse>(ApplicationErrors.NotFound);
         var strStatus=EnumHelper.GetName<ApplicationStatus>(application.Status);
-        var userResponse = application.User.Adapt<UserResponse>();
+        var userResponse = application.User.Adapt<ApplicationUserResponse>();
         var response = new ApplicationResponse(strStatus,application.PaidFees,application.ApplicationType.Name, userResponse);
         return Result.Success<ApplicationResponse>(response);
 

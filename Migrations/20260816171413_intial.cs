@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DVLD.Migrations
 {
     /// <inheritdoc />
-    public partial class updatelicenseentity : Migration
+    public partial class intial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -291,9 +291,11 @@ namespace DVLD.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedById = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedById = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -304,6 +306,17 @@ namespace DVLD.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Drivers_AspNetUsers_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Drivers_AspNetUsers_UpdatedById",
+                        column: x => x.UpdatedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -368,7 +381,11 @@ namespace DVLD.Migrations
                     PaidFees = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IssueReason = table.Column<int>(type: "int", nullable: false),
-                    CreatedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    DriverId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CreatedById = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedById = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -380,17 +397,27 @@ namespace DVLD.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Licenses_AspNetUsers_CreatedByUserId",
-                        column: x => x.CreatedByUserId,
+                        name: "FK_Licenses_AspNetUsers_CreatedById",
+                        column: x => x.CreatedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Licenses_AspNetUsers_UpdatedById",
+                        column: x => x.UpdatedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Licenses_Drivers_DriverId",
                         column: x => x.DriverId,
                         principalTable: "Drivers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Licenses_Drivers_DriverId1",
+                        column: x => x.DriverId1,
+                        principalTable: "Drivers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Licenses_LicenseType_LicenseTypeId",
                         column: x => x.LicenseTypeId,
@@ -578,6 +605,16 @@ namespace DVLD.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Drivers_CreatedById",
+                table: "Drivers",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Drivers_UpdatedById",
+                table: "Drivers",
+                column: "UpdatedById");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DrivingLicenseApplications_ApplicationId",
                 table: "DrivingLicenseApplications",
                 column: "ApplicationId",
@@ -596,9 +633,9 @@ namespace DVLD.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Licenses_CreatedByUserId",
+                name: "IX_Licenses_CreatedById",
                 table: "Licenses",
-                column: "CreatedByUserId");
+                column: "CreatedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Licenses_DriverId",
@@ -607,10 +644,20 @@ namespace DVLD.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Licenses_DriverId1",
+                table: "Licenses",
+                column: "DriverId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Licenses_LicenseTypeId",
                 table: "Licenses",
                 column: "LicenseTypeId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Licenses_UpdatedById",
+                table: "Licenses",
+                column: "UpdatedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LicenseType_Name",

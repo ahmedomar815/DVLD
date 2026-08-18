@@ -38,7 +38,7 @@ public class DriverService(UserManager<ApplicationUser> userManager, Application
     {
         return _context.Drivers.Select(x => new DriverResponse(
             x.Id,
-            new UserResponse(
+            new ApplicationUserResponse(
                 x.ApplicationUser.Id,
                 x.ApplicationUser.FirstName,
                 x.ApplicationUser.SecondName,

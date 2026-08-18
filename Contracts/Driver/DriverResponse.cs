@@ -4,7 +4,7 @@ namespace DVLD.Contracts.Driver;
 
 public record DriverResponse(
     string Id,
-   UserResponse UserResponse,
+   ApplicaitonUserResponse UserResponse,
    IEnumerable<LicneseResponse> LicenseResponses
 
 );
