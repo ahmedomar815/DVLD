@@ -15,12 +15,12 @@ public class DriverController(IDriverService driverService) : ControllerBase
         var result = await _driverService.GetAsync(driverId, cancellationToken);
         return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
-
     [HttpPost("")]
     public async Task<IActionResult> Create(string driverId, CancellationToken cancellationToken)
     {
         var result = await _driverService.GetAsync(driverId, cancellationToken);
         return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
+
 
 }
