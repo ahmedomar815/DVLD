@@ -12,3 +12,6 @@ global using DVLD.Extensions;
 global using DVLD.Settings;
 global using FluentValidation;
 global using DVLD.Persistence;
+global using DVLD.Abstractions.Consts;
+global using DVLD.Authentication.Filters;
+global using Microsoft.AspNetCore.Identity;

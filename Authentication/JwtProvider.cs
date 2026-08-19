@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 
 namespace DVLD.Auth;
 
@@ -11,7 +12,7 @@ public class JwtProvider(IOptions<JwtOptions> options,ILogger<JwtProvider> logge
     private readonly JwtOptions _options = options.Value;
     private readonly ILogger<JwtProvider> _logger = logger;
 
-    public (string Token, int ExpressIn) GenerateToken(ApplicationUser user)
+    public (string Token, int ExpressIn) GenerateToken(ApplicationUser user,IEnumerable<string>roles,IEnumerable<string>permissions)
     {
         
 
@@ -21,7 +22,10 @@ public class JwtProvider(IOptions<JwtOptions> options,ILogger<JwtProvider> logge
             new Claim(JwtRegisteredClaimNames.GivenName,user.FirstName),
             new Claim(JwtRegisteredClaimNames.Email,user.Email!),
             new  Claim(JwtRegisteredClaimNames.FamilyName,user.SecondName),
-            new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
+            new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
+            new (nameof(roles),JsonSerializer.Serialize(roles),JsonClaimValueTypes.JsonArray),
+            new (nameof(permissions),JsonSerializer.Serialize(permissions),JsonClaimValueTypes.JsonArray),
+
 
         };
          var symetricSecurityKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_options.Key));

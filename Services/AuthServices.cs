@@ -9,12 +9,14 @@ public class AuthServices(ApplicationDbContext context
     ,IJwtProvider jwtProvider
     ,UserManager<ApplicationUser> userManager
     ,SignInManager<ApplicationUser> signInManager 
+    , RoleManager<ApplicationRole> roleManager
     ) :IAuthServices
 {
     
     private readonly ApplicationDbContext _context = context;
     private readonly IJwtProvider _jwtProvider = jwtProvider;
     private readonly UserManager<ApplicationUser> _userManager = userManager;
+    private readonly RoleManager<ApplicationRole> _roleManager = roleManager;
     private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
     private readonly int _refreshTokenExpiryDays = 30;
 
@@ -31,30 +33,33 @@ public class AuthServices(ApplicationDbContext context
         var result = await _signInManager.PasswordSignInAsync(
             user, password, isPersistent: false, lockoutOnFailure: true);
 
-        if (result.IsLockedOut)
-            return Result.Failure<AuthResponse>(UserErrors.UserLockedout);
+        
 
-        if (!result.Succeeded)
-            return Result.Failure<AuthResponse>(UserErrors.InvalidCredentials);
-
-        var (Token, ExpressIn) = _jwtProvider.GenerateToken(user);
-        var refreshTokenValue = GenerateRefreshToken();
-
-        var refreshToken = new RefreshToken
+        if (result.Succeeded)
         {
-            Token = refreshTokenValue,
-            ExpiresOn = DateTime.UtcNow.AddDays(_refreshTokenExpiryDays),
-            ApplicationUserId=user.Id
-        };
-        user.RefreshTokens.Add(refreshToken);
-    
-        await _userManager.UpdateAsync(user);
+            var (userRoles, userPermissions) = await GetUserRolesAndPermissions(user, cancellationToken);
+            var (Token, ExpressIn) = _jwtProvider.GenerateToken(user,userRoles,userPermissions);
+            var refreshTokenValue = GenerateRefreshToken();
 
-        var response = new AuthResponse(
-            user.FirstName, user.SecondName, user.ThirdName, user.FourthName,
-            user.Email!, user.Id, Token, ExpressIn, refreshTokenValue);
+            var refreshToken = new RefreshToken
+            {
+                Token = refreshTokenValue,
+                ExpiresOn = DateTime.UtcNow.AddDays(_refreshTokenExpiryDays),
+                ApplicationUserId = user.Id
+            };
+            user.RefreshTokens.Add(refreshToken);
 
-        return Result.Success(response);
+            await _userManager.UpdateAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var response = new AuthResponse(
+                user.FirstName, user.SecondName, user.ThirdName, user.FourthName,
+                user.Email!, user.Id, Token, ExpressIn, refreshTokenValue);
+
+            return Result.Success(response);
+        }
+
+        
 
 
     }
@@ -103,6 +108,17 @@ public class AuthServices(ApplicationDbContext context
             user.Email!, user.Id, newAccessToken, ExpressIn, newRefreshToken);
 
         return Result.Success<AuthResponse>(response);
+    }
+    private async Task<(IEnumerable<string>roles,IEnumerable<string>permissions)>GetUserRolesAndPermissions(ApplicationUser user, CancellationToken cancellationToken)
+    {
+        var userRoles = await _userManager.GetRolesAsync(user);
+        var userPermissions = await _context.Roles.Join(_context.RoleClaims, r => r.Id, rc => rc.RoleId, (Role, Claim) => new { Role, Claim })
+             .Where(x => userRoles.Contains(x.Role.Name!))
+             .Select(x => x.Claim.ClaimValue!)
+             .Distinct()
+             .ToListAsync(cancellationToken);
+
+        return (userRoles, userPermissions);
     }
     private static string GenerateRefreshToken()
     {

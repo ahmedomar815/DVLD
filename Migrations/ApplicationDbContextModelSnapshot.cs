@@ -100,6 +100,24 @@ namespace DVLD.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "019f016b-5d2c-7838-8817-b9bda94e8ded",
+                            ConcurrencyStamp = "019f01db-ea48-73e7-8e51-4738f9a74412",
+                            IsDefault = false,
+                            IsDeleted = false,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = "019f016b-5d2c-7838-8817-b9bf6308b890",
+                            ConcurrencyStamp = "019f01db-ea48-73e7-8e51-473dfbc6bcd6",
+                            IsDefault = false,
+                            IsDeleted = false,
+                            Name = "Member"
+                        });
                 });
 
             modelBuilder.Entity("ApplicationUser", b =>
@@ -622,6 +640,204 @@ namespace DVLD.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "Permissions",
+                            ClaimValue = "applications:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "Permissions",
+                            ClaimValue = "applications:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "Permissions",
+                            ClaimValue = "applications:update",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClaimType = "Permissions",
+                            ClaimValue = "application-types:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ClaimType = "Permissions",
+                            ClaimValue = "application-types:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ClaimType = "Permissions",
+                            ClaimValue = "application-types:update",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClaimType = "Permissions",
+                            ClaimValue = "application-types:delete",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ClaimType = "Permissions",
+                            ClaimValue = "drivers:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ClaimType = "Permissions",
+                            ClaimValue = "drivers:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "Permissions",
+                            ClaimValue = "driving-license-applications:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClaimType = "Permissions",
+                            ClaimValue = "driving-license-applications:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClaimType = "Permissions",
+                            ClaimValue = "licenses:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ClaimType = "Permissions",
+                            ClaimValue = "licenses:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClaimType = "Permissions",
+                            ClaimValue = "licenses:update",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClaimType = "Permissions",
+                            ClaimValue = "license-types:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ClaimType = "Permissions",
+                            ClaimValue = "license-types:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ClaimType = "Permissions",
+                            ClaimValue = "license-types:update",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ClaimType = "Permissions",
+                            ClaimValue = "test-appointments:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ClaimType = "Permissions",
+                            ClaimValue = "test-appointments:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ClaimType = "Permissions",
+                            ClaimValue = "test-appointments:update",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ClaimType = "Permissions",
+                            ClaimValue = "tests:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ClaimType = "Permissions",
+                            ClaimValue = "roles:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ClaimType = "Permissions",
+                            ClaimValue = "roles:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ClaimType = "Permissions",
+                            ClaimValue = "roles:update",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ClaimType = "Permissions",
+                            ClaimValue = "test-types:read",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ClaimType = "Permissions",
+                            ClaimValue = "test-types:create",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ClaimType = "Permissions",
+                            ClaimValue = "test-types:update",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ClaimType = "Permissions",
+                            ClaimValue = "test-types:delete",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -684,6 +900,13 @@ namespace DVLD.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "019f016b-5d2c-7838-8817-b9b9f916ab20",
+                            RoleId = "019f016b-5d2c-7838-8817-b9bda94e8ded"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

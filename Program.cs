@@ -20,7 +20,6 @@ if (app.Environment.IsDevelopment())
 /*app.UseHttpsRedirection();*/
 app.UseExceptionHandler();
 app.UseAuthentication();
-app.MapControllers();
 app.UseAuthorization();
-
+app.MapControllers();
 app.Run();

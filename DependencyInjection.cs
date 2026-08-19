@@ -1,11 +1,13 @@
 ﻿
 using DVLD.Auth;
+using DVLD.Authentication.Filters;
 using DVLD.Persistence;
 
 using Hangfire;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.IdentityModel.Tokens;
@@ -46,6 +48,9 @@ public static class DependencyInjection
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddScoped<ITestTypeService, TestTypeService>();
         services.AddScoped<ITestAppointmentService, TestAppointmentService>();
+        services.AddScoped<IRoleService, RoleService>();
+        services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+        services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
         services.AddBackgroundJobsConfig(configuration);
         services.AddProblemDetails();
         return services;
