@@ -19,7 +19,7 @@ public class DrivingLicenseApplicationService(ApplicationDbContext context):IDri
                     x.Application.Status.ToString(),
                     x.Application.PaidFees,
                     x.Application.ApplicationType.Name,
-                    new ApplicationUserResponse(
+                    new ApplicaitonUserResponse(
                         x.Application.User.Id,
                         x.Application.User.FirstName,
                         x.Application.User.SecondName,

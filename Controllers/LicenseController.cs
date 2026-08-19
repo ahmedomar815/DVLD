@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
-namespace DVLD.Controllers;
-
 [Route("[controller]")]
 [ApiController]
 [Authorize]
@@ -15,12 +13,14 @@ public class LicenseController(ILicenseService licenseService) : ControllerBase
     private readonly ILicenseService _licenseService = licenseService;
 
     [HttpGet("{licenceId}")]
+    [HasPermission(Permissions.GetLicenses)]
     public async Task<IActionResult>Get(string licenceId)
     {
         var result = await _licenseService.GetAyncId(licenceId);
          return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
     [HttpPost("")]
+    [HasPermission(Permissions.CreateLicenses)]
     public async Task<IActionResult> Create([FromBody] LicenseRequest request, CancellationToken cancellationToken)
     {
        
@@ -30,6 +30,7 @@ public class LicenseController(ILicenseService licenseService) : ControllerBase
     }
 
     [HttpPut("{licenseNumber}")]
+    [HasPermission(Permissions.UpdateLicenses)]
     public async Task<IActionResult> Update([FromRoute] string licenseNumber, [FromBody] LicenseUpdateRequest request, CancellationToken cancellationToken)
     {
        
@@ -39,6 +40,7 @@ public class LicenseController(ILicenseService licenseService) : ControllerBase
     }
 
     [HttpPut("disable/{licenseNumber}")]
+    [HasPermission(Permissions.UpdateLicenses)]
     public async Task<IActionResult> ToggleStatus([FromRoute] string licenseNumber, CancellationToken cancellationToken)
     {
         var result = await _licenseService.Disable(licenseNumber, cancellationToken);

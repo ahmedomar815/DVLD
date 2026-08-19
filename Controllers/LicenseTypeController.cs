@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace DVLD.Controllers;
-
 [Route("[controller]")]
 [ApiController]
 [Authorize]
@@ -15,6 +13,7 @@ public class LicenseTypeController(ILicenseTypeService licenseTypeService) : Con
 
 
     [HttpGet("{licenseTypeId}")]
+    [HasPermission(Permissions.GetLicenseTypes)]
     public async Task<IActionResult> Get([FromRoute, Range(1, int.MaxValue)] int licenseTypeId, CancellationToken cancellationToken)
     {
         var result = await _licenseTypeService.GetAsync(licenseTypeId, cancellationToken);
@@ -22,6 +21,7 @@ public class LicenseTypeController(ILicenseTypeService licenseTypeService) : Con
     }
 
     [HttpPost("")]
+    [HasPermission(Permissions.CreateLicenseTypes)]
 
     public async Task<IActionResult> Create([FromBody] LicenseTypeRequest request, CancellationToken cancellationToken)
     {
@@ -33,6 +33,7 @@ public class LicenseTypeController(ILicenseTypeService licenseTypeService) : Con
     }
 
     [HttpPut("{licenseTypeId}")]
+    [HasPermission(Permissions.UpdateLicenseTypes)]
 
     public async Task<IActionResult> Update([FromRoute, Range(1, int.MaxValue)] int licenseTypeId, [FromBody] LicenseTypeRequest request, CancellationToken cancellationToken)
     {
@@ -41,6 +42,7 @@ public class LicenseTypeController(ILicenseTypeService licenseTypeService) : Con
 
     }
     [HttpGet("")]
+    [HasPermission(Permissions.GetLicenseTypes)]
     public async Task<IActionResult> GetAll( CancellationToken cancellationToken)
     {
         var result = await _licenseTypeService.GetAllAsync( cancellationToken);

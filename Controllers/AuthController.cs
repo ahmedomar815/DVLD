@@ -3,8 +3,6 @@ using DVLD.Contracts.Authentication;
 using DVLD.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DVLD.Controllers;
-
 [Route("[controller]")]
 [ApiController]
 public class AuthController(IAuthServices authServices) : ControllerBase
