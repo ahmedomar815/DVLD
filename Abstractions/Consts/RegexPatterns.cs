@@ -1,7 +1,6 @@
-﻿namespace SurveyBasket.Abstractions.Consts
+namespace DVLD.Abstractions.Consts;
+
+public static class RegexPatterns
 {
-    public static class RegexPatterns
-    {
-        public const string Password = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$";
-    }
+    public const string Password = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$";
 }

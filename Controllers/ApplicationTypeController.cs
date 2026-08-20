@@ -1,8 +1,10 @@
 ﻿using DVLD.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("[controller]")]
 [ApiController]
+[Authorize]
 public class ApplicationTypeController(IApplicationTypeService applicationTypeService) : ControllerBase
 {
     private readonly IApplicationTypeService _applicationTypeService = applicationTypeService;
@@ -30,7 +32,9 @@ public class ApplicationTypeController(IApplicationTypeService applicationTypeSe
     {
         var result = await _applicationTypeService.CreateApplicationType(request, cancellationToken);
 
-        return result.IsSuccess ? NoContent() : result.ToProblem();
+        return result.IsSuccess
+            ? CreatedAtAction(nameof(Get), new { applicationTypeId = result.Value.Id }, result.Value)
+            : result.ToProblem();
     }
     [HttpPut("update/{applicationTypeId}")]
     [HasPermission(Permissions.UpdateApplicationTypes)]

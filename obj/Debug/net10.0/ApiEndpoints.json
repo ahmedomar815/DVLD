@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "ContainingType": "ApplicationController",
     "Method": "Get",
     "RelativePath": "Application/{applicaitonId}",
     "HttpMethod": "GET",
@@ -16,7 +16,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "ContainingType": "ApplicationController",
     "Method": "Create",
     "RelativePath": "Application/{applicationTypeId}",
     "HttpMethod": "POST",
@@ -37,7 +37,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "ContainingType": "ApplicationController",
     "Method": "Approve",
     "RelativePath": "Application/approve/{applicationId}",
     "HttpMethod": "PUT",
@@ -53,7 +53,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "ContainingType": "ApplicationController",
     "Method": "Cancalle",
     "RelativePath": "Application/cancale/{applicationId}",
     "HttpMethod": "PUT",
@@ -69,7 +69,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationController",
+    "ContainingType": "ApplicationController",
     "Method": "Reject",
     "RelativePath": "Application/reject/{applicationId}",
     "HttpMethod": "PUT",
@@ -85,9 +85,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationTypeController",
+    "ContainingType": "ApplicationTypeController",
     "Method": "Create",
-    "RelativePath": "ApplicationType/add",
+    "RelativePath": "ApplicationType",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -101,7 +101,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationTypeController",
+    "ContainingType": "ApplicationTypeController",
     "Method": "Delete",
     "RelativePath": "ApplicationType/delete/{applicationTypeId}",
     "HttpMethod": "DELETE",
@@ -117,7 +117,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationTypeController",
+    "ContainingType": "ApplicationTypeController",
     "Method": "GetAll",
     "RelativePath": "ApplicationType/get-all",
     "HttpMethod": "GET",
@@ -127,7 +127,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationTypeController",
+    "ContainingType": "ApplicationTypeController",
     "Method": "Get",
     "RelativePath": "ApplicationType/get/{applicationTypeId}",
     "HttpMethod": "GET",
@@ -143,7 +143,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.ApplicationTypeController",
+    "ContainingType": "ApplicationTypeController",
     "Method": "Update",
     "RelativePath": "ApplicationType/update/{applicationTypeId}",
     "HttpMethod": "PUT",
@@ -164,7 +164,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "GetRefreshToken",
     "RelativePath": "Auth/get-refresh-token",
     "HttpMethod": "POST",
@@ -180,7 +180,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "Login",
     "RelativePath": "Auth/login",
     "HttpMethod": "POST",
@@ -196,7 +196,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "RevokeRefreshToken",
     "RelativePath": "Auth/revoke-refresh-token",
     "HttpMethod": "PUT",
@@ -212,7 +212,39 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.DrivingLicenseApplicationController",
+    "ContainingType": "DriverController",
+    "Method": "Create",
+    "RelativePath": "Driver",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "driverId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DriverController",
+    "Method": "Get",
+    "RelativePath": "Driver/{driverId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "driverId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DrivingLicenseApplicationController",
     "Method": "Create",
     "RelativePath": "DrivingLicenseApplication",
     "HttpMethod": "POST",
@@ -228,7 +260,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.DrivingLicenseApplicationController",
+    "ContainingType": "DrivingLicenseApplicationController",
     "Method": "Get",
     "RelativePath": "DrivingLicenseApplication/{drivingLicenseApplicationId}",
     "HttpMethod": "GET",
@@ -244,7 +276,76 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "ContainingType": "LicenseController",
+    "Method": "Create",
+    "RelativePath": "License",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.LicenseService.LicenseRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LicenseController",
+    "Method": "Get",
+    "RelativePath": "License/{licenceId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "licenceId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LicenseController",
+    "Method": "Update",
+    "RelativePath": "License/{licenseNumber}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "licenseNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.License.LicenseUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LicenseController",
+    "Method": "ToggleStatus",
+    "RelativePath": "License/disable/{licenseNumber}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "licenseNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LicenseTypeController",
     "Method": "Create",
     "RelativePath": "LicenseType",
     "HttpMethod": "POST",
@@ -260,7 +361,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "ContainingType": "LicenseTypeController",
     "Method": "GetAll",
     "RelativePath": "LicenseType",
     "HttpMethod": "GET",
@@ -270,7 +371,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "ContainingType": "LicenseTypeController",
     "Method": "Get",
     "RelativePath": "LicenseType/{licenseTypeId}",
     "HttpMethod": "GET",
@@ -286,7 +387,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.LicenseTypeController",
+    "ContainingType": "LicenseTypeController",
     "Method": "Update",
     "RelativePath": "LicenseType/{licenseTypeId}",
     "HttpMethod": "PUT",
@@ -307,7 +408,86 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestController",
+    "ContainingType": "RoleController",
+    "Method": "GetAll",
+    "RelativePath": "Role",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RoleController",
+    "Method": "Create",
+    "RelativePath": "Role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.ApplicationRole.RoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RoleController",
+    "Method": "Get",
+    "RelativePath": "Role/{roleId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RoleController",
+    "Method": "Update",
+    "RelativePath": "Role/{roleId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.ApplicationRole.RoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RoleController",
+    "Method": "ToggleStatus",
+    "RelativePath": "Role/{roleId}/toggle-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TestController",
     "Method": "Create",
     "RelativePath": "Test",
     "HttpMethod": "",
@@ -323,7 +503,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestAppointmentController",
+    "ContainingType": "TestAppointmentController",
     "Method": "Create",
     "RelativePath": "TestAppointment",
     "HttpMethod": "POST",
@@ -339,7 +519,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestAppointmentController",
+    "ContainingType": "TestAppointmentController",
     "Method": "Get",
     "RelativePath": "TestAppointment/{testAppointmentId}",
     "HttpMethod": "GET",
@@ -355,7 +535,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestAppointmentController",
+    "ContainingType": "TestAppointmentController",
     "Method": "Update",
     "RelativePath": "TestAppointment/{testAppointmentId}",
     "HttpMethod": "PUT",
@@ -376,7 +556,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "ContainingType": "TestTypeController",
     "Method": "GetAll",
     "RelativePath": "TestType",
     "HttpMethod": "GET",
@@ -386,7 +566,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "ContainingType": "TestTypeController",
     "Method": "Create",
     "RelativePath": "TestType",
     "HttpMethod": "POST",
@@ -402,7 +582,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "ContainingType": "TestTypeController",
     "Method": "Get",
     "RelativePath": "TestType/{testTypeId}",
     "HttpMethod": "GET",
@@ -418,7 +598,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "ContainingType": "TestTypeController",
     "Method": "Update",
     "RelativePath": "TestType/{testTypeId}",
     "HttpMethod": "PUT",
@@ -439,7 +619,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "DVLD.Controllers.TestTypeController",
+    "ContainingType": "TestTypeController",
     "Method": "Delete",
     "RelativePath": "TestType/{testTypeId}",
     "HttpMethod": "DELETE",

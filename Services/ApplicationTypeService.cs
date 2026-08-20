@@ -14,7 +14,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
     CancellationToken cancellationToken)
     {
         var applicationType = await _context.ApplicationTypes
-            .FindAsync([applicationTypeId], cancellationToken);
+            .FirstOrDefaultAsync(x=>x.Id==applicationTypeId&&x.IsActive, cancellationToken);
 
         return applicationType is null
             ? Result.Failure<ApplicationTypeResponse>(ApplicationTypeErrors.NotFound)
@@ -29,16 +29,19 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
         return Result.Success(applicationTypes);
     }
 
-    public async Task<Result>CreateApplicationType(ApplicationTypeRequest request,CancellationToken cancellationToken)
+    public async Task<Result<ApplicationTypeResponse>> CreateApplicationType(ApplicationTypeRequest request, CancellationToken cancellationToken)
     {
-     
         var exists = await _context.ApplicationTypes
             .AnyAsync(x => x.Name == request.Name, cancellationToken);
-        if (exists) return Result.Failure(ApplicationTypeErrors.DulicatedName);
+
+        if (exists)
+            return Result.Failure<ApplicationTypeResponse>(ApplicationTypeErrors.DulicatedName);
+
         var applicationType = request.Adapt<ApplicationType>();
         await _context.ApplicationTypes.AddAsync(applicationType, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-        return Result.Success();
+
+        return Result.Success(applicationType.Adapt<ApplicationTypeResponse>());
     }
 
     public async  Task<Result> Update(  int applicationTypeId, ApplicationTypeRequest request, CancellationToken cancellationToken)
@@ -57,7 +60,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
     public async Task<Result> Delete( int applicationTypeId, CancellationToken cancellationToken)
     {
         var applicationType = await _context.ApplicationTypes
-      .FindAsync([applicationTypeId], cancellationToken);
+      .FindAsync(applicationTypeId, cancellationToken);
 
         if (applicationType is null)
             return Result.Failure(ApplicationTypeErrors.NotFound);
