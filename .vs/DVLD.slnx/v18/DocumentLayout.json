@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\contracts\\applicationtype\\applicationtyperesponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:contracts\\applicationtype\\applicationtyperesponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\services\\applicationtypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:services\\applicationtypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\controllers\\applicationtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:controllers\\applicationtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\entities\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:entities\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +47,92 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Title": "ApplicationTypeResponse.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\ApplicationType\\ApplicationTypeResponse.cs",
+              "RelativeDocumentMoniker": "Contracts\\ApplicationType\\ApplicationTypeResponse.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Contracts\\ApplicationType\\ApplicationTypeResponse.cs",
+              "RelativeToolTip": "Contracts\\ApplicationType\\ApplicationTypeResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-19T18:21:57.614Z",
+              "WhenOpened": "2026-08-19T22:29:56.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationTypeService.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\ApplicationTypeService.cs",
+              "RelativeDocumentMoniker": "Services\\ApplicationTypeService.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\ApplicationTypeService.cs",
+              "RelativeToolTip": "Services\\ApplicationTypeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-19T22:23:51.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationController.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\ApplicationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ApplicationController.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\ApplicationController.cs",
+              "RelativeToolTip": "Controllers\\ApplicationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-19T22:11:08.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationTypeController.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\ApplicationTypeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ApplicationTypeController.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Controllers\\ApplicationTypeController.cs*",
+              "RelativeToolTip": "Controllers\\ApplicationTypeController.cs*",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwCoAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-19T22:11:07.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthServices.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\AuthServices.cs",
+              "RelativeDocumentMoniker": "Services\\AuthServices.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\AuthServices.cs",
+              "RelativeToolTip": "Services\\AuthServices.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAYwIAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-19T22:03:28.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RefreshToken.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Entities\\RefreshToken.cs",
+              "RelativeDocumentMoniker": "Entities\\RefreshToken.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Entities\\RefreshToken.cs",
+              "RelativeToolTip": "Entities\\RefreshToken.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwBIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-19T22:02:45.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Persistence\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Persistence\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Persistence\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Persistence\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-19T22:01:45.212Z",
               "EditorCaption": ""
             }
           ]

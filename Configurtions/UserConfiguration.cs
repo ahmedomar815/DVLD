@@ -38,6 +38,8 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
             FourthName = "Admin",
             Email = DefaultUsers.AdminEmail,
             NormalizedEmail = DefaultUsers.AdminEmail.ToUpper(),
+            UserName = DefaultUsers.AdminEmail,
+            NormalizedUserName = DefaultUsers.AdminEmail.ToUpper(),
             NationalId = DefaultUsers.NationalId,
             EmailConfirmed = true,
             SecurityStamp = DefaultUsers.AdminSecurityStamp,

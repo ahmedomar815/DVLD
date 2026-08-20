@@ -1,6 +1,7 @@
 ﻿using DVLD.Auth;
 using DVLD.Contracts.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Org.BouncyCastle.Tls.Crypto.Impl;
 using System.Security.Cryptography;
 
 namespace DVLD.Services;
@@ -20,48 +21,75 @@ public class AuthServices(ApplicationDbContext context
     private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
     private readonly int _refreshTokenExpiryDays = 30;
 
-    public async Task<Result<AuthResponse>> GetTokenAsync(string email, string password, CancellationToken cancellationToken)
+    public async Task<Result<AuthResponse>> GetTokenAsync(
+        string email,
+        string password,
+        CancellationToken cancellationToken)
     {
-
-
         var user = await _userManager.FindByEmailAsync(email);
+
         if (user is null)
-            return Result.Failure<AuthResponse>(UserErrors.InvalidCredentials); 
-        if(user.IsDisabled)
-            return Result.Failure<AuthResponse>(UserErrors.UserDisabled);
+            return Result.Failure<AuthResponse>(
+                UserErrors.InvalidCredentials);
+
+        if (user.IsDisabled)
+            return Result.Failure<AuthResponse>(
+                UserErrors.UserDisabled);
 
         var result = await _signInManager.PasswordSignInAsync(
-            user, password, isPersistent: false, lockoutOnFailure: true);
+            user,
+            password,
+            isPersistent: false,
+            lockoutOnFailure: true);
 
-        
-
-        if (result.Succeeded)
+        if (!result.Succeeded)
         {
-            var (userRoles, userPermissions) = await GetUserRolesAndPermissions(user, cancellationToken);
-            var (Token, ExpressIn) = _jwtProvider.GenerateToken(user,userRoles,userPermissions);
-            var refreshTokenValue = GenerateRefreshToken();
+            if (result.IsLockedOut)
+                return Result.Failure<AuthResponse>(
+                    UserErrors.UserLockedout);
 
-            var refreshToken = new RefreshToken
-            {
-                Token = refreshTokenValue,
-                ExpiresOn = DateTime.UtcNow.AddDays(_refreshTokenExpiryDays),
-                ApplicationUserId = user.Id
-            };
-            user.RefreshTokens.Add(refreshToken);
-
-            await _userManager.UpdateAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
-
-            var response = new AuthResponse(
-                user.FirstName, user.SecondName, user.ThirdName, user.FourthName,
-                user.Email!, user.Id, Token, ExpressIn, refreshTokenValue);
-
-            return Result.Success(response);
+            return Result.Failure<AuthResponse>(
+                UserErrors.InvalidCredentials);
         }
 
+        var (userRoles, userPermissions) =
+            await GetUserRolesAndPermissions(
+                user,
+                cancellationToken);
+
+        var (token, expiresIn) =
+            _jwtProvider.GenerateToken(
+                user,
+                userRoles,
+                userPermissions);
+
+        var refreshTokenValue = GenerateRefreshToken();
+
+        var refreshToken = new RefreshToken
+        {
+            Token = refreshTokenValue,
+            ExpiresOn = DateTime.UtcNow.AddDays(_refreshTokenExpiryDays),
+            ApplicationUserId = user.Id
+        };
+
+        user.RefreshTokens.Add(refreshToken);
+
+        var updateResult = await _userManager.UpdateAsync(user);
+
         
 
+        var response = new AuthResponse(
+            user.FirstName,
+            user.SecondName,
+            user.ThirdName,
+            user.FourthName,
+            user.Email!,
+            user.Id,
+            token,
+            expiresIn,
+            refreshTokenValue);
 
+        return Result.Success(response);
     }
     public async Task<Result> RevokeRefreshTokenAsync(string accessToken, string refreshToken, CancellationToken cancellationToken = default)
      {
@@ -95,10 +123,18 @@ public class AuthServices(ApplicationDbContext context
             return Result.Failure<AuthResponse>(UserErrors.UserDisabled);
         if (user.LockoutEnd > DateTime.UtcNow)
             return Result.Failure<AuthResponse>(UserErrors.UserLockedout);
-        var userrefreshToken = _context.RefreshTokens.FirstOrDefault(x => x.Token == refreshToken && x.IsActive);
-        if (userrefreshToken is null) return Result.Failure<AuthResponse>(UserErrors.InvalidRefreshToken);
-        userrefreshToken.RevokedOn = DateTime.UtcNow;
-        var (newAccessToken, ExpressIn) = _jwtProvider.GenerateToken(user);
+        var (userRoles, userPermissions) =
+         await GetUserRolesAndPermissions(
+             user,
+             cancellationToken);
+        var userRefreshToken = await _context.RefreshTokens
+     .FirstOrDefaultAsync( x => x.Token == refreshToken && 
+     x.ApplicationUserId == user.Id &&x.RevokedOn == null && x.ExpiresOn > DateTime.UtcNow,
+         cancellationToken);
+
+        if (userRefreshToken is null) return Result.Failure<AuthResponse>(UserErrors.InvalidRefreshToken);
+        userRefreshToken.RevokedOn = DateTime.UtcNow;
+        var (newAccessToken, ExpressIn) = _jwtProvider.GenerateToken(user,userRoles,userPermissions);
         var newRefreshToken = GenerateRefreshToken();
         var refreshTokenExiration = DateTime.UtcNow.AddDays(_refreshTokenExpiryDays);
         user.RefreshTokens.Add(new RefreshToken { Token = newRefreshToken, ExpiresOn = refreshTokenExiration });

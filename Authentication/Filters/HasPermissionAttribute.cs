@@ -6,7 +6,7 @@ public sealed class HasPermissionAttribute : AuthorizeAttribute
 {
     public HasPermissionAttribute(string permission)
     {
-        Policy = $"{PermissionAuthorizationPolicyProvider.PolicyPrefix}{permission}";
+      
     }
 
 }

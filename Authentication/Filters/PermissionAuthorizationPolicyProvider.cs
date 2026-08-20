@@ -3,26 +3,21 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
-// Dynamic permission policy provider.
 
-public sealed class PermissionAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options)
-    : DefaultAuthorizationPolicyProvider(options)
+
+public class PermissionAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options) : DefaultAuthorizationPolicyProvider(options)
 {
-    public const string PolicyPrefix = "Permission:";
-
-    public override Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
+    private readonly AuthorizationOptions _authorizationOptions = options.Value;
+    public override async Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
     {
-        if (!policyName.StartsWith(PolicyPrefix, StringComparison.OrdinalIgnoreCase))
+        var policy = await base.GetPolicyAsync(policyName);
+        if (policy is not null)
         {
-            return base.GetPolicyAsync(policyName);
+            return policy;
         }
+        var permissionPolicy = new AuthorizationPolicyBuilder().AddRequirements(new PermissionRequirment(policyName)).Build();
 
-        var permission = policyName[PolicyPrefix.Length..];
-        var policy = new AuthorizationPolicyBuilder()
-            .RequireAuthenticatedUser()
-            .AddRequirements(new PermissionRequirment(permission))
-            .Build();
-
-        return Task.FromResult<AuthorizationPolicy?>(policy);
+        _authorizationOptions.AddPolicy(policyName, permissionPolicy);
+        return permissionPolicy;
     }
 }
