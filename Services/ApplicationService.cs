@@ -1,4 +1,5 @@
-﻿using DVLD.Persistence;
+﻿using DVLD.Contracts.User;
+using DVLD.Persistence;
 using Hangfire;
 using Mapster;
 using static System.Net.Mime.MediaTypeNames;
@@ -19,10 +20,10 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
             .Include(x=>x.ApplicationType)
             .FirstOrDefault(x => x.Id == applicationId);
         if (application is null) return Result.Failure<ApplicationResponse>(ApplicationErrors.NotFound);
-        var strStatus=EnumHelper.GetName<ApplicationStatus>(application.Status);
-        var userResponse = application.User.Adapt<ApplicaitonUserResponse>();
-        var response = new ApplicationResponse(strStatus,application.PaidFees,application.ApplicationType.Name, userResponse);
-        return Result.Success<ApplicationResponse>(response);
+        
+        var userResponse = application.User.Adapt<UserResponse>();
+        var response = new ApplicationResponse(application.Status.ToString(),application.PaidFees,application.ApplicationType.Name, userResponse);
+        return Result.Success(response);
 
     }
 

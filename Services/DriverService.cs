@@ -1,5 +1,6 @@
 ﻿using DVLD.Contracts.Driver;
 using DVLD.Contracts.License;
+using DVLD.Contracts.User;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -38,14 +39,16 @@ public class DriverService(UserManager<ApplicationUser> userManager, Application
     {
         return _context.Drivers.Select(x => new DriverResponse(
             x.Id,
-            new ApplicaitonUserResponse(
+            new UserResponse(
                 x.ApplicationUser.Id,
                 x.ApplicationUser.FirstName,
                 x.ApplicationUser.SecondName,
                 x.ApplicationUser.ThirdName,
                 x.ApplicationUser.FourthName,
                 x.ApplicationUser.Email!,
-                x.ApplicationUser.NationalId
+                x.ApplicationUser.PhoneNumber!,
+                x.ApplicationUser.NationalId,
+                x.ApplicationUser.Country.Name
             ),
             x.Licenses.Select(l => new LicneseResponse(
               l.LicenseNumber,

@@ -17,10 +17,18 @@ public class LicenseConfiguration : IEntityTypeConfiguration<License>
 
 
         builder.HasOne(x => x.Driver)
-         .WithOne()
-         .HasForeignKey<License>(x => x.DriverId);
+         .WithMany(x => x.Licenses)
+         .HasForeignKey(x => x.DriverId);
 
-         
+        builder.HasOne(x => x.CreatedBy)
+            .WithMany()
+            .HasForeignKey(x => x.CreatedById)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.UpdatedBy)
+            .WithMany()
+            .HasForeignKey(x => x.UpdatedById)
+            .OnDelete(DeleteBehavior.Restrict);
 
 
 

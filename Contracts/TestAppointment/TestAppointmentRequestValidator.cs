@@ -9,7 +9,9 @@ public class TestAppointmentRequestValidator
             .NotEmpty()
             .Must(date => date > DateTime.Now)
             .WithMessage("Appointment date must be in the future");
-
+        RuleFor(x => x.UserId)
+            .NotEmpty()
+            .WithMessage("user id is required");
         RuleFor(x => x.PaidFees)
             .GreaterThan(0)
             .WithMessage("Paid fees must be greater than zero");

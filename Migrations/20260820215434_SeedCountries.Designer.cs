@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DVLD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260819203538_AddAdminUserName")]
-    partial class AddAdminUserName
+    [Migration("20260820215434_SeedCountries")]
+    partial class SeedCountries
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -312,6 +312,976 @@ namespace DVLD.Migrations
                         {
                             Id = 1,
                             Name = "Egypt"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Afghanistan"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Albania"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Algeria"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Andorra"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Angola"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Antigua and Barbuda"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Argentina"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Armenia"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Australia"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Austria"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Azerbaijan"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Bahamas"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Bahrain"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Bangladesh"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Barbados"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Belarus"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Belgium"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Belize"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Benin"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Bhutan"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "Bolivia"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "Bosnia and Herzegovina"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "Botswana"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "Brazil"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "Brunei"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "Bulgaria"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "Burkina Faso"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "Burundi"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "Cabo Verde"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "Cambodia"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Name = "Cameroon"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "Canada"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Name = "Central African Republic"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Name = "Chad"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "Chile"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Name = "China"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "Colombia"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Name = "Comoros"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "Congo (Republic of the)"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Name = "Costa Rica"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Name = "Cote d'Ivoire"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Name = "Croatia"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Name = "Cuba"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Name = "Cyprus"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Name = "Czechia"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Name = "Democratic Republic of the Congo"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Name = "Denmark"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Name = "Djibouti"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Name = "Dominica"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Name = "Dominican Republic"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Name = "Ecuador"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Name = "El Salvador"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Name = "Equatorial Guinea"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Name = "Eritrea"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Name = "Estonia"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Name = "Eswatini"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Name = "Ethiopia"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Name = "Fiji"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Name = "Finland"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Name = "France"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Name = "Gabon"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Name = "Gambia"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Name = "Georgia"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Name = "Germany"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Name = "Ghana"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Name = "Greece"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Name = "Grenada"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Name = "Guatemala"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Name = "Guinea"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Name = "Guinea-Bissau"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Name = "Guyana"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Name = "Haiti"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Name = "Honduras"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Name = "Hungary"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Name = "Iceland"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Name = "India"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Name = "Indonesia"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Name = "Iran"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Name = "Iraq"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Name = "Ireland"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Name = "Israel"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Name = "Italy"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Name = "Jamaica"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Name = "Japan"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Name = "Jordan"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Name = "Kazakhstan"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Name = "Kenya"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Name = "Kiribati"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Name = "Kuwait"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Name = "Kyrgyzstan"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Name = "Laos"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Name = "Latvia"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Name = "Lebanon"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Name = "Lesotho"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Name = "Liberia"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Name = "Libya"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Name = "Liechtenstein"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Name = "Lithuania"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Name = "Luxembourg"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Name = "Madagascar"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Name = "Malawi"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Name = "Malaysia"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Name = "Maldives"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Name = "Mali"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Name = "Malta"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Name = "Marshall Islands"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Name = "Mauritania"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Name = "Mauritius"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Name = "Mexico"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Name = "Micronesia"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Name = "Moldova"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Name = "Monaco"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Name = "Mongolia"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Name = "Montenegro"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Name = "Morocco"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Name = "Mozambique"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Name = "Myanmar"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Name = "Namibia"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Name = "Nauru"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Name = "Nepal"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Name = "Netherlands"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Name = "New Zealand"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            Name = "Nicaragua"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            Name = "Niger"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            Name = "Nigeria"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            Name = "North Korea"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            Name = "North Macedonia"
+                        },
+                        new
+                        {
+                            Id = 129,
+                            Name = "Norway"
+                        },
+                        new
+                        {
+                            Id = 130,
+                            Name = "Oman"
+                        },
+                        new
+                        {
+                            Id = 131,
+                            Name = "Pakistan"
+                        },
+                        new
+                        {
+                            Id = 132,
+                            Name = "Palau"
+                        },
+                        new
+                        {
+                            Id = 133,
+                            Name = "Palestine"
+                        },
+                        new
+                        {
+                            Id = 134,
+                            Name = "Panama"
+                        },
+                        new
+                        {
+                            Id = 135,
+                            Name = "Papua New Guinea"
+                        },
+                        new
+                        {
+                            Id = 136,
+                            Name = "Paraguay"
+                        },
+                        new
+                        {
+                            Id = 137,
+                            Name = "Peru"
+                        },
+                        new
+                        {
+                            Id = 138,
+                            Name = "Philippines"
+                        },
+                        new
+                        {
+                            Id = 139,
+                            Name = "Poland"
+                        },
+                        new
+                        {
+                            Id = 140,
+                            Name = "Portugal"
+                        },
+                        new
+                        {
+                            Id = 141,
+                            Name = "Qatar"
+                        },
+                        new
+                        {
+                            Id = 142,
+                            Name = "Romania"
+                        },
+                        new
+                        {
+                            Id = 143,
+                            Name = "Russia"
+                        },
+                        new
+                        {
+                            Id = 144,
+                            Name = "Rwanda"
+                        },
+                        new
+                        {
+                            Id = 145,
+                            Name = "Saint Kitts and Nevis"
+                        },
+                        new
+                        {
+                            Id = 146,
+                            Name = "Saint Lucia"
+                        },
+                        new
+                        {
+                            Id = 147,
+                            Name = "Saint Vincent and the Grenadines"
+                        },
+                        new
+                        {
+                            Id = 148,
+                            Name = "Samoa"
+                        },
+                        new
+                        {
+                            Id = 149,
+                            Name = "San Marino"
+                        },
+                        new
+                        {
+                            Id = 150,
+                            Name = "Sao Tome and Principe"
+                        },
+                        new
+                        {
+                            Id = 151,
+                            Name = "Saudi Arabia"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            Name = "Senegal"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            Name = "Serbia"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            Name = "Seychelles"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            Name = "Sierra Leone"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            Name = "Singapore"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            Name = "Slovakia"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            Name = "Slovenia"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            Name = "Solomon Islands"
+                        },
+                        new
+                        {
+                            Id = 160,
+                            Name = "Somalia"
+                        },
+                        new
+                        {
+                            Id = 161,
+                            Name = "South Africa"
+                        },
+                        new
+                        {
+                            Id = 162,
+                            Name = "South Korea"
+                        },
+                        new
+                        {
+                            Id = 163,
+                            Name = "South Sudan"
+                        },
+                        new
+                        {
+                            Id = 164,
+                            Name = "Spain"
+                        },
+                        new
+                        {
+                            Id = 165,
+                            Name = "Sri Lanka"
+                        },
+                        new
+                        {
+                            Id = 166,
+                            Name = "Sudan"
+                        },
+                        new
+                        {
+                            Id = 167,
+                            Name = "Suriname"
+                        },
+                        new
+                        {
+                            Id = 168,
+                            Name = "Sweden"
+                        },
+                        new
+                        {
+                            Id = 169,
+                            Name = "Switzerland"
+                        },
+                        new
+                        {
+                            Id = 170,
+                            Name = "Syria"
+                        },
+                        new
+                        {
+                            Id = 171,
+                            Name = "Tajikistan"
+                        },
+                        new
+                        {
+                            Id = 172,
+                            Name = "Tanzania"
+                        },
+                        new
+                        {
+                            Id = 173,
+                            Name = "Thailand"
+                        },
+                        new
+                        {
+                            Id = 174,
+                            Name = "Timor-Leste"
+                        },
+                        new
+                        {
+                            Id = 175,
+                            Name = "Togo"
+                        },
+                        new
+                        {
+                            Id = 176,
+                            Name = "Tonga"
+                        },
+                        new
+                        {
+                            Id = 177,
+                            Name = "Trinidad and Tobago"
+                        },
+                        new
+                        {
+                            Id = 178,
+                            Name = "Tunisia"
+                        },
+                        new
+                        {
+                            Id = 179,
+                            Name = "Turkey"
+                        },
+                        new
+                        {
+                            Id = 180,
+                            Name = "Turkmenistan"
+                        },
+                        new
+                        {
+                            Id = 181,
+                            Name = "Tuvalu"
+                        },
+                        new
+                        {
+                            Id = 182,
+                            Name = "Uganda"
+                        },
+                        new
+                        {
+                            Id = 183,
+                            Name = "Ukraine"
+                        },
+                        new
+                        {
+                            Id = 184,
+                            Name = "United Arab Emirates"
+                        },
+                        new
+                        {
+                            Id = 185,
+                            Name = "United Kingdom"
+                        },
+                        new
+                        {
+                            Id = 186,
+                            Name = "United States"
+                        },
+                        new
+                        {
+                            Id = 187,
+                            Name = "Uruguay"
+                        },
+                        new
+                        {
+                            Id = 188,
+                            Name = "Uzbekistan"
+                        },
+                        new
+                        {
+                            Id = 189,
+                            Name = "Vanuatu"
+                        },
+                        new
+                        {
+                            Id = 190,
+                            Name = "Vatican City"
+                        },
+                        new
+                        {
+                            Id = 191,
+                            Name = "Venezuela"
+                        },
+                        new
+                        {
+                            Id = 192,
+                            Name = "Vietnam"
+                        },
+                        new
+                        {
+                            Id = 193,
+                            Name = "Yemen"
+                        },
+                        new
+                        {
+                            Id = 194,
+                            Name = "Zambia"
+                        },
+                        new
+                        {
+                            Id = 195,
+                            Name = "Zimbabwe"
                         });
                 });
 
@@ -392,9 +1362,6 @@ namespace DVLD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("DriverId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateOnly>("ExpiryDate")
                         .HasColumnType("date");
 
@@ -432,10 +1399,7 @@ namespace DVLD.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.HasIndex("DriverId")
-                        .IsUnique();
-
-                    b.HasIndex("DriverId1");
+                    b.HasIndex("DriverId");
 
                     b.HasIndex("LicenseTypeId")
                         .IsUnique();
@@ -554,12 +1518,18 @@ namespace DVLD.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedByUserId")
+                    b.Property<string>("CreatedById")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DrivingLicenseApplicationId")
                         .IsRequired()
@@ -572,17 +1542,27 @@ namespace DVLD.Migrations
                     b.Property<int>("TestTypeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UpdatedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedByUserId");
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CreatedById");
 
                     b.HasIndex("DrivingLicenseApplicationId");
 
                     b.HasIndex("TestTypeId");
+
+                    b.HasIndex("UpdatedById");
 
                     b.HasIndex("UserId");
 
@@ -942,13 +1922,13 @@ namespace DVLD.Migrations
                         .IsRequired();
 
                     b.HasOne("ApplicationUser", "CreatedBy")
-                        .WithMany("CreatedApplications")
+                        .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ApplicationUser", "UpdatedBy")
-                        .WithMany("UpdatedApplications")
+                        .WithMany()
                         .HasForeignKey("UpdatedById")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -1001,7 +1981,8 @@ namespace DVLD.Migrations
 
                     b.HasOne("ApplicationUser", "UpdatedBy")
                         .WithMany()
-                        .HasForeignKey("UpdatedById");
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("ApplicationUser");
 
@@ -1044,14 +2025,10 @@ namespace DVLD.Migrations
                         .IsRequired();
 
                     b.HasOne("DVLD.Entities.Driver", "Driver")
-                        .WithOne()
-                        .HasForeignKey("DVLD.Entities.License", "DriverId")
+                        .WithMany("Licenses")
+                        .HasForeignKey("DriverId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("DVLD.Entities.Driver", null)
-                        .WithMany("Licenses")
-                        .HasForeignKey("DriverId1");
 
                     b.HasOne("DVLD.Entities.LicenseType", "LicenseType")
                         .WithOne()
@@ -1061,7 +2038,8 @@ namespace DVLD.Migrations
 
                     b.HasOne("ApplicationUser", "UpdatedBy")
                         .WithMany()
-                        .HasForeignKey("UpdatedById");
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Application");
 
@@ -1104,9 +2082,13 @@ namespace DVLD.Migrations
 
             modelBuilder.Entity("DVLD.Entities.TestAppointment", b =>
                 {
-                    b.HasOne("ApplicationUser", "ApplicationUser")
+                    b.HasOne("ApplicationUser", null)
                         .WithMany("TestAppointments")
-                        .HasForeignKey("CreatedByUserId")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1122,19 +2104,26 @@ namespace DVLD.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("ApplicationUser", "AppointmentOwner")
                         .WithMany("OwnedAppointments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
-
                     b.Navigation("AppointmentOwner");
+
+                    b.Navigation("CreatedBy");
 
                     b.Navigation("DrivingLicenseApplication");
 
                     b.Navigation("TestType");
+
+                    b.Navigation("UpdatedBy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1197,8 +2186,6 @@ namespace DVLD.Migrations
                 {
                     b.Navigation("Applications");
 
-                    b.Navigation("CreatedApplications");
-
                     b.Navigation("OwnedAppointments");
 
                     b.Navigation("RefreshTokens");
@@ -1206,8 +2193,6 @@ namespace DVLD.Migrations
                     b.Navigation("TestAppointments");
 
                     b.Navigation("Tests");
-
-                    b.Navigation("UpdatedApplications");
 
                     b.Navigation("Users");
                 });
@@ -1240,7 +2225,8 @@ namespace DVLD.Migrations
 
             modelBuilder.Entity("DVLD.Entities.TestAppointment", b =>
                 {
-                    b.Navigation("Test");
+                    b.Navigation("Test")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DVLD.Entities.TestType", b =>
