@@ -1,10 +1,11 @@
 ﻿using DVLD.Contracts.License;
+using DVLD.Contracts.User;
 
 namespace DVLD.Contracts.Driver;
 
 public record DriverResponse(
     string Id,
-   ApplicaitonUserResponse UserResponse,
+   UserResponse UserResponse,
    IEnumerable<LicneseResponse> LicenseResponses
 
 );

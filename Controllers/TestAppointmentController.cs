@@ -23,8 +23,8 @@ public class TestAppointmentController(ITestAppointmentService testAppointmentSe
     [HasPermission(Permissions.CreateTestAppointments)]
     public async Task<IActionResult> Create(TestAppointmentRequest request, CancellationToken cancellationToken)
     {
-        var userId = User.GetUserId();
-        var result = await _testAppointmentService.CreateAsync(userId!, request, cancellationToken);
+        
+        var result = await _testAppointmentService.CreateAsync( request, cancellationToken);
         return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
     [HttpPut("{testAppointmentId}")]

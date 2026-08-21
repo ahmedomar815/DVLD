@@ -11,17 +11,24 @@ public class TestAppointmentConfiguration : IEntityTypeConfiguration<TestAppoint
             .HasForeignKey(x => x.DrivingLicenseApplicationId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(x => x.ApplicationUser)
-            .WithMany(x => x.TestAppointments)
-            .HasForeignKey(x => x.CreatedByUserId)
-            .OnDelete(DeleteBehavior.Restrict);
+        
 
         builder.HasOne(x => x.TestType)
             .WithMany(x => x.TestAppointments)
             .HasForeignKey(x => x.TestTypeId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        builder
+    .HasOne(a => a.CreatedBy)
+    .WithMany()
+    .HasForeignKey(a => a.CreatedById)
+    .OnDelete(DeleteBehavior.Restrict);
 
+        builder
+            .HasOne(a => a.UpdatedBy)
+            .WithMany()
+            .HasForeignKey(a => a.UpdatedById)
+            .OnDelete(DeleteBehavior.Restrict);
         builder
         .HasOne(x => x.AppointmentOwner)
         .WithMany(x => x.OwnedAppointments)

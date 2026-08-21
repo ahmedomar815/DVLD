@@ -13,11 +13,6 @@ public class ApplicationConfiguration : IEntityTypeConfiguration<Application>
             .HasForeignKey(x => x.UserId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder
-    .HasOne(a => a.CreatedBy)
-    .WithMany(x => x.CreatedApplications)
-    .HasForeignKey(a => a.CreatedById)
-    .OnDelete(DeleteBehavior.Restrict);
         builder.Property(x => x.PaidFees)
         .HasColumnType("decimal(10,2)")
         .IsRequired();
@@ -30,16 +25,21 @@ public class ApplicationConfiguration : IEntityTypeConfiguration<Application>
             );
         });
 
-        builder
-            .HasOne(a => a.UpdatedBy)
-            .WithMany(x => x.UpdatedApplications)
-            .HasForeignKey(a => a.UpdatedById)
-            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.ApplicationType)
      .WithMany(x=>x.Applications)
      .HasForeignKey(x => x.ApplicationTypeId)
      .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.CreatedBy)
+            .WithMany()
+            .HasForeignKey(x => x.CreatedById)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.UpdatedBy)
+            .WithMany()
+            .HasForeignKey(x => x.UpdatedById)
+            .OnDelete(DeleteBehavior.Restrict);
 
     }
 

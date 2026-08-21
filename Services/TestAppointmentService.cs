@@ -18,15 +18,16 @@ public class TestAppointmentService(ApplicationDbContext context,INotificationSe
         }
         return Result.Success<TestAppointmentResponse>(testAppointment.Adapt<TestAppointmentResponse>());
     }
-    public async Task<Result<TestAppointmentResponse>>CreateAsync(string userId,TestAppointmentRequest  request,CancellationToken cancellationToken)
+    public async Task<Result<TestAppointmentResponse>>CreateAsync(TestAppointmentRequest  request,CancellationToken cancellationToken)
     {
         var IsTestTypeExist = await _context.TestTypes.AnyAsync(x => x.Id == request.TestTypeId);
         if (!IsTestTypeExist) return Result.Failure<TestAppointmentResponse>(TestTypeErrors.NotFound);
-
+        var IsUserExist = await _context.Users.AnyAsync(x => x.Id == request.UserId);
+        if (!IsUserExist) return Result.Failure<TestAppointmentResponse>(UserErrors.UserNotFound);
         var IsDrivingLicenseApplicationsExist = await _context.DrivingLicenseApplications.AnyAsync(x => x.Id == request.DrivingLicenseApplicationId);
         if (!IsDrivingLicenseApplicationsExist) return Result.Failure<TestAppointmentResponse >(DrivingLicenseApplicationErros.NotFound);
         var testAppointment = request.Adapt<TestAppointment>();
-        testAppointment.CreatedByUserId = userId;
+      
         await  _context.TestAppointments.AddAsync(testAppointment, cancellationToken);
         await _context.SaveChangesAsync();
         var response = await _context.TestAppointments

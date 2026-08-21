@@ -1,5 +1,6 @@
 ﻿using DVLD.Contracts.DrivingLicenseApplication;
 using DVLD.Contracts.LicenseType;
+using DVLD.Contracts.User;
 using DVLD.Persistence;
 using Mapster;
 
@@ -19,14 +20,16 @@ public class DrivingLicenseApplicationService(ApplicationDbContext context):IDri
                     x.Application.Status.ToString(),
                     x.Application.PaidFees,
                     x.Application.ApplicationType.Name,
-                    new ApplicaitonUserResponse(
+                    new UserResponse(
                         x.Application.User.Id,
                         x.Application.User.FirstName,
                         x.Application.User.SecondName,
                         x.Application.User.ThirdName,
                         x.Application.User.FourthName,
                         x.Application.User.Email!,
-                        x.Application.User.NationalId
+                        x.Application.User.PhoneNumber!,
+                        x.Application.User.NationalId,
+                        x.Application.User.Country.Name
                     )
                 ),
                 new LicenseTypeResponse(

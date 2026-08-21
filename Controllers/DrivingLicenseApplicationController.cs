@@ -13,7 +13,7 @@ public class DrivingLicenseApplicationController(IDrivingLicenseApplicationServi
     public async Task<IActionResult> Get([FromRoute] string drivingLicenseApplicationId, CancellationToken cancellationToken)
     {
         var result = await _drivingLicenseApplicationService.GetAsync(drivingLicenseApplicationId, cancellationToken);
-        return result.IsSuccess ? Ok(result) : result.ToProblem();
+        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
     [HttpPost("")]
     [HasPermission(Permissions.CreateDrivingLicenseApplications)]

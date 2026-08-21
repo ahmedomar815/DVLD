@@ -22,14 +22,12 @@ public class ApplicationUser : IdentityUser<string>
     public ICollection<Application> Applications{ get;set; } = new List<Application>();
     public ICollection<ApplicationUser> Users{ get;set;} = new List<ApplicationUser>();
     public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
-    public ICollection<TestAppointment> TestAppointments { get; set; } = [];
+    public ICollection<TestAppointment>? TestAppointments { get; set; } = [];
 
     public ICollection<TestAppointment> OwnedAppointments { get; set; }
         = [];
     public ICollection<Test> Tests { get; set; } = [];
-    public ICollection<Application> CreatedApplications { get; set; }
-        = new List<Application>();
 
-    public ICollection<Application> UpdatedApplications { get; set; }
-        = new List<Application>();
+
+   
 }
