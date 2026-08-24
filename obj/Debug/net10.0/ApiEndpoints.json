@@ -503,6 +503,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TestController",
+    "Method": "Update",
+    "RelativePath": "Test/{testId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.Test.TestRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TestAppointmentController",
     "Method": "Create",
     "RelativePath": "TestAppointment",

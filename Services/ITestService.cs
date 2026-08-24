@@ -5,5 +5,6 @@ namespace DVLD.Services;
 public interface ITestService
 {
     Task<Result<TestResponse>> CreateAsync(string userId,TestRequest request, CancellationToken cancellationToken);
-    
-    }
+
+    Task<Result> UpdateAsync(string testId, TestRequest request, CancellationToken cancellationToken);
+}

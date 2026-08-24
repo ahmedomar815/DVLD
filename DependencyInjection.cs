@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
+using System.Threading.RateLimiting;
 
 public static class DependencyInjection
 {
@@ -53,6 +55,8 @@ public static class DependencyInjection
         services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
         services.AddBackgroundJobsConfig(configuration);
         services.AddProblemDetails();
+        services.AddRateLimiter();
+        services.AddDistributedMemoryCache();
         return services;
     }
     private static IServiceCollection AddBackgroundJobsConfig(this IServiceCollection services, IConfiguration configuration)
@@ -100,6 +104,24 @@ public static class DependencyInjection
         var mappingconfig = TypeAdapterConfig.GlobalSettings;
         mappingconfig.Scan(Assembly.GetExecutingAssembly());
         services.AddSingleton<IMapper>(implementationInstance: new Mapper(mappingconfig));
+        return services;
+    }
+    private static IServiceCollection AddRateLimiter(this IServiceCollection services)
+    {
+        services.AddRateLimiter(options =>
+        {
+            options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+            options.AddPolicy("IpLimiter", httpContext =>
+                RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+                    factory: _ => new FixedWindowRateLimiterOptions
+                    {
+                        PermitLimit = 3,
+                        Window = TimeSpan.FromMinutes(1)
+                    }));
+        });
+
         return services;
     }
     private static IServiceCollection AddOpenConfigApi(this IServiceCollection services)

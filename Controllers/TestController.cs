@@ -17,5 +17,16 @@ public class TestController(ITestService testService) : ControllerBase
         var result=await _testService.CreateAsync(userId!, request, cancellationToken);
         return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
+
+    [HttpPut("{testId}")]
+    [HasPermission(Permissions.UpdateTests)]
+    public async Task<IActionResult> Update(
+        [FromRoute] string testId,
+        [FromBody] TestRequest request,
+        CancellationToken cancellationToken)
+    {
+        var result = await _testService.UpdateAsync(testId, request, cancellationToken);
+        return result.IsSuccess ? NoContent() : result.ToProblem();
+    }
 }
  

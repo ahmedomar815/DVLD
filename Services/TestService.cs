@@ -30,4 +30,30 @@ public class TestService(ApplicationDbContext context ): ITestService
         return Result.Success(response);
 
     }
+
+    public async Task<Result> UpdateAsync(string testId, TestRequest request, CancellationToken cancellationToken)
+    {
+        var test = await _context.Tests
+            .FirstOrDefaultAsync(x => x.Id == testId, cancellationToken);
+
+        if (test is null)
+            return Result.Failure(TestErrors.NotFound);
+
+        var appointmentExists = await _context.TestAppointments
+            .AnyAsync(x => x.Id == request.TestAppointmentId, cancellationToken);
+
+        if (!appointmentExists)
+            return Result.Failure(TestAppointmentErrors.NotFound);
+
+        var appointmentIsAssigned = await _context.Tests
+            .AnyAsync(x => x.TestAppointmentId == request.TestAppointmentId && x.Id != testId, cancellationToken);
+
+        if (appointmentIsAssigned)
+            return Result.Failure(TestErrors.AppointmentAlreadyAssigned);
+
+        request.Adapt(test);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return Result.Success();
+    }
 }

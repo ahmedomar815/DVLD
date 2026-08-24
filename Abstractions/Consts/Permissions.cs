@@ -32,6 +32,7 @@ public static class Permissions
     public const string UpdateTestAppointments = "test-appointments:update";
 
     public const string CreateTests = "tests:create";
+    public const string UpdateTests = "tests:update";
 
     public const string GetRoles = "roles:read";
     public const string CreateRoles = "roles:create";

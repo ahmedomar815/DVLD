@@ -1,12 +1,15 @@
 ﻿using DVLD.Contracts.TestType;
 using Mapster;
+using Microsoft.Extensions.Caching.Distributed;
+using System.Text;
+using System.Text.Json;
 
 namespace DVLD.Services;
 
-public class TestTypeService(ApplicationDbContext context): ITestTypeService
+public class TestTypeService(ApplicationDbContext context,IDistributedCache cache): ITestTypeService
 {
     private readonly ApplicationDbContext _context = context;
-
+    private readonly IDistributedCache _cache = cache;
 
     public async Task<Result<TestTypeResponse>> GetAsync(int testTypeId,CancellationToken cancellationToken)
     {
@@ -15,12 +18,42 @@ public class TestTypeService(ApplicationDbContext context): ITestTypeService
         var response = testType.Adapt<TestTypeResponse>();
         return Result.Success(response);
     }
-    public async Task<Result<IEnumerable<TestTypeResponse>>> GetAllAsync(CancellationToken cancellationToken)
+ 
+       public async Task<Result<IEnumerable<TestTypeResponse>>> GetAllAsync(
+    CancellationToken cancellationToken)
     {
-        var testTypes = await _context.TestTypes.Where(x=>x.IsActive).ToListAsync(cancellationToken);
-        List<TestTypeResponse> response = testTypes.Adapt<List<TestTypeResponse>>();
+        var bytes = await _cache.GetAsync("TestsTypes", cancellationToken);
+
+        if (bytes is not null)
+        {
+            var cachedResponse =
+                JsonSerializer.Deserialize<IEnumerable<TestTypeResponse>>(bytes);
+
+            return Result.Success(cachedResponse!);
+        }
+
+        var testTypes = await _context.TestTypes
+            .AsNoTracking()
+            .Where(x => x.IsActive)
+            .ToListAsync(cancellationToken);
+
+        var response = testTypes.Adapt<List<TestTypeResponse>>();
+
+        var json = JsonSerializer.Serialize(response);
+        bytes = Encoding.UTF8.GetBytes(json);
+
+        await _cache.SetAsync(
+            "TestsTypes",
+            bytes,
+            new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
+            },
+            cancellationToken);
+
         return Result.Success<IEnumerable<TestTypeResponse>>(response);
     }
+    
     public async Task<Result<TestTypeResponse>> CreateAsync(
     TestTypeRequest request,
     CancellationToken cancellationToken)
@@ -36,7 +69,7 @@ public class TestTypeService(ApplicationDbContext context): ITestTypeService
         await _context.TestTypes.AddAsync(testType, cancellationToken);
 
         await _context.SaveChangesAsync(cancellationToken);
-
+        await _cache.RemoveAsync("TestsTypes", cancellationToken);
         return Result.Success(testType.Adapt<TestTypeResponse>());
     }
     public async Task<Result> UpdateAsync(int testTypeId, TestTypeRequest request, CancellationToken cancellationToken)
@@ -47,6 +80,7 @@ public class TestTypeService(ApplicationDbContext context): ITestTypeService
         if (isExist) return Result.Failure(TestTypeErrors.DuplicateName);
         request.Adapt(testType);
         await _context.SaveChangesAsync(cancellationToken);
+        await _cache.RemoveAsync("TestsTypes", cancellationToken);
         return Result.Success(testType);
     }
     public async Task<Result> DeleteAsync(int testTypeId, CancellationToken cancellationToken)
@@ -55,6 +89,7 @@ public class TestTypeService(ApplicationDbContext context): ITestTypeService
         if (testType is null) return Result.Failure(TestTypeErrors.NotFound);
         testType.IsActive = false;
         await _context.SaveChangesAsync(cancellationToken);
+        await _cache.RemoveAsync("TestsTypes", cancellationToken);
         return Result.Success();
     }
 }

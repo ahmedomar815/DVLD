@@ -2,13 +2,14 @@
 using DVLD.Contracts.Authentication;
 using DVLD.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 [Route("[controller]")]
 [ApiController]
 public class AuthController(IAuthServices authServices) : ControllerBase
 {
     private readonly IAuthServices _authServices = authServices;
-
+    [EnableRateLimiting("IpLimiter")]
     [HttpPost("login")]
     public  async Task <IActionResult> Login ([FromBody] LoginRequest request , CancellationToken cancellationToken)
     {
