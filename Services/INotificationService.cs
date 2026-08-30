@@ -6,4 +6,5 @@ public interface INotificationService
     Task SendApplicationApproved(string applicationId);
     Task SendApplicationRejected(string applicationId);
     Task SendApplicationCancelled(string applicationId);
+    Task SendTestAppointment(string testAppointmentId);
 }

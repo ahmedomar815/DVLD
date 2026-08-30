@@ -37,17 +37,17 @@ public class RoleController(IRoleService roleService) : ControllerBase
 
     [HttpPut("{roleId}")]
     [HasPermission(Permissions.UpdateRoles)]
-    public async Task<IActionResult> Update([FromRoute] string roleId, [FromBody] RoleRequest request)
+    public async Task<IActionResult> Update([FromRoute] string roleId, [FromBody] RoleRequest request, CancellationToken cancellationToken)
     {
-        var result = await _roleService.UpdateAsync(roleId, request);
+        var result = await _roleService.UpdateAsync(roleId, request, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 
     [HttpPut("{roleId}/toggle-status")]
     [HasPermission(Permissions.UpdateRoles)]
-    public async Task<IActionResult> ToggleStatus([FromRoute] string roleId)
+    public async Task<IActionResult> ToggleStatus([FromRoute] string roleId, CancellationToken cancellationToken)
     {
-        var result = await _roleService.ToggleStatusAsync(roleId);
+        var result = await _roleService.ToggleStatusAsync(roleId, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 }

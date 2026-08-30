@@ -17,7 +17,8 @@ public class MyRegister : IRegister
         config.NewConfig<License, LicneseResponse>()
             .Map(dest => dest.Status, src => src.IsActive ? "IsActive" : "Disabled");
         config.NewConfig<UserRequest, ApplicationUser>().
-            Map(dest => dest.UserName, src => src.Email);
+            Map(dest => dest.UserName, src => src.Email)
+            .Map(dest => dest.PhoneNumber, src => src.Phone);
             
 
     }

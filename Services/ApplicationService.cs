@@ -15,10 +15,10 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
     public async Task<Result<ApplicationResponse>>Get(string applicationId,CancellationToken cancellationToken)
     {
         
-        var application = _context.Applications
+        var application = await _context.Applications
             .Include(a=>a.User)
             .Include(x=>x.ApplicationType)
-            .FirstOrDefault(x => x.Id == applicationId);
+            .FirstOrDefaultAsync(x => x.Id == applicationId, cancellationToken);
         if (application is null) return Result.Failure<ApplicationResponse>(ApplicationErrors.NotFound);
         
         var userResponse = application.User.Adapt<UserResponse>();

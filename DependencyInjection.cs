@@ -31,7 +31,18 @@ public static class DependencyInjection
         
         services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString));
-        services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+        services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+        {
+            options.Password.RequiredLength = 8;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireDigit = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Lockout.MaxFailedAccessAttempts = 10;
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(1);
+        })
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
         services.AddControllers();
         //services.AddOpenApi();
@@ -40,6 +51,10 @@ public static class DependencyInjection
         services.AddSingleton<IJwtProvider, JwtProvider>();
         services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
         services.AddScoped<IApplicationService, ApplicationService>  ();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserInfoService, UserInfo>();
+        services.AddScoped<IDriverService, DriverService>();
+        services.AddScoped<ILicenseService, LicenseService>();
         services.AddOpenConfigApi();
         services.AddMapsterConfig();
         services.AddAuthCofig(configuration);
@@ -50,6 +65,7 @@ public static class DependencyInjection
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddScoped<ITestTypeService, TestTypeService>();
         services.AddScoped<ITestAppointmentService, TestAppointmentService>();
+        services.AddScoped<ITestService, TestService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
         services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();

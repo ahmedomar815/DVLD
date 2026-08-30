@@ -10,10 +10,10 @@ public class LicenseService(ApplicationDbContext context):ILicenseService
     private readonly ApplicationDbContext _context = context;
 
 
-    public async Task<Result<LicneseResponse>> GetAyncId(string licenseNumber)
+    public async Task<Result<LicneseResponse>> GetAyncId(string licenseNumber, CancellationToken cancellationToken)
     {
         
-        var licenseResponse = await GetLicenseQuery().FirstOrDefaultAsync(x => x.LicenseNumber == licenseNumber);
+        var licenseResponse = await GetLicenseQuery().FirstOrDefaultAsync(x => x.LicenseNumber == licenseNumber, cancellationToken);
         if(licenseResponse is null) return Result.Failure<LicneseResponse>(LicenseErrors.NotFound);
         return Result.Success<LicneseResponse>(licenseResponse!);
     }
@@ -33,7 +33,7 @@ public class LicenseService(ApplicationDbContext context):ILicenseService
         license.ExpiryDate = DateOnly.FromDateTime(DateTime.Now.AddYears(licenseType.DefaultValidityLength));
         await _context.Licenses.AddAsync(license, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-        var licenseResponse= await GetLicenseQuery().FirstOrDefaultAsync(x => x.LicenseNumber == license.LicenseNumber);
+        var licenseResponse= await GetLicenseQuery().FirstOrDefaultAsync(x => x.LicenseNumber == license.LicenseNumber, cancellationToken);
         return Result.Success(licenseResponse!);
     }
 

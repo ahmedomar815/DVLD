@@ -11,6 +11,8 @@ public  record UserErrors
     public static Error UserLockedout => new Error("User.UserLockedout", "the user UserLockedout plz contact with admin", StatusCodes.Status423Locked);
     public static Error UserDisabled => new Error("User.UserDisabled", "the user UserDisabled plz contact with admin", StatusCodes.Status401Unauthorized);
     public static Error UserNotFound => new Error("User.UserNotFound", "UserNotFound", StatusCodes.Status400BadRequest);
-    public static readonly Error InvalidRefreshToken = new Error("User.InvalidRefreshToken", "Invalid access or refresh token", StatusCodes.Status401Unauthorized);
+    public static  Error InvalidRefreshToken = new Error("User.InvalidRefreshToken", "Invalid access or refresh token", StatusCodes.Status401Unauthorized);
+
+    public static Error InvalidCurrentPassword = new Error("User.currentPassword", "plz enter a valid password", StatusCodes.Status400BadRequest);
 }
 

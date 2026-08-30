@@ -7,7 +7,7 @@ namespace DVLD.Services;
 
 public class UserService(
     UserManager<ApplicationUser> userManager,
-    ApplicationDbContext context)
+    ApplicationDbContext context) : IUserService
 {
     private readonly UserManager<ApplicationUser> _userManager = userManager;
     private readonly ApplicationDbContext _context = context;
@@ -50,7 +50,7 @@ public class UserService(
 
         if (user is null)
             return Result.Failure<UserResponse>(UserErrors.UserNotFound);
-
+         
         var response = user.Adapt<UserResponse>();
 
         return Result.Success(response);
@@ -76,7 +76,7 @@ public class UserService(
         {
             return Result.Failure<UserResponse>(UserErrors.UserAlreadyExists);
         }
-        user = request.Adapt<ApplicationUser>();
+        request.Adapt(user);
         var result = await _userManager.UpdateAsync(user);
 
         if(!result.Succeeded)
@@ -87,6 +87,34 @@ public class UserService(
         return Result.Success(user.Adapt<UserResponse>());
 
 
+    }
+
+    public async Task<Result> UnlockUser(string Id, CancellationToken cancellationToken = default)
+    {
+        if (await _userManager.FindByIdAsync(Id) is not { } user)
+            return Result.Failure<UserResponse>(UserErrors.UserNotFound);
+
+        var result = await _userManager.SetLockoutEndDateAsync(user, null);
+
+        if (result.Succeeded)
+            return Result.Success();
+
+        var error = result.Errors.First();
+        return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
+    }
+
+    public async Task<Result> ToggleStatus(string Id, CancellationToken cancellationToken = default)
+    {
+        if (await _userManager.FindByIdAsync(Id) is not { } user)
+            return Result.Failure<UserResponse>(UserErrors.UserNotFound);
+
+        user.IsDisabled = !user.IsDisabled;
+        var result = await _userManager.UpdateAsync(user);
+        if (result.Succeeded)
+            return Result.Success();
+
+        var error = result.Errors.First();
+        return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
     }
 }
 

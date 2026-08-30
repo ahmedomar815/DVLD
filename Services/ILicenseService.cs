@@ -5,7 +5,7 @@ namespace DVLD.Services;
 
 public interface ILicenseService
 {
-    Task<Result<LicneseResponse>> GetAyncId(string licenseNumber);
+    Task<Result<LicneseResponse>> GetAyncId(string licenseNumber, CancellationToken cancellationToken);
     Task<Result<LicneseResponse>> CreateAsync(LicenseRequest request, CancellationToken cancellationToken);
     Task<Result> UpdateAsync(string LicenseNumber, LicenseUpdateRequest request, CancellationToken cancellationToken);
     Task<Result<LicneseResponse>> RenewAsync(string LicenseNumber, CancellationToken cancellationToken);

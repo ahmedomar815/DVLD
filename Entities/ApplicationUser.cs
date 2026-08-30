@@ -12,7 +12,7 @@ public class ApplicationUser : IdentityUser<string>
     public string SecondName { get; set; } = default!;
     public string ThirdName { get; set; } = default!;
     public string FourthName { get; set; } = default!;
-    
+    public string Address { get; set; } = default!;
     public string NationalId { get; set; } = default!;
     public bool IsDisabled { get; set; } = default;
     public int CountryId { get; set; } = default;

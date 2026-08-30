@@ -47,6 +47,7 @@ public class DriverService(UserManager<ApplicationUser> userManager, Application
                 x.ApplicationUser.FourthName,
                 x.ApplicationUser.Email!,
                 x.ApplicationUser.PhoneNumber!,
+                x.ApplicationUser.Address,
                 x.ApplicationUser.NationalId,
                 x.ApplicationUser.Country.Name
             ),

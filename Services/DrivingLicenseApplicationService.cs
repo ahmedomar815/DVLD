@@ -28,6 +28,7 @@ public class DrivingLicenseApplicationService(ApplicationDbContext context):IDri
                         x.Application.User.FourthName,
                         x.Application.User.Email!,
                         x.Application.User.PhoneNumber!,
+                        x.Application.User.Address,
                         x.Application.User.NationalId,
                         x.Application.User.Country.Name
                     )

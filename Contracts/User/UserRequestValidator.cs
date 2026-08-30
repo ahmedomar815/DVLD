@@ -32,6 +32,10 @@ public class UserRequestValidator : AbstractValidator<UserRequest>
             .Matches(@"^01[0125][0-9]{8}$")
             .WithMessage("Invalid Egyptian phone number.");
 
+        RuleFor(x => x.Address)
+            .NotEmpty()
+            .MaximumLength(250);
+
         RuleFor(x => x.NationalId)
             .NotEmpty()
             .Length(14)

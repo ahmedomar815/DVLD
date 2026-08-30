@@ -20,16 +20,16 @@ public class TestAppointmentService(ApplicationDbContext context,INotificationSe
     }
     public async Task<Result<TestAppointmentResponse>>CreateAsync(TestAppointmentRequest  request,CancellationToken cancellationToken)
     {
-        var IsTestTypeExist = await _context.TestTypes.AnyAsync(x => x.Id == request.TestTypeId);
+        var IsTestTypeExist = await _context.TestTypes.AnyAsync(x => x.Id == request.TestTypeId, cancellationToken);
         if (!IsTestTypeExist) return Result.Failure<TestAppointmentResponse>(TestTypeErrors.NotFound);
-        var IsUserExist = await _context.Users.AnyAsync(x => x.Id == request.UserId);
+        var IsUserExist = await _context.Users.AnyAsync(x => x.Id == request.UserId, cancellationToken);
         if (!IsUserExist) return Result.Failure<TestAppointmentResponse>(UserErrors.UserNotFound);
-        var IsDrivingLicenseApplicationsExist = await _context.DrivingLicenseApplications.AnyAsync(x => x.Id == request.DrivingLicenseApplicationId);
+        var IsDrivingLicenseApplicationsExist = await _context.DrivingLicenseApplications.AnyAsync(x => x.Id == request.DrivingLicenseApplicationId, cancellationToken);
         if (!IsDrivingLicenseApplicationsExist) return Result.Failure<TestAppointmentResponse >(DrivingLicenseApplicationErros.NotFound);
         var testAppointment = request.Adapt<TestAppointment>();
       
         await  _context.TestAppointments.AddAsync(testAppointment, cancellationToken);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
         var response = await _context.TestAppointments
        .Where(x => x.Id == testAppointment.Id)
        .Select(x => new TestAppointmentResponse(
@@ -52,9 +52,9 @@ public class TestAppointmentService(ApplicationDbContext context,INotificationSe
     {
         var testAppointment = await _context.TestAppointments.FirstOrDefaultAsync(x => x.Id == testAppointmentId, cancellationToken);
         if (testAppointment is null) return Result.Failure(TestAppointmentErrors.NotFound);
-        var IsTestTypeExist = await _context.TestTypes.AnyAsync(x => x.Id == request.TestTypeId);
+        var IsTestTypeExist = await _context.TestTypes.AnyAsync(x => x.Id == request.TestTypeId, cancellationToken);
         if (!IsTestTypeExist) return Result.Failure(TestTypeErrors.NotFound);
-        var IsDrivingLicenseApplicationsExist = await _context.DrivingLicenseApplications.AnyAsync(x => x.Id == request.DrivingLicenseApplicationId);
+        var IsDrivingLicenseApplicationsExist = await _context.DrivingLicenseApplications.AnyAsync(x => x.Id == request.DrivingLicenseApplicationId, cancellationToken);
         if (!IsDrivingLicenseApplicationsExist) return Result.Failure(DrivingLicenseApplicationErros.NotFound);
         testAppointment.Adapt(request);
         await _context.SaveChangesAsync(cancellationToken);

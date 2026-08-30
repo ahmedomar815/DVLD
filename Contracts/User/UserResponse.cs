@@ -8,5 +8,6 @@ public record UserResponse(
     string FourthName,
     string Email,
     string Phone,
+    string Address,
     string NationalId
     ,string CountryName);

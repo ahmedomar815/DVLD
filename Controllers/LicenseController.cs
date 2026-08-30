@@ -14,9 +14,9 @@ public class LicenseController(ILicenseService licenseService) : ControllerBase
 
     [HttpGet("{licenceId}")]
     [HasPermission(Permissions.GetLicenses)]
-    public async Task<IActionResult>Get(string licenceId)
+    public async Task<IActionResult>Get(string licenceId, CancellationToken cancellationToken)
     {
-        var result = await _licenseService.GetAyncId(licenceId);
+        var result = await _licenseService.GetAyncId(licenceId, cancellationToken);
          return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
     [HttpPost("")]

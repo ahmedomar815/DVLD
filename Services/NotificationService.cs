@@ -2,6 +2,7 @@
 using DVLD.Persistence;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DVLD.Services;
 
@@ -22,6 +23,7 @@ public class NotificationService(ApplicationDbContext context, IEmailSender emai
     public Task SendApplicationCancelled(string applicationId)
         => SendStatusEmailAsync(applicationId, "application_cancelled_email", "DVLD Application Cancelled");
 
+   
     public async Task SendTestAppointment(string TestAppointmentId)
     {
         var data = await _context.TestAppointments

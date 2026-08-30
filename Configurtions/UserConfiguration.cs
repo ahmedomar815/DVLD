@@ -13,6 +13,7 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
         builder.Property(x => x.SecondName).HasMaxLength(100);
         builder.Property(x => x.ThirdName).HasMaxLength(100);
         builder.Property(x => x.FourthName).HasMaxLength(100);
+        builder.Property(x => x.Address).HasMaxLength(250);
         builder.HasIndex(x => x.Email).IsUnique();
         builder.HasOne(x => x.Country)
             .WithMany(c => c.Users)
@@ -36,6 +37,7 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
             SecondName = "Admin",
             ThirdName = "Admin",
             FourthName = "Admin",
+            Address = "Ministry of Transport",
             Email = DefaultUsers.AdminEmail,
             NormalizedEmail = DefaultUsers.AdminEmail.ToUpper(),
             UserName = DefaultUsers.AdminEmail,
