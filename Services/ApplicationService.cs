@@ -12,7 +12,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
     private readonly ApplicationDbContext _context = context;
     private readonly INotificationService _notificationService = notificationService;
 
-    public async Task<Result<ApplicationResponse>>Get(string applicationId,CancellationToken cancellationToken)
+    public async Task<Result<ApplicationResponse>> GetAsync(string applicationId, CancellationToken cancellationToken)
     {
         
         var application = await _context.Applications
@@ -27,7 +27,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
 
     }
 
-    public async Task<Result>Create(ApplicationRequest request, CancellationToken cancellationToken)
+    public async Task<Result> CreateAsync(ApplicationRequest request, CancellationToken cancellationToken)
     {
 
         var applicationType = await _context.ApplicationTypes.AsNoTracking()
@@ -43,7 +43,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
         await _context.Applications.AddAsync(application, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
-        BackgroundJob.Enqueue(() => _notificationService.SendNewApplication(application.Id));
+        BackgroundJob.Enqueue(() => _notificationService.SendNewApplicationAsync(application.Id));
         return Result.Success();
     }
     public async Task<Result> SetApprovedAsync(string applicationId,CancellationToken cancellationToken)
@@ -55,7 +55,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
             return Result.Failure(ApplicationErrors.InvalidStatus);
         application.Status=ApplicationStatus.Approved;
         await _context.SaveChangesAsync(cancellationToken);
-        BackgroundJob.Enqueue(() => _notificationService.SendApplicationApproved(application.Id));
+        BackgroundJob.Enqueue(() => _notificationService.SendApplicationApprovedAsync(application.Id));
         return Result.Success(applicationId);
     }
     public async Task<Result> SetRejectedAsync(string applicationId, CancellationToken cancellationToken)
@@ -67,7 +67,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
             return Result.Failure(ApplicationErrors.InvalidStatus with {Description= "Only pending applications can be rejected" });
         application.Status = ApplicationStatus.Rejected;
         await _context.SaveChangesAsync(cancellationToken);
-        BackgroundJob.Enqueue(() => _notificationService.SendApplicationRejected(application.Id));
+        BackgroundJob.Enqueue(() => _notificationService.SendApplicationRejectedAsync(application.Id));
 
         return Result.Success();
     }
@@ -78,7 +78,7 @@ public class ApplicationService(ApplicationDbContext context,INotificationServic
             return Result.Failure(ApplicationErrors.NotFound);
         application.Status = ApplicationStatus.Cancelled;
         await _context.SaveChangesAsync(cancellationToken);
-        BackgroundJob.Enqueue(() => _notificationService.SendApplicationCancelled(application.Id));
+        BackgroundJob.Enqueue(() => _notificationService.SendApplicationCancelledAsync(application.Id));
         return Result.Success();
     }
 

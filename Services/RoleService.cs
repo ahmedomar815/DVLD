@@ -1,4 +1,5 @@
 ﻿using DVLD.Contracts.ApplicationRole;
+using DVLD.Properties.Abstractions.Consts;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Org.BouncyCastle.Asn1.Ocsp;
@@ -11,11 +12,11 @@ public class RoleService(RoleManager<ApplicationRole> roleManager, ApplicationDb
     private readonly ApplicationDbContext _context = context;
 
 
-    public async Task<IEnumerable<RoleResponse>> GetAll(CancellationToken cancellationToken)
+    public async Task<IEnumerable<RoleResponse>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await _roleManager.Roles.Where(x => !x.IsDeleted).ProjectToType<RoleResponse>().ToListAsync(cancellationToken);
     }
-    public async Task<Result<RoleDetailsResponse>>GetRole(string rollId,CancellationToken cancellationToken)
+    public async Task<Result<RoleDetailsResponse>> GetAsync(string rollId, CancellationToken cancellationToken)
     {
         if (await _roleManager.FindByIdAsync(rollId) is not { } role)
             return Result.Failure<RoleDetailsResponse>(RoleErrors.RoleNotFound);

@@ -1,4 +1,6 @@
-﻿namespace DVLD.Errors;
+﻿using DVLD.Properties.Abstractions;
+
+namespace DVLD.Errors;
 
 public record ApplicationTypeErrors
 {

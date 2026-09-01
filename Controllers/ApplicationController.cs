@@ -1,10 +1,11 @@
 ﻿
 
 using MailKit;
-using DVLD.Abstractions.Consts;
 using DVLD.Authentication.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using DVLD.Properties.Abstractions;
+using DVLD.Properties.Abstractions.Consts;
 
 
 [Route("[controller]")]
@@ -15,38 +16,38 @@ public class ApplicationController(IApplicationService application) : Controller
 
     private readonly IApplicationService _application = application;
 
-    [HttpGet("{applicaitonId}")]
+    [HttpGet("{applicationId}")]
     [HasPermission(Permissions.GetApplications)]
-    public async Task<IActionResult> Get([FromRoute] string applicaitonId, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get([FromRoute] string applicationId, CancellationToken cancellationToken)
     {
      
-        var result = await _application.Get(applicaitonId, cancellationToken);
+        var result = await _application.GetAsync(applicationId, cancellationToken);
 
         return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
-    [HttpPost("{applicationTypeId}")]
+    [HttpPost]
     [HasPermission(Permissions.CreateApplications)]
-    public async Task<IActionResult> Create([FromRoute ] int applicationTypeId ,[FromBody] ApplicationRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] ApplicationRequest request, CancellationToken cancellationToken)
     {
-        var result = await _application.Create(request, cancellationToken);
+        var result = await _application.CreateAsync(request, cancellationToken);
 
         return result.IsSuccess ? Ok() : result.ToProblem();
     }
-    [HttpPut("reject/{applicationId}")]
+    [HttpPut("{applicationId}/reject")]
     [HasPermission(Permissions.UpdateApplications)]
     public async Task<IActionResult>Reject([FromRoute] string applicationId,CancellationToken cancellationToken)
     {
         var result=await _application.SetRejectedAsync(applicationId, cancellationToken);
         return result.IsSuccess? NoContent() : result.ToProblem();
     }
-    [HttpPut("cancale/{applicationId}")]
+    [HttpPut("{applicationId}/cancel")]
     [HasPermission(Permissions.UpdateApplications)]
     public async Task<IActionResult> Cancalle([FromRoute] string applicationId, CancellationToken cancellationToken)
     {
         var result = await _application.SetCancelledAsync(applicationId, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
-    [HttpPut("approve/{applicationId}")]
+    [HttpPut("{applicationId}/approve")]
     [HasPermission(Permissions.UpdateApplications)]
     public async Task<IActionResult> Approve([FromRoute] string applicationId, CancellationToken cancellationToken)
     {

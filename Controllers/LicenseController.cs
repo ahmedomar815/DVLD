@@ -1,5 +1,7 @@
 ﻿using DVLD.Contracts.License;
 using DVLD.Contracts.LicenseService;
+using DVLD.Properties.Abstractions;
+using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +18,7 @@ public class LicenseController(ILicenseService licenseService) : ControllerBase
     [HasPermission(Permissions.GetLicenses)]
     public async Task<IActionResult>Get(string licenceId, CancellationToken cancellationToken)
     {
-        var result = await _licenseService.GetAyncId(licenceId, cancellationToken);
+        var result = await _licenseService.GetAsync(licenceId, cancellationToken);
          return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
     [HttpPost("")]
@@ -39,11 +41,19 @@ public class LicenseController(ILicenseService licenseService) : ControllerBase
         return result.IsSuccess ?NoContent() : result.ToProblem();
     }
 
-    [HttpPut("disable/{licenseNumber}")]
+    [HttpPut("{licenseNumber}/disable")]
     [HasPermission(Permissions.UpdateLicenses)]
     public async Task<IActionResult> ToggleStatus([FromRoute] string licenseNumber, CancellationToken cancellationToken)
     {
-        var result = await _licenseService.Disable(licenseNumber, cancellationToken);
+        var result = await _licenseService.DisableAsync(licenseNumber, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
+    }
+
+    [HttpPut("{licenseNumber}/renew")]
+    [HasPermission(Permissions.UpdateLicenses)]
+    public async Task<IActionResult> Renew([FromRoute] string licenseNumber, CancellationToken cancellationToken)
+    {
+        var result = await _licenseService.RenewAsync(licenseNumber, cancellationToken);
+        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
 }

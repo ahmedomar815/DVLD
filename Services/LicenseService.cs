@@ -10,7 +10,7 @@ public class LicenseService(ApplicationDbContext context):ILicenseService
     private readonly ApplicationDbContext _context = context;
 
 
-    public async Task<Result<LicneseResponse>> GetAyncId(string licenseNumber, CancellationToken cancellationToken)
+    public async Task<Result<LicneseResponse>> GetAsync(string licenseNumber, CancellationToken cancellationToken)
     {
         
         var licenseResponse = await GetLicenseQuery().FirstOrDefaultAsync(x => x.LicenseNumber == licenseNumber, cancellationToken);
@@ -27,6 +27,20 @@ public class LicenseService(ApplicationDbContext context):ILicenseService
         if(!DriverIdIsExist) return Result.Failure<LicneseResponse>(DriverErrors.NotFound);
         var licenseType = await _context.LicenseTypes.FirstOrDefaultAsync(x => x.Id == request.LicenseTypeId, cancellationToken);
         if (licenseType is null) return Result.Failure<LicneseResponse>(LicenseTypeErrors.NotFound);
+
+        if (!await HasPassedAllRequiredTestsAsync(request.ApplicationId, cancellationToken))
+            return Result.Failure<LicneseResponse>(LicenseErrors.RequiredTestsNotPassed);
+
+        var today = DateOnly.FromDateTime(DateTime.Today);
+        var hasActiveLicenseOfSameType = await _context.Licenses.AnyAsync(
+            x => x.DriverId == request.DriverId
+                 && x.LicenseTypeId == request.LicenseTypeId
+                 && x.IsActive
+                 && x.ExpiryDate >= today,
+            cancellationToken);
+        if (hasActiveLicenseOfSameType)
+            return Result.Failure<LicneseResponse>(LicenseErrors.ActiveLicenseAlreadyExists);
+
         var license=request.Adapt<License>();
         
         license.IssueDate = DateOnly.FromDateTime(DateTime.Now);
@@ -56,6 +70,11 @@ public class LicenseService(ApplicationDbContext context):ILicenseService
     {
         var license = await _context.Licenses.FirstOrDefaultAsync(x => x.LicenseNumber == LicenseNumber, cancellationToken);
         if (license is null) return Result.Failure<LicneseResponse>(LicenseErrors.NotFound);
+
+        var today = DateOnly.FromDateTime(DateTime.Today);
+        if (license.IsActive && license.ExpiryDate >= today)
+            return Result.Failure<LicneseResponse>(LicenseErrors.ActiveLicenseAlreadyExists);
+
         var licenseType = await _context.LicenseTypes.FirstOrDefaultAsync(x => x.Id == license.LicenseTypeId, cancellationToken);
         if (licenseType is null) return Result.Failure<LicneseResponse>(LicenseTypeErrors.NotFound);
         license.IsActive= true;
@@ -65,9 +84,9 @@ public class LicenseService(ApplicationDbContext context):ILicenseService
         var licenseResponse = await GetLicenseQuery().FirstOrDefaultAsync(x => x.LicenseNumber == license.LicenseNumber, cancellationToken);
         return Result.Success(licenseResponse!);
     }
-    public async Task<Result> Disable(string LicenseNumber, CancellationToken cancellationToken)
+    public async Task<Result> DisableAsync(string licenseNumber, CancellationToken cancellationToken)
     {
-        var license = await _context.Licenses.FirstOrDefaultAsync(x => x.LicenseNumber == LicenseNumber, cancellationToken);
+        var license = await _context.Licenses.FirstOrDefaultAsync(x => x.LicenseNumber == licenseNumber, cancellationToken);
         if (license is null) return Result.Failure<LicneseResponse>(LicenseErrors.NotFound);
         license.IsActive = !license.IsActive;
         await _context.SaveChangesAsync(cancellationToken);
@@ -78,5 +97,21 @@ public class LicenseService(ApplicationDbContext context):ILicenseService
     private IQueryable<LicneseResponse> GetLicenseQuery()
     {
         return _context.Licenses.Select(x => new LicneseResponse(x.LicenseNumber, x.IssueDate, x.ExpiryDate, x.LicenseType.Name,x.IsActive?"Active" : "Disabled"));
+    }
+
+    private async Task<bool> HasPassedAllRequiredTestsAsync(string applicationId, CancellationToken cancellationToken)
+    {
+        var requiredTestTypesCount = await _context.TestTypes
+            .CountAsync(testType => testType.IsActive, cancellationToken);
+
+        var passedRequiredTestTypesCount = await _context.Tests
+            .Where(test => test.TestResult == TestResult.Passed
+                && test.TestAppointment.DrivingLicenseApplication.ApplicationId == applicationId
+                && test.TestAppointment.TestType.IsActive)
+            .Select(test => test.TestAppointment.TestTypeId)
+            .Distinct()
+            .CountAsync(cancellationToken);
+
+        return passedRequiredTestTypesCount == requiredTestTypesCount;
     }
 }

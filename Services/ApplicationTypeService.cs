@@ -9,7 +9,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
 {
     private readonly ApplicationDbContext _context = context;
 
-    public async Task<Result<ApplicationTypeResponse>> Get(
+    public async Task<Result<ApplicationTypeResponse>> GetAsync(
     [FromRoute] int applicationTypeId,
     CancellationToken cancellationToken)
     {
@@ -20,7 +20,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
             ? Result.Failure<ApplicationTypeResponse>(ApplicationTypeErrors.NotFound)
             : Result.Success(applicationType.Adapt<ApplicationTypeResponse>());
     }
-    public async Task<Result<List<ApplicationTypeResponse>>> GetAll( CancellationToken cancellationToken)
+    public async Task<Result<List<ApplicationTypeResponse>>> GetAllAsync(CancellationToken cancellationToken)
     {
         var applicationTypes = await _context.ApplicationTypes.Where(x=>x.IsActive)
             .ProjectToType<ApplicationTypeResponse>()
@@ -29,7 +29,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
         return Result.Success(applicationTypes);
     }
 
-    public async Task<Result<ApplicationTypeResponse>> CreateApplicationType(ApplicationTypeRequest request, CancellationToken cancellationToken)
+    public async Task<Result<ApplicationTypeResponse>> CreateAsync(ApplicationTypeRequest request, CancellationToken cancellationToken)
     {
         var exists = await _context.ApplicationTypes
             .AnyAsync(x => x.Name == request.Name, cancellationToken);
@@ -44,7 +44,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
         return Result.Success(applicationType.Adapt<ApplicationTypeResponse>());
     }
 
-    public async  Task<Result> Update(  int applicationTypeId, ApplicationTypeRequest request, CancellationToken cancellationToken)
+    public async Task<Result> UpdateAsync(int applicationTypeId, ApplicationTypeRequest request, CancellationToken cancellationToken)
 
     {
         var applicationType = await _context.ApplicationTypes
@@ -57,7 +57,7 @@ public class ApplicationTypeService(ApplicationDbContext context):IApplicationTy
         return Result.Success();
     }
    
-    public async Task<Result> Delete( int applicationTypeId, CancellationToken cancellationToken)
+    public async Task<Result> DeleteAsync(int applicationTypeId, CancellationToken cancellationToken)
     {
         var applicationType = await _context.ApplicationTypes
       .FindAsync(applicationTypeId, cancellationToken);

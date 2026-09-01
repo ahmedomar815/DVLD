@@ -1,4 +1,4 @@
-using DVLD.Abstractions.Consts;
+using DVLD.Properties.Abstractions.Consts;
 
 namespace DVLD.Contracts.User;
 

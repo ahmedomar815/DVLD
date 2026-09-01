@@ -1,33 +1,12 @@
 [
   {
     "ContainingType": "ApplicationController",
-    "Method": "Get",
-    "RelativePath": "Application/{applicaitonId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "applicaitonId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ApplicationController",
     "Method": "Create",
-    "RelativePath": "Application/{applicationTypeId}",
+    "RelativePath": "Application",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "applicationTypeId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
       {
         "Name": "request",
         "Type": "DVLD.Contracts.Application.ApplicationRequest",
@@ -38,8 +17,24 @@
   },
   {
     "ContainingType": "ApplicationController",
+    "Method": "Get",
+    "RelativePath": "Application/{applicationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApplicationController",
     "Method": "Approve",
-    "RelativePath": "Application/approve/{applicationId}",
+    "RelativePath": "Application/{applicationId}/approve",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -55,7 +50,7 @@
   {
     "ContainingType": "ApplicationController",
     "Method": "Cancalle",
-    "RelativePath": "Application/cancale/{applicationId}",
+    "RelativePath": "Application/{applicationId}/cancel",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -71,7 +66,7 @@
   {
     "ContainingType": "ApplicationController",
     "Method": "Reject",
-    "RelativePath": "Application/reject/{applicationId}",
+    "RelativePath": "Application/{applicationId}/reject",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -82,6 +77,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApplicationTypeController",
+    "Method": "GetAll",
+    "RelativePath": "ApplicationType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -102,34 +107,8 @@
   },
   {
     "ContainingType": "ApplicationTypeController",
-    "Method": "Delete",
-    "RelativePath": "ApplicationType/delete/{applicationTypeId}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "applicationTypeId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ApplicationTypeController",
-    "Method": "GetAll",
-    "RelativePath": "ApplicationType/get-all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ApplicationTypeController",
     "Method": "Get",
-    "RelativePath": "ApplicationType/get/{applicationTypeId}",
+    "RelativePath": "ApplicationType/{applicationTypeId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -145,7 +124,7 @@
   {
     "ContainingType": "ApplicationTypeController",
     "Method": "Update",
-    "RelativePath": "ApplicationType/update/{applicationTypeId}",
+    "RelativePath": "ApplicationType/{applicationTypeId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -164,16 +143,16 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AuthController",
-    "Method": "GetRefreshToken",
-    "RelativePath": "Auth/get-refresh-token",
-    "HttpMethod": "POST",
+    "ContainingType": "ApplicationTypeController",
+    "Method": "Delete",
+    "RelativePath": "ApplicationType/{applicationTypeId}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "DVLD.Contracts.Authentication.RefreshTokenRequest",
+        "Name": "applicationTypeId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -197,9 +176,9 @@
   },
   {
     "ContainingType": "AuthController",
-    "Method": "RevokeRefreshToken",
-    "RelativePath": "Auth/revoke-refresh-token",
-    "HttpMethod": "PUT",
+    "Method": "GetRefreshToken",
+    "RelativePath": "Auth/refresh-token",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -212,6 +191,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AuthController",
+    "Method": "RevokeRefreshToken",
+    "RelativePath": "Auth/refresh-token",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.Authentication.RefreshTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CountryController",
+    "Method": "GetAll",
+    "RelativePath": "Country",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DriverController",
     "Method": "Create",
     "RelativePath": "Driver",
@@ -220,9 +225,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "driverId",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "DVLD.Contracts.Driver.DriverRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -331,7 +336,23 @@
   {
     "ContainingType": "LicenseController",
     "Method": "ToggleStatus",
-    "RelativePath": "License/disable/{licenseNumber}",
+    "RelativePath": "License/{licenseNumber}/disable",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "licenseNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LicenseController",
+    "Method": "Renew",
+    "RelativePath": "License/{licenseNumber}/renew",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -402,6 +423,32 @@
       {
         "Name": "request",
         "Type": "DVLD.Contracts.LicenseType.LicenseTypeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.MyInfoController",
+    "Method": "Get",
+    "RelativePath": "MyInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DVLD.Controllers.MyInfoController",
+    "Method": "ChangePassword",
+    "RelativePath": "MyInfo/change-password",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.User.ChangePasswordRequest",
         "IsRequired": true
       }
     ],
@@ -490,7 +537,7 @@
     "ContainingType": "TestController",
     "Method": "Create",
     "RelativePath": "Test",
-    "HttpMethod": "",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -650,6 +697,91 @@
       {
         "Name": "testTypeId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserController",
+    "Method": "Create",
+    "RelativePath": "User",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.User.UserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserController",
+    "Method": "Get",
+    "RelativePath": "User/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserController",
+    "Method": "Update",
+    "RelativePath": "User/{userId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "DVLD.Contracts.User.UserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserController",
+    "Method": "ToggleStatus",
+    "RelativePath": "User/{userId}/toggle-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserController",
+    "Method": "Unlock",
+    "RelativePath": "User/{userId}/unlock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

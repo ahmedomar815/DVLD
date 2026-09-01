@@ -62,7 +62,7 @@ public class AuthServices(ApplicationDbContext context
         }
 
         var (userRoles, userPermissions) =
-            await GetUserRolesAndPermissions(
+            await GetUserRolesAndPermissionsAsync(
                 user,
                 cancellationToken);
 
@@ -133,7 +133,7 @@ public class AuthServices(ApplicationDbContext context
         if (user.LockoutEnd > DateTime.UtcNow)
             return Result.Failure<AuthResponse>(UserErrors.UserLockedout);
         var (userRoles, userPermissions) =
-         await GetUserRolesAndPermissions(
+         await GetUserRolesAndPermissionsAsync(
              user,
              cancellationToken);
         var userRefreshToken = await _context.RefreshTokens
@@ -156,7 +156,7 @@ public class AuthServices(ApplicationDbContext context
     }
 
 
-    public async Task<Result> ForgetPassword(string email)
+    public async Task<Result> ForgetPasswordAsync(string email)
     {
         if (await _userManager.FindByEmailAsync(email) is not { } user)
             return Result.Failure(UserErrors.UserNotFound);
@@ -167,10 +167,10 @@ public class AuthServices(ApplicationDbContext context
             return Result.Failure(UserErrors.UserLockedout);
         var code = await _userManager.GeneratePasswordResetTokenAsync(user);
         code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-        await SendEmailForgetPassword(code,user.GetFullName(),email);
+        await SendEmailForgetPasswordAsync(code, user.GetFullName(), email);
         return Result.Success();
     }
-    public async Task<Result> ResetPassword(string email, string token, string newPassword)
+    public async Task<Result> ResetPasswordAsync(string email, string token, string newPassword)
     {
         if (await _userManager.FindByEmailAsync(email) is not { } user)
             return Result.Failure(UserErrors.UserNotFound);
@@ -193,7 +193,7 @@ public class AuthServices(ApplicationDbContext context
         var error = result.Errors.First();
         return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
     }
-    private async Task SendEmailForgetPassword(string code, string name, string email)
+    private async Task SendEmailForgetPasswordAsync(string code, string name, string email)
     {
         var origin = _httpContextAccessor.HttpContext?.Request.Headers.Origin;
         var placeholderValues = new Dictionary<string, string>
@@ -205,7 +205,7 @@ public class AuthServices(ApplicationDbContext context
         var body = EmailBodyBuilder.GenerateEmailBody("forgot-password-template", placeholderValues);
         BackgroundJob.Enqueue(() => _emailSender.SendEmailAsync(email, "Forget Password ", body));
     }
-    private async Task<(IEnumerable<string> roles, IEnumerable<string> permissions)> GetUserRolesAndPermissions(ApplicationUser user, CancellationToken cancellationToken)
+    private async Task<(IEnumerable<string> roles, IEnumerable<string> permissions)> GetUserRolesAndPermissionsAsync(ApplicationUser user, CancellationToken cancellationToken)
     {
         var userRoles = await _userManager.GetRolesAsync(user);
         var userPermissions = await _context.Roles.Join(_context.RoleClaims, r => r.Id, rc => rc.RoleId, (Role, Claim) => new { Role, Claim })

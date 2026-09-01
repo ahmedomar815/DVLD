@@ -1,3 +1,5 @@
+using DVLD.Properties.Abstractions;
+
 namespace DVLD.Errors;
 
 public static class TestErrors

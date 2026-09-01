@@ -1,4 +1,6 @@
 using DVLD.Contracts.ApplicationRole;
+using DVLD.Properties.Abstractions;
+using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +15,7 @@ public class RoleController(IRoleService roleService) : ControllerBase
     [HasPermission(Permissions.GetRoles)]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var roles = await _roleService.GetAll(cancellationToken);
+        var roles = await _roleService.GetAllAsync(cancellationToken);
         return Ok(roles);
     }
 
@@ -21,7 +23,7 @@ public class RoleController(IRoleService roleService) : ControllerBase
     [HasPermission(Permissions.GetRoles)]
     public async Task<IActionResult> Get([FromRoute] string roleId, CancellationToken cancellationToken)
     {
-        var result = await _roleService.GetRole(roleId, cancellationToken);
+        var result = await _roleService.GetAsync(roleId, cancellationToken);
         return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
 

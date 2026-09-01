@@ -1,5 +1,6 @@
 ﻿
 using DVLD.Contracts.Authentication;
+using DVLD.Properties.Abstractions;
 using DVLD.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
@@ -16,13 +17,13 @@ public class AuthController(IAuthServices authServices) : ControllerBase
         var result =  await _authServices.GetTokenAsync(request.Email, request.Password, cancellationToken);
         return result.IsSuccess? Ok(result.Value):result.ToProblem();
     }
-    [HttpPost("get-refresh-token")]
+    [HttpPost("refresh-token")]
     public async Task<IActionResult> GetRefreshToken([FromBody] RefreshTokenRequest request, CancellationToken cancellationToken)
     {
         var Result = await _authServices.RefreshTokenAsync(request.Token, request.RefreshToken, cancellationToken);
         return Result.IsSuccess ? Ok(Result.Value) : Result.ToProblem();
     }
-    [HttpPut("revoke-refresh-token")]
+    [HttpDelete("refresh-token")]
     public async Task<IActionResult> RevokeRefreshToken([FromBody] RefreshTokenRequest request, CancellationToken cancellationToken)
     {
         var Result = await _authServices.RevokeRefreshTokenAsync(request.Token, request.RefreshToken, cancellationToken);

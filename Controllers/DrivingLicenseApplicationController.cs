@@ -1,4 +1,6 @@
 ﻿using DVLD.Contracts.DrivingLicenseApplication;
+using DVLD.Properties.Abstractions;
+using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]

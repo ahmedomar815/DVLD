@@ -1,4 +1,5 @@
 using Microsoft.IdentityModel.Logging;
+using Scalar.AspNetCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,13 +15,16 @@ IdentityModelEventSource.ShowPII = app.Environment.IsDevelopment();
 
 if (app.Environment.IsDevelopment())
 {
-   // app.MapOpenApi();
+     app.MapOpenApi();
+    app.MapScalarApiReference();
+
 }
 
-/*app.UseHttpsRedirection();*/
+app.UseHttpsRedirection();
 app.UseRateLimiter();
 app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapOpenApi("/openapi/{documentName}");
 app.Run();

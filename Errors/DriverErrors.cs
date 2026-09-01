@@ -1,4 +1,6 @@
-﻿namespace DVLD.Services;
+﻿using DVLD.Properties.Abstractions;
+
+namespace DVLD.Services;
 
 public record DriverErrors
 {

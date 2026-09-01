@@ -45,12 +45,14 @@ public static class DependencyInjection
         .AddDefaultTokenProviders();
 
         services.AddControllers();
-        //services.AddOpenApi();
+        services.AddOpenApi();
+        services.AddOpenApi("internal");
         services.AddHttpContextAccessor();
         services.AddScoped<IAuthServices,AuthServices>();
         services.AddSingleton<IJwtProvider, JwtProvider>();
         services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
         services.AddScoped<IApplicationService, ApplicationService>  ();
+        services.AddScoped<ICountryService, CountryService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserInfoService, UserInfo>();
         services.AddScoped<IDriverService, DriverService>();

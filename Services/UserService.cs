@@ -89,9 +89,9 @@ public class UserService(
 
     }
 
-    public async Task<Result> UnlockUser(string Id, CancellationToken cancellationToken = default)
+    public async Task<Result> UnlockUserAsync(string id, CancellationToken cancellationToken = default)
     {
-        if (await _userManager.FindByIdAsync(Id) is not { } user)
+        if (await _userManager.FindByIdAsync(id) is not { } user)
             return Result.Failure<UserResponse>(UserErrors.UserNotFound);
 
         var result = await _userManager.SetLockoutEndDateAsync(user, null);
@@ -103,9 +103,9 @@ public class UserService(
         return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
     }
 
-    public async Task<Result> ToggleStatus(string Id, CancellationToken cancellationToken = default)
+    public async Task<Result> ToggleStatusAsync(string id, CancellationToken cancellationToken = default)
     {
-        if (await _userManager.FindByIdAsync(Id) is not { } user)
+        if (await _userManager.FindByIdAsync(id) is not { } user)
             return Result.Failure<UserResponse>(UserErrors.UserNotFound);
 
         user.IsDisabled = !user.IsDisabled;

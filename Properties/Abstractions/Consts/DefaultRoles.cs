@@ -1,4 +1,4 @@
-﻿namespace DVLD.Abstractions.Consts;
+﻿namespace DVLD.Properties.Abstractions.Consts;
 
 public class DefaultRoles
 {

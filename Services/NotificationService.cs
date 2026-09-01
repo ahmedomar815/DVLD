@@ -11,23 +11,23 @@ public class NotificationService(ApplicationDbContext context, IEmailSender emai
     private readonly ApplicationDbContext _context = context;
     private readonly IEmailSender _emailSender = emailSender;
 
-    public Task SendNewApplication(string applicationId)
+    public Task SendNewApplicationAsync(string applicationId)
         => SendStatusEmailAsync(applicationId, "application_created_email", "DVLD Application Already Created");
 
-    public Task SendApplicationApproved(string applicationId)
+    public Task SendApplicationApprovedAsync(string applicationId)
         => SendStatusEmailAsync(applicationId, "application_approved_email", "DVLD Application Approved");
 
-    public Task SendApplicationRejected(string applicationId)
+    public Task SendApplicationRejectedAsync(string applicationId)
         => SendStatusEmailAsync(applicationId, "application_rejected_email", "DVLD Application Rejected");
 
-    public Task SendApplicationCancelled(string applicationId)
+    public Task SendApplicationCancelledAsync(string applicationId)
         => SendStatusEmailAsync(applicationId, "application_cancelled_email", "DVLD Application Cancelled");
 
    
-    public async Task SendTestAppointment(string TestAppointmentId)
+    public async Task SendTestAppointmentAsync(string testAppointmentId)
     {
         var data = await _context.TestAppointments
-       .Where(x => x.Id == TestAppointmentId)
+       .Where(x => x.Id == testAppointmentId)
          .Select(x => new
        {
          TestTypeTitle = x.TestType.Title,

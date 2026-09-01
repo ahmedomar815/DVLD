@@ -1,4 +1,6 @@
-﻿public class Result
+﻿using DVLD.Properties.Abstractions;
+
+public class Result
 {
     public Result(bool isSuccess, Error error)
     {

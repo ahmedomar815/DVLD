@@ -1,4 +1,6 @@
 ﻿using DVLD.Contracts.Test;
+using DVLD.Properties.Abstractions;
+using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,7 @@ public class TestController(ITestService testService) : ControllerBase
 {
     private readonly ITestService _testService = testService;
 
+    [HttpPost]
     [HasPermission(Permissions.CreateTests)]
     public async Task<IActionResult> Create([FromBody]TestRequest request,CancellationToken cancellationToken)
     {

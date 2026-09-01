@@ -1,4 +1,4 @@
-﻿using DVLD.Abstractions;
+﻿using DVLD.Properties.Abstractions;
 
 namespace DVLD.Errors;
 

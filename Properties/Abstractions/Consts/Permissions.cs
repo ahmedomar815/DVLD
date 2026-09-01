@@ -1,4 +1,4 @@
-﻿namespace DVLD.Abstractions.Consts;
+﻿namespace DVLD.Properties.Abstractions.Consts;
 
 public static class Permissions
 {
@@ -15,6 +15,12 @@ public static class Permissions
 
     public const string GetDrivers = "drivers:read";
     public const string CreateDrivers = "drivers:create";
+
+    public const string GetUsers = "users:read";
+    public const string CreateUsers = "users:create";
+    public const string UpdateUsers = "users:update";
+
+    public const string GetCountries = "countries:read";
 
     public const string GetDrivingLicenseApplications = "driving-license-applications:read";
     public const string CreateDrivingLicenseApplications = "driving-license-applications:create";

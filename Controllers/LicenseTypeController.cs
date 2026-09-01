@@ -1,5 +1,7 @@
 ﻿
 using DVLD.Contracts.LicenseType;
+using DVLD.Properties.Abstractions;
+using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;

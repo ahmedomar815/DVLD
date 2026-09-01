@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DVLD.Properties.Abstractions;
+using DVLD.Properties.Abstractions.Consts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("[controller]")]
@@ -16,10 +18,12 @@ public class DriverController(IDriverService driverService) : ControllerBase
     }
     [HttpPost("")]
     [HasPermission(Permissions.CreateDrivers)]
-    public async Task<IActionResult> Create(string driverId, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] DVLD.Contracts.Driver.DriverRequest request, CancellationToken cancellationToken)
     {
-        var result = await _driverService.GetAsync(driverId, cancellationToken);
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var result = await _driverService.CreateAsync(request, cancellationToken);
+        return result.IsSuccess
+            ? CreatedAtAction(nameof(Get), new { driverId = result.Value.Id }, result.Value)
+            : result.ToProblem();
     }
 
 
