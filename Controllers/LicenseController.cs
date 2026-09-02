@@ -1,7 +1,7 @@
-﻿using DVLD.Contracts.License;
+﻿using DVLD.Abstractions;
+using DVLD.Abstractions.Consts;
+using DVLD.Contracts.License;
 using DVLD.Contracts.LicenseService;
-using DVLD.Properties.Abstractions;
-using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

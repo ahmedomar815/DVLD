@@ -1,6 +1,7 @@
 ﻿
 using DVLD.Auth;
 using DVLD.Authentication.Filters;
+using DVLD.Health;
 using DVLD.Persistence;
 
 using Hangfire;
@@ -19,7 +20,7 @@ using System.Threading.RateLimiting;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddDependcies(this IServiceCollection services,IConfiguration configuration)
+    public static IServiceCollection AddDependcies(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString =
         configuration.GetConnectionString("DefaultConnection")
@@ -28,7 +29,7 @@ public static class DependencyInjection
 
 
 
-        
+
         services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString));
         services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
@@ -43,15 +44,17 @@ public static class DependencyInjection
         })
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
-
+        services.AddOpenConfigApi();
         services.AddControllers();
-        services.AddOpenApi();
-        services.AddOpenApi("internal");
+        services.AddHealthChecks()
+           .AddCheck<MailProviderHealthCheck>("Mail Services")
+           .AddHangfire(options => options.MinimumAvailableServers = 1)
+           .AddSqlServer(connectionString, name: "Database");
         services.AddHttpContextAccessor();
-        services.AddScoped<IAuthServices,AuthServices>();
+        services.AddScoped<IAuthServices, AuthServices>();
         services.AddSingleton<IJwtProvider, JwtProvider>();
         services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
-        services.AddScoped<IApplicationService, ApplicationService>  ();
+        services.AddScoped<IApplicationService, ApplicationService>();
         services.AddScoped<ICountryService, CountryService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserInfoService, UserInfo>();
@@ -63,7 +66,7 @@ public static class DependencyInjection
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IEmailSender, EmailService>();
         services.AddScoped<IDrivingLicenseApplicationService, DrivingLicenseApplicationService>();
-        services.AddScoped<ILicenseTypeService,LicenseTypeService>();
+        services.AddScoped<ILicenseTypeService, LicenseTypeService>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddScoped<ITestTypeService, TestTypeService>();
         services.AddScoped<ITestAppointmentService, TestAppointmentService>();
@@ -94,25 +97,25 @@ public static class DependencyInjection
 
         services.AddAuthentication(options =>
         {
-          
+
 
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         })
-      .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme ,options =>
+      .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
        {
            options.SaveToken = true;
            options.TokenValidationParameters = new TokenValidationParameters
            {
-            ValidateIssuer = true,
-            ValidateAudience = true,
+               ValidateIssuer = true,
+               ValidateAudience = true,
                ValidateLifetime = true,
                ValidateIssuerSigningKey = true,
-               IssuerSigningKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes(jwtSettings!.Key)),
+               IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings!.Key)),
                ValidIssuer = jwtSettings.Issuer,
                ValidAudience = jwtSettings.Audience,
            };
-});
+       });
         services.AddOptions<MailSettings>().BindConfiguration(nameof(MailSettings)).ValidateDataAnnotations().ValidateOnStart();
 
         return services;
@@ -144,7 +147,11 @@ public static class DependencyInjection
     }
     private static IServiceCollection AddOpenConfigApi(this IServiceCollection services)
     {
-       // services.AddOpenApi(); 
+        services.AddOpenApi();
+        services.AddAuthorization(o => o.AddPolicy("ApiTesterPolicy", b => b.RequireRole("tester")));
         return services;
     }
+
+
+
 }

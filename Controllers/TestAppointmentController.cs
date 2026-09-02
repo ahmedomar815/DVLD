@@ -1,7 +1,7 @@
-﻿using DVLD.Authentication.Filters;
+﻿using DVLD.Abstractions;
+using DVLD.Abstractions.Consts;
+using DVLD.Authentication.Filters;
 using DVLD.Contracts.TestAppointment;
-using DVLD.Properties.Abstractions;
-using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

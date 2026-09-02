@@ -16,10 +16,12 @@ IdentityModelEventSource.ShowPII = app.Environment.IsDevelopment();
 if (app.Environment.IsDevelopment())
 {
      app.MapOpenApi();
-    app.MapScalarApiReference();
-
+     
 }
 
+app.MapOpenApi()
+ .RequireAuthorization("ApiTesterPolicy");
+app.MapHealthChecks("health");
 app.UseHttpsRedirection();
 app.UseRateLimiter();
 app.UseExceptionHandler();

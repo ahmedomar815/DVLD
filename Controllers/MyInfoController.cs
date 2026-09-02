@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using DVLD.Contracts.User;
 using DVLD.Extensions;
 using DVLD.Services;
-using DVLD.Properties.Abstractions;
+using DVLD.Abstractions;
 
 namespace DVLD.Controllers;
 

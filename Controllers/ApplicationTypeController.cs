@@ -1,5 +1,5 @@
-﻿using DVLD.Properties.Abstractions;
-using DVLD.Properties.Abstractions.Consts;
+﻿using DVLD.Abstractions;
+using DVLD.Abstractions.Consts;
 using DVLD.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

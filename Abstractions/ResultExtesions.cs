@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
-namespace DVLD.Properties.Abstractions;
+namespace DVLD.Abstractions;
 
 public static class ResultExtesions
 {

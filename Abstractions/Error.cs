@@ -1,4 +1,4 @@
-﻿namespace DVLD.Properties.Abstractions;
+﻿namespace DVLD.Abstractions;
 
 public record Error (string Code,string Description ,int ?StatusCode)
 {

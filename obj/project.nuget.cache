@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "8SbvRVXDAkE=",
+  "dgSpecHash": "aFnjKey4vp0=",
   "success": true,
   "projectFilePath": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\DVLD.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\EXPRESS\\.nuget\\packages\\aspnetcore.healthchecks.hangfire\\9.0.0\\aspnetcore.healthchecks.hangfire.9.0.0.nupkg.sha512",
+    "C:\\Users\\EXPRESS\\.nuget\\packages\\aspnetcore.healthchecks.sqlserver\\9.0.0\\aspnetcore.healthchecks.sqlserver.9.0.0.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
@@ -40,6 +42,7 @@
     "C:\\Users\\EXPRESS\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\10.0.9\\microsoft.entityframeworkcore.sqlserver.10.0.9.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\10.0.9\\microsoft.entityframeworkcore.tools.10.0.9.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\microsoft.extensions.dependencymodel\\10.0.9\\microsoft.extensions.dependencymodel.10.0.9.nupkg.sha512",
+    "C:\\Users\\EXPRESS\\.nuget\\packages\\microsoft.extensions.diagnostics.healthchecks.entityframeworkcore\\10.0.9\\microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.10.0.9.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.16.0\\microsoft.identitymodel.abstractions.8.16.0.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.16.0\\microsoft.identitymodel.jsonwebtokens.8.16.0.nupkg.sha512",
     "C:\\Users\\EXPRESS\\.nuget\\packages\\microsoft.identitymodel.logging\\8.16.0\\microsoft.identitymodel.logging.8.16.0.nupkg.sha512",

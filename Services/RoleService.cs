@@ -1,5 +1,5 @@
-﻿using DVLD.Contracts.ApplicationRole;
-using DVLD.Properties.Abstractions.Consts;
+﻿using DVLD.Abstractions.Consts;
+using DVLD.Contracts.ApplicationRole;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Org.BouncyCastle.Asn1.Ocsp;

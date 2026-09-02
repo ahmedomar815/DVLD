@@ -1,6 +1,6 @@
+using DVLD.Abstractions;
+using DVLD.Abstractions.Consts;
 using DVLD.Contracts.ApplicationRole;
-using DVLD.Properties.Abstractions;
-using DVLD.Properties.Abstractions.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

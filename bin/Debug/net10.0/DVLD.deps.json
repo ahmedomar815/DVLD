@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v10.0": {
       "DVLD/1.0.0": {
         "dependencies": {
+          "AspNetCore.HealthChecks.Hangfire": "9.0.0",
+          "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "FluentValidation.AspNetCore": "11.3.1",
           "Hangfire.AspNetCore": "1.8.24",
           "Hangfire.Core": "1.8.24",
@@ -21,6 +23,7 @@
           "Microsoft.Data.SqlClient": "7.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.9",
           "Microsoft.EntityFrameworkCore.Tools": "10.0.9",
+          "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "10.0.9",
           "MimeKit": "4.17.0",
           "Scalar.AspNetCore": "2.17.2",
           "Serilog.AspNetCore": "10.0.0",
@@ -30,6 +33,28 @@
         },
         "runtime": {
           "DVLD.dll": {}
+        }
+      },
+      "AspNetCore.HealthChecks.Hangfire/9.0.0": {
+        "dependencies": {
+          "Hangfire.Core": "1.8.24"
+        },
+        "runtime": {
+          "lib/net8.0/HealthChecks.Hangfire.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.0.0"
+          }
+        }
+      },
+      "AspNetCore.HealthChecks.SqlServer/9.0.0": {
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "7.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/HealthChecks.SqlServer.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.0.0"
+          }
         }
       },
       "BouncyCastle.Cryptography/2.6.2": {
@@ -717,6 +742,17 @@
           }
         }
       },
+      "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.9": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.9"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll": {
+            "assemblyVersion": "10.0.9.0",
+            "fileVersion": "10.0.926.27113"
+          }
+        }
+      },
       "Microsoft.IdentityModel.Abstractions/8.16.0": {
         "runtime": {
           "lib/net10.0/Microsoft.IdentityModel.Abstractions.dll": {
@@ -1062,6 +1098,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AspNetCore.HealthChecks.Hangfire/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aLlKEZ+lB+MzynIH3z+qXwD2/qteO72oDvIfy0seV05coddnCbo9gUSugHSeDz7x4QEzjmEDFnbR5UE/Pziddg==",
+      "path": "aspnetcore.healthchecks.hangfire/9.0.0",
+      "hashPath": "aspnetcore.healthchecks.hangfire.9.0.0.nupkg.sha512"
+    },
+    "AspNetCore.HealthChecks.SqlServer/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UxCf65iCF2nU1u7AcB320abjL4CRg5swCgJECY6mKk1j5lrGMfVtskWwriGs1T29pYdRig9Vra3SPnP+4G82pA==",
+      "path": "aspnetcore.healthchecks.sqlserver/9.0.0",
+      "hashPath": "aspnetcore.healthchecks.sqlserver.9.0.0.nupkg.sha512"
+    },
     "BouncyCastle.Cryptography/2.6.2": {
       "type": "package",
       "serviceable": true,
@@ -1299,6 +1349,13 @@
       "sha512": "sha512-SCDTQ6HubnRvTUjR7dgMKHZvNoCb03t44ttHL8trlFTGgfDteWn/0nRdOxDhcI+lTWhKgd/flCVJEtAOPhSLNg==",
       "path": "microsoft.extensions.dependencymodel/10.0.9",
       "hashPath": "microsoft.extensions.dependencymodel.10.0.9.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QPT82DUkDXsgqXGKnyYcm0SJ1b3ryv1FRrsLcfmueAYIt2GmYqNmRLd7giFbHbB19uXSrExUeOa9r1RncATIGw==",
+      "path": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/10.0.9",
+      "hashPath": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.10.0.9.nupkg.sha512"
     },
     "Microsoft.IdentityModel.Abstractions/8.16.0": {
       "type": "package",

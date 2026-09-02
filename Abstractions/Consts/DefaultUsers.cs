@@ -1,6 +1,6 @@
-﻿using static DVLD.Properties.Abstractions.Consts.DefaultRoles;
+﻿using static DVLD.Abstractions.Consts.DefaultRoles;
 
-namespace DVLD.Properties.Abstractions.Consts;
+namespace DVLD.Abstractions.Consts;
 
 public static class DefaultUsers
 {

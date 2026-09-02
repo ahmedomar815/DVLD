@@ -4,8 +4,8 @@ using MailKit;
 using DVLD.Authentication.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DVLD.Properties.Abstractions;
-using DVLD.Properties.Abstractions.Consts;
+using DVLD.Abstractions;
+using DVLD.Abstractions.Consts;
 
 
 [Route("[controller]")]

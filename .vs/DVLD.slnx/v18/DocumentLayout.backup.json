@@ -3,12 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\EXPRESS\\AppData\\Roaming\\Microsoft\\UserSecrets\\0959afa6-8c05-458b-b5cb-1ff2d8e518bb\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\health\\mailproviderhealthcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:health\\mailproviderhealthcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EE1011B-DA12-9322-D057-BACAACB5F1E4}|DVLD.csproj|c:\\users\\express\\desktop\\dvld\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,17 +37,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-30T01:35:23.032Z",
               "IsPinned": true,
@@ -40,13 +55,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "DependencyInjection.cs",
               "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\DependencyInjection.cs",
               "RelativeToolTip": "DependencyInjection.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAwDAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAuwDAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-30T01:35:26.505Z",
               "IsPinned": true,
@@ -54,15 +69,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\appsettings.json*",
+              "RelativeToolTip": "appsettings.json*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-09-01T04:01:48.396Z",
+              "WhenOpened": "2026-09-02T00:08:10.724Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "secrets.json",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\AppData\\Roaming\\Microsoft\\UserSecrets\\0959afa6-8c05-458b-b5cb-1ff2d8e518bb\\secrets.json",
+              "RelativeDocumentMoniker": "..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\0959afa6-8c05-458b-b5cb-1ff2d8e518bb\\secrets.json",
+              "ToolTip": "C:\\Users\\EXPRESS\\AppData\\Roaming\\Microsoft\\UserSecrets\\0959afa6-8c05-458b-b5cb-1ff2d8e518bb\\secrets.json*",
+              "RelativeToolTip": "..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\0959afa6-8c05-458b-b5cb-1ff2d8e518bb\\secrets.json*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-02T00:10:05.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-02T00:08:08.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MailProviderHealthCheck.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Health\\MailProviderHealthCheck.cs",
+              "RelativeDocumentMoniker": "Health\\MailProviderHealthCheck.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Health\\MailProviderHealthCheck.cs",
+              "RelativeToolTip": "Health\\MailProviderHealthCheck.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-02T00:06:06.488Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\EXPRESS\\Desktop\\DVLD\\Services\\EmailService.cs",
+              "RelativeToolTip": "Services\\EmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-02T00:06:30.418Z",
               "EditorCaption": ""
             }
           ]

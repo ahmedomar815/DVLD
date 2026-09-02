@@ -1,5 +1,5 @@
-﻿using DVLD.Properties.Abstractions;
-using DVLD.Properties.Abstractions.Consts;
+﻿using DVLD.Abstractions;
+using DVLD.Abstractions.Consts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

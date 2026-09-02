@@ -1,6 +1,6 @@
 ﻿
+using DVLD.Abstractions;
 using DVLD.Contracts.Authentication;
-using DVLD.Properties.Abstractions;
 using DVLD.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;

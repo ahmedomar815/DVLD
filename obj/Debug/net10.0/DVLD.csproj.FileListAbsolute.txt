@@ -189,8 +189,11 @@ C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\tr-TR\Hangfire.Core.resources.dl
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\zh-TW\Hangfire.Core.resources.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\zh\Hangfire.Core.resources.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\DVLD.exe
-C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\Microsoft.OpenApi.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\Scalar.AspNetCore.dll
+C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
+C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\HealthChecks.Hangfire.dll
+C:\Users\EXPRESS\Desktop\DVLD\bin\Debug\net10.0\HealthChecks.SqlServer.dll
+C:\Users\EXPRESS\Desktop\DVLD\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
