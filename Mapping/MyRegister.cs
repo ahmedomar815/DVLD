@@ -1,25 +1,21 @@
-using DVLD.Contracts.License;
-using DVLD.Contracts.LicenseType;
-using DVLD.Contracts.User;
-using Mapster;
+using DVLD.Application.Features.Applications.Queries.GetApplication;
 
 public class MyRegister : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<ApplicationTypeRequest, ApplicationType>()
-            .Map(dest => dest.Name, src => src.Name.Trim());
-
-        config.NewConfig<LicenseTypeRequest, LicenseType>()
-            .Map(dest => dest.Name, src => src.Name.Trim())
-            .Map(dest => dest.Description, src => src.Description.Trim());
-
-        config.NewConfig<License, LicneseResponse>()
-            .Map(dest => dest.Status, src => src.IsActive ? "IsActive" : "Disabled");
-        config.NewConfig<UserRequest, ApplicationUser>().
-            Map(dest => dest.UserName, src => src.Email)
-            .Map(dest => dest.PhoneNumber, src => src.Phone);
-            
-
+        config.NewConfig<CreateApplicationDto, CreateApplicationCommand>();
+        config.NewConfig<CreateApplicationTypeDto, CreateApplicationTypeCommand>();
+        config.NewConfig<UpdateApplicationTypeDto, UpdateApplicationTypeCommand>()
+            .Ignore(dest => dest.ApplicationTypeId);
+        config.NewConfig<CreateDriverDto, CreateDriverCommand>();
+        config.NewConfig<CreateLicenseDto, CreateLicenseCommand>();
+        config.NewConfig<UpdateLicenseDto, UpdateLicenseCommand>()
+            .Ignore(dest => dest.LicenseNumber);
+        config.NewConfig<DVLD.Application.Features.ApplicationTypes.Commands.CreateApplicationType.ApplicationTypeResponse, ApplicationTypeDto>();
+        config.NewConfig<CountryResponse, CountryDto>();
+        config.NewConfig<LicneseResponse, LicenseDto>();
+        config.NewConfig<ApplicationResponse, ApplicationDto>();
+        config.NewConfig<UserResponse, ApplicationUserDto>();
     }
 }

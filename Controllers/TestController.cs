@@ -1,35 +1,45 @@
-﻿using DVLD.Abstractions;
-using DVLD.Abstractions.Consts;
-using DVLD.Contracts.Test;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
-[Route("[controller]")]
+using Api.Dtos.Tests.Requests;
+using Application.Features.Tests.Commands.CreateTest;
+using Application.Features.Tests.Commands.UpdateTest;
+
+
+namespace Api.Controllers;
+
 [ApiController]
+[Route("api/tests")]
 [Authorize]
-public class TestController(ITestService testService) : ControllerBase
+public sealed class TestController(ISender sender) : ControllerBase
 {
-    private readonly ITestService _testService = testService;
-
     [HttpPost]
     [HasPermission(Permissions.CreateTests)]
-    public async Task<IActionResult> Create([FromBody]TestRequest request,CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] TestDto request, CancellationToken cancellationToken)
     {
-        var userId = User.GetUserId();
-        var result=await _testService.CreateAsync(userId!, request, cancellationToken);
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrWhiteSpace(userId))
+            return Unauthorized();
+
+        var command = request.Adapt<CreateTestCommand>() with { UserId = userId, Notes = request.Notes ?? string.Empty };
+        var result = await sender.Send(command, cancellationToken);
+
+        return result.IsSuccess
+            ? Created($"api/tests/{result.Value.Id}", result.Value.Adapt<TestDto>())
+            : result.ToProblem();
     }
 
     [HttpPut("{testId}")]
     [HasPermission(Permissions.UpdateTests)]
     public async Task<IActionResult> Update(
         [FromRoute] string testId,
-        [FromBody] TestRequest request,
+        [FromBody] TestDto request,
         CancellationToken cancellationToken)
     {
-        var result = await _testService.UpdateAsync(testId, request, cancellationToken);
+        var command = request.Adapt<UpdateTestCommand>() with
+        {
+            TestId = testId,
+            Notes = request.Notes ?? string.Empty
+        };
+        var result = await sender.Send(command, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 }
- 

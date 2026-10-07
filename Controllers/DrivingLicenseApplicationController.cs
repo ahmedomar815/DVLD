@@ -1,27 +1,28 @@
-﻿using DVLD.Abstractions;
-using DVLD.Abstractions.Consts;
-using DVLD.Contracts.DrivingLicenseApplication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using DVLD.Application.Features.DrivingLicenseApplications.Commands.CreateDrivingLicenseApplication;
+using DVLD.Application.Features.DrivingLicenseApplications.Queries.GetDrivingLicenseApplication;
 [Route("[controller]")]
 [ApiController]
 [Authorize]
-public class DrivingLicenseApplicationController(IDrivingLicenseApplicationService drivingLicenseApplicationService) : ControllerBase
+public class DrivingLicenseApplicationController(ISender sender) : ControllerBase
 {
-    private readonly IDrivingLicenseApplicationService _drivingLicenseApplicationService = drivingLicenseApplicationService;
-
     [HttpGet("{drivingLicenseApplicationId}")]
     [HasPermission(Permissions.GetDrivingLicenseApplications)]
     public async Task<IActionResult> Get([FromRoute] string drivingLicenseApplicationId, CancellationToken cancellationToken)
     {
-        var result = await _drivingLicenseApplicationService.GetAsync(drivingLicenseApplicationId, cancellationToken);
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var result = await sender.Send(
+            new GetDrivingLicenseApplicationQuery(drivingLicenseApplicationId),
+            cancellationToken);
+        return result.IsSuccess
+            ? Ok(result.Value.Adapt<DrivingLicenseApplicationDto>())
+            : result.ToProblem();
     }
     [HttpPost("")]
     [HasPermission(Permissions.CreateDrivingLicenseApplications)]
-    public async Task<IActionResult> Create([FromBody]DrivingLicenseApplicaitonRequest request,CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] CreateDrivingLicenseApplicationDto request, CancellationToken cancellationToken)
     {
-        var result = await _drivingLicenseApplicationService.CreateAsync(request,cancellationToken);
+        var result = await sender.Send(
+            request.Adapt<CreateDrivingLicenseApplicationCommand>(),
+            cancellationToken);
         return result.IsSuccess ? Ok() : result.ToProblem();
     }
 }

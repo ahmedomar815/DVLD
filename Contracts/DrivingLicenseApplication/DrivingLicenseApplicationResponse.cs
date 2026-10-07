@@ -1,5 +1,0 @@
-﻿using DVLD.Contracts.LicenseType;
-
-namespace DVLD.Contracts.DrivingLicenseApplication;
-
-public record DrivingLicenseApplicationResponse(ApplicationResponse ApplicationResponse, LicenseTypeResponse LicenseTypeResponse);

@@ -1,104 +1,41 @@
-﻿
 using DVLD.Auth;
-using DVLD.Authentication.Filters;
-using DVLD.Health;
-using DVLD.Persistence;
-
+using DVLD.Infrastructure;
 using Hangfire;
-using Mapster;
+
 using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.ComponentModel;
 using System.Reflection;
-using System.Text;
 using System.Threading.RateLimiting;
-
 public static class DependencyInjection
 {
     public static IServiceCollection AddDependcies(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString =
-        configuration.GetConnectionString("DefaultConnection")
-         ?? throw new InvalidOperationException("Connection string"
-         + "'DefaultConnection' not found.");
-
-
-
-
-        services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString));
-        services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-        {
-            options.Password.RequiredLength = 8;
-            options.Password.RequireUppercase = true;
-            options.Password.RequireLowercase = true;
-            options.Password.RequireDigit = true;
-            options.Password.RequireNonAlphanumeric = true;
-            options.Lockout.MaxFailedAccessAttempts = 10;
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(1);
-        })
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
-        services.AddOpenConfigApi();
+        DVLD.ApplicationDependencyInjection.AddApplication(services);
+        services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
+        services.AddInfrastructure(configuration);
         services.AddControllers();
-        services.AddHealthChecks()
-           .AddCheck<MailProviderHealthCheck>("Mail Services")
-           .AddHangfire(options => options.MinimumAvailableServers = 1)
-           .AddSqlServer(connectionString, name: "Database");
         services.AddHttpContextAccessor();
-        services.AddScoped<IAuthServices, AuthServices>();
-        services.AddSingleton<IJwtProvider, JwtProvider>();
-        services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
-        services.AddScoped<IApplicationService, ApplicationService>();
-        services.AddScoped<ICountryService, CountryService>();
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IUserInfoService, UserInfo>();
-        services.AddScoped<IDriverService, DriverService>();
-        services.AddScoped<ILicenseService, LicenseService>();
+        
         services.AddOpenConfigApi();
         services.AddMapsterConfig();
         services.AddAuthCofig(configuration);
-        services.AddScoped<INotificationService, NotificationService>();
-        services.AddScoped<IEmailSender, EmailService>();
-        services.AddScoped<IDrivingLicenseApplicationService, DrivingLicenseApplicationService>();
-        services.AddScoped<ILicenseTypeService, LicenseTypeService>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
-        services.AddScoped<ITestTypeService, TestTypeService>();
-        services.AddScoped<ITestAppointmentService, TestAppointmentService>();
-        services.AddScoped<ITestService, TestService>();
-        services.AddScoped<IRoleService, RoleService>();
         services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
         services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
-        services.AddBackgroundJobsConfig(configuration);
+      
         services.AddProblemDetails();
         services.AddRateLimiter();
         services.AddDistributedMemoryCache();
         return services;
     }
-    private static IServiceCollection AddBackgroundJobsConfig(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddHangfire(config => config
-    .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
-    .UseSimpleAssemblyNameTypeSerializer()
-    .UseRecommendedSerializerSettings()
-    .UseSqlServerStorage(configuration.GetConnectionString("HangfireConnection")));
-        services.AddHangfireServer();
-        return services;
-    }
+    
+    
     private static IServiceCollection AddAuthCofig(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddOptions<JwtOptions>().BindConfiguration(JwtOptions.SectionName).ValidateDataAnnotations().ValidateOnStart();
         var jwtSettings = configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
-
         services.AddAuthentication(options =>
         {
-
-
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         })
@@ -116,8 +53,7 @@ public static class DependencyInjection
                ValidAudience = jwtSettings.Audience,
            };
        });
-        services.AddOptions<MailSettings>().BindConfiguration(nameof(MailSettings)).ValidateDataAnnotations().ValidateOnStart();
-
+      
         return services;
     }
     private static IServiceCollection AddMapsterConfig(this IServiceCollection services)
@@ -132,7 +68,6 @@ public static class DependencyInjection
         services.AddRateLimiter(options =>
         {
             options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
-
             options.AddPolicy("IpLimiter", httpContext =>
                 RateLimitPartition.GetFixedWindowLimiter(
                     partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
@@ -142,7 +77,6 @@ public static class DependencyInjection
                         Window = TimeSpan.FromMinutes(1)
                     }));
         });
-
         return services;
     }
     private static IServiceCollection AddOpenConfigApi(this IServiceCollection services)
@@ -151,7 +85,4 @@ public static class DependencyInjection
         services.AddAuthorization(o => o.AddPolicy("ApiTesterPolicy", b => b.RequireRole("tester")));
         return services;
     }
-
-
-
 }

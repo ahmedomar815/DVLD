@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.Application.ApplicationRequest",
+        "Type": "Api.Dtos.Applications.Requests.CreateApplicationDto",
         "IsRequired": true
       }
     ],
@@ -99,7 +99,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.ApplicationTypeRequest",
+        "Type": "Api.Dtos.ApplicationTypes.Requests.CreateApplicationTypeDto",
         "IsRequired": true
       }
     ],
@@ -136,7 +136,7 @@
       },
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.ApplicationTypeRequest",
+        "Type": "Api.Dtos.ApplicationTypes.Requests.UpdateApplicationTypeDto",
         "IsRequired": true
       }
     ],
@@ -153,54 +153,6 @@
       {
         "Name": "applicationTypeId",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AuthController",
-    "Method": "Login",
-    "RelativePath": "Auth/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.Authentication.LoginRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AuthController",
-    "Method": "GetRefreshToken",
-    "RelativePath": "Auth/refresh-token",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.Authentication.RefreshTokenRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AuthController",
-    "Method": "RevokeRefreshToken",
-    "RelativePath": "Auth/refresh-token",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.Authentication.RefreshTokenRequest",
         "IsRequired": true
       }
     ],
@@ -226,7 +178,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.Driver.DriverRequest",
+        "Type": "Api.Dtos.Drivers.Requests.CreateDriverDto",
         "IsRequired": true
       }
     ],
@@ -258,7 +210,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.DrivingLicenseApplication.DrivingLicenseApplicaitonRequest",
+        "Type": "Api.Dtos.DrivingLicenseApplications.Requests.CreateDrivingLicenseApplicationDto",
         "IsRequired": true
       }
     ],
@@ -290,7 +242,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.LicenseService.LicenseRequest",
+        "Type": "Api.Dtos.Licenses.Requests.CreateLicenseDto",
         "IsRequired": true
       }
     ],
@@ -327,7 +279,7 @@
       },
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.License.LicenseUpdateRequest",
+        "Type": "Api.Dtos.Licenses.Requests.UpdateLicenseDto",
         "IsRequired": true
       }
     ],
@@ -375,7 +327,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.LicenseType.LicenseTypeRequest",
+        "Type": "Api.Dtos.LicenseTypes.Requests.LicenseTypeDto",
         "IsRequired": true
       }
     ],
@@ -422,366 +374,7 @@
       },
       {
         "Name": "request",
-        "Type": "DVLD.Contracts.LicenseType.LicenseTypeRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "DVLD.Controllers.MyInfoController",
-    "Method": "Get",
-    "RelativePath": "MyInfo",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "DVLD.Controllers.MyInfoController",
-    "Method": "ChangePassword",
-    "RelativePath": "MyInfo/change-password",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.User.ChangePasswordRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RoleController",
-    "Method": "GetAll",
-    "RelativePath": "Role",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RoleController",
-    "Method": "Create",
-    "RelativePath": "Role",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.ApplicationRole.RoleRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RoleController",
-    "Method": "Get",
-    "RelativePath": "Role/{roleId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "roleId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RoleController",
-    "Method": "Update",
-    "RelativePath": "Role/{roleId}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "roleId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.ApplicationRole.RoleRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RoleController",
-    "Method": "ToggleStatus",
-    "RelativePath": "Role/{roleId}/toggle-status",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "roleId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestController",
-    "Method": "Create",
-    "RelativePath": "Test",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.Test.TestRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestController",
-    "Method": "Update",
-    "RelativePath": "Test/{testId}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "testId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.Test.TestRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestAppointmentController",
-    "Method": "Create",
-    "RelativePath": "TestAppointment",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.TestAppointment.TestAppointmentRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestAppointmentController",
-    "Method": "Get",
-    "RelativePath": "TestAppointment/{testAppointmentId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "testAppointmentId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestAppointmentController",
-    "Method": "Update",
-    "RelativePath": "TestAppointment/{testAppointmentId}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "testAppointmentId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.TestAppointment.TestAppointmentRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestTypeController",
-    "Method": "GetAll",
-    "RelativePath": "TestType",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestTypeController",
-    "Method": "Create",
-    "RelativePath": "TestType",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.TestType.TestTypeRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestTypeController",
-    "Method": "Get",
-    "RelativePath": "TestType/{testTypeId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "testTypeId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestTypeController",
-    "Method": "Update",
-    "RelativePath": "TestType/{testTypeId}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "testTypeId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.TestType.TestTypeRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TestTypeController",
-    "Method": "Delete",
-    "RelativePath": "TestType/{testTypeId}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "testTypeId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserController",
-    "Method": "Create",
-    "RelativePath": "User",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.User.UserRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserController",
-    "Method": "Get",
-    "RelativePath": "User/{userId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserController",
-    "Method": "Update",
-    "RelativePath": "User/{userId}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "DVLD.Contracts.User.UserRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserController",
-    "Method": "ToggleStatus",
-    "RelativePath": "User/{userId}/toggle-status",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserController",
-    "Method": "Unlock",
-    "RelativePath": "User/{userId}/unlock",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
+        "Type": "Api.Dtos.LicenseTypes.Requests.LicenseTypeDto",
         "IsRequired": true
       }
     ],

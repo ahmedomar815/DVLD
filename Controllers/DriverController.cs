@@ -1,30 +1,24 @@
-﻿using DVLD.Abstractions;
-using DVLD.Abstractions.Consts;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
+using DVLD.Application.Features.Drivers.Queries.GetDriver;
 [Route("[controller]")]
 [ApiController]
-public class DriverController(IDriverService driverService) : ControllerBase
+[Authorize]
+public class DriverController(ISender sender) : ControllerBase
 {
-    private readonly IDriverService _driverService = driverService;
-
     [HttpGet("{driverId}")]
     [HasPermission(Permissions.GetDrivers)]
     public async Task<IActionResult> Get(string driverId, CancellationToken cancellationToken)
     {
-        var result = await _driverService.GetAsync(driverId, cancellationToken);
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var result = await sender.Send(new GetDriverQuery(driverId), cancellationToken);
+        return result.IsSuccess ? Ok(result.Value.Adapt<DriverDto>()) : result.ToProblem();
     }
-    [HttpPost("")]
+    [HttpPost]
     [HasPermission(Permissions.CreateDrivers)]
-    public async Task<IActionResult> Create([FromBody] DVLD.Contracts.Driver.DriverRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] CreateDriverDto request, CancellationToken cancellationToken)
     {
-        var result = await _driverService.CreateAsync(request, cancellationToken);
+        var result = await sender.Send(request.Adapt<CreateDriverCommand>(), cancellationToken);
         return result.IsSuccess
-            ? CreatedAtAction(nameof(Get), new { driverId = result.Value.Id }, result.Value)
+            ? CreatedAtAction(nameof(Get), new { driverId = result.Value.Id }, result.Value.Adapt<DriverDto>())
             : result.ToProblem();
     }
-
-
 }

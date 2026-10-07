@@ -1,47 +1,54 @@
-using DVLD.Abstractions;
-using DVLD.Abstractions.Consts;
-using DVLD.Contracts.ApplicationRole;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using Api.Dtos.Roles.Requests;
+using Api.Dtos.Roles.Responses;
+using Application.Features.Roles.Commands.CreateRole;
+using Application.Features.Roles.Commands.ToggleRoleStatus;
+using Application.Features.Roles.Commands.UpdateRole;
+using Application.Features.Roles.Queries.GetRole;
+using Application.Features.Roles.Queries.GetRoles;
 
-[Route("[controller]")]
+
+namespace Api.Controllers;
+
 [ApiController]
+[Route("api/roles")]
 [Authorize]
-public class RoleController(IRoleService roleService) : ControllerBase
+public sealed class RoleController(ISender sender) : ControllerBase
 {
-    private readonly IRoleService _roleService = roleService;
-
-    [HttpGet("")]
+    [HttpGet]
     [HasPermission(Permissions.GetRoles)]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var roles = await _roleService.GetAllAsync(cancellationToken);
-        return Ok(roles);
+        var roles = await sender.Send(new GetRolesQuery(), cancellationToken);
+        return Ok(roles.Adapt<IEnumerable<RoleResponseDto>>());
     }
 
     [HttpGet("{roleId}")]
     [HasPermission(Permissions.GetRoles)]
     public async Task<IActionResult> Get([FromRoute] string roleId, CancellationToken cancellationToken)
     {
-        var result = await _roleService.GetAsync(roleId, cancellationToken);
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var result = await sender.Send(new GetRoleQuery(roleId), cancellationToken);
+        return result.IsSuccess ? Ok(result.Value.Adapt<RoleDetailsDto>()) : result.ToProblem();
     }
 
-    [HttpPost("")]
+    [HttpPost]
     [HasPermission(Permissions.CreateRoles)]
-    public async Task<IActionResult> Create([FromBody] RoleRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] RoleDto request, CancellationToken cancellationToken)
     {
-        var result = await _roleService.CreateAsync(request, cancellationToken);
+        var result = await sender.Send(request.Adapt<CreateRoleCommand>(), cancellationToken);
         return result.IsSuccess
-            ? CreatedAtAction(nameof(Get), new { roleId = result.Value.Id }, result.Value)
+            ? CreatedAtAction(nameof(Get), new { roleId = result.Value.Id }, result.Value.Adapt<RoleDetailsDto>())
             : result.ToProblem();
     }
 
     [HttpPut("{roleId}")]
     [HasPermission(Permissions.UpdateRoles)]
-    public async Task<IActionResult> Update([FromRoute] string roleId, [FromBody] RoleRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(
+        [FromRoute] string roleId,
+        [FromBody] RoleDto request,
+        CancellationToken cancellationToken)
     {
-        var result = await _roleService.UpdateAsync(roleId, request, cancellationToken);
+        var command = request.Adapt<UpdateRoleCommand>() with { RoleId = roleId };
+        var result = await sender.Send(command, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 
@@ -49,7 +56,7 @@ public class RoleController(IRoleService roleService) : ControllerBase
     [HasPermission(Permissions.UpdateRoles)]
     public async Task<IActionResult> ToggleStatus([FromRoute] string roleId, CancellationToken cancellationToken)
     {
-        var result = await _roleService.ToggleStatusAsync(roleId, cancellationToken);
+        var result = await sender.Send(new ToggleRoleStatusCommand(roleId), cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 }

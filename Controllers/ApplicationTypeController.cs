@@ -1,59 +1,50 @@
-﻿using DVLD.Abstractions;
-using DVLD.Abstractions.Consts;
-using DVLD.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
+using DVLD.Application.Features.ApplicationTypes.Commands.DeleteApplicationType;
+using DVLD.Application.Features.ApplicationTypes.Queries.GetApplicationType;
 [Route("[controller]")]
 [ApiController]
 [Authorize]
-public class ApplicationTypeController(IApplicationTypeService applicationTypeService) : ControllerBase
+public class ApplicationTypeController(ISender sender) : ControllerBase
 {
-    private readonly IApplicationTypeService _applicationTypeService = applicationTypeService;
-
     [HttpGet("{applicationTypeId:int}")]
     [HasPermission(Permissions.GetApplicationTypes)]
     public async Task<IActionResult> Get([FromRoute] int applicationTypeId, CancellationToken cancellationToken)
     {
-        var result = await _applicationTypeService.GetAsync(applicationTypeId, cancellationToken);
-
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var result = await sender.Send(new GetApplicationTypeQuery(applicationTypeId), cancellationToken);
+        return result.IsSuccess ? Ok(result.Value.Adapt<ApplicationTypeDto>()) : result.ToProblem();
     }
     [HttpGet]
     [HasPermission(Permissions.GetApplicationTypes)]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _applicationTypeService.GetAllAsync(cancellationToken);
-
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var result = await sender.Send(new GetApplicationTypesQuery(), cancellationToken);
+        return result.IsSuccess ? Ok(result.Value.Adapt<IEnumerable<ApplicationTypeDto>>()) : result.ToProblem();
     }
-
     [HttpPost]
     [HasPermission(Permissions.CreateApplicationTypes)]
-    public async Task<IActionResult> Create([FromBody] ApplicationTypeRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] CreateApplicationTypeDto request, CancellationToken cancellationToken)
     {
-        var result = await _applicationTypeService.CreateAsync(request, cancellationToken);
-
+        var result = await sender.Send(request.Adapt<CreateApplicationTypeCommand>(), cancellationToken);
         return result.IsSuccess
-            ? CreatedAtAction(nameof(Get), new { applicationTypeId = result.Value.Id }, result.Value)
+            ? CreatedAtAction(nameof(Get), new { applicationTypeId = result.Value.Id }, result.Value.Adapt<ApplicationTypeDto>())
             : result.ToProblem();
     }
     [HttpPut("{applicationTypeId:int}")]
     [HasPermission(Permissions.UpdateApplicationTypes)]
-    public async Task<IActionResult> Update([FromRoute] int applicationTypeId, [FromBody] ApplicationTypeRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(
+        [FromRoute] int applicationTypeId,
+        [FromBody] UpdateApplicationTypeDto request,
+        CancellationToken cancellationToken)
     {
-        var result = await _applicationTypeService.UpdateAsync(applicationTypeId, request, cancellationToken);
-
+        var command = request.Adapt<UpdateApplicationTypeCommand>() with { ApplicationTypeId = applicationTypeId };
+        var result = await sender.Send(command, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
     [HttpDelete("{applicationTypeId:int}")]
     [HasPermission(Permissions.DeleteApplicationTypes)]
     public async Task<IActionResult> Delete([FromRoute] int applicationTypeId, CancellationToken cancellationToken)
     {
-        var result = await _applicationTypeService.DeleteAsync(applicationTypeId, cancellationToken);
-
+        var result = await sender.Send(new DeleteApplicationTypeCommand(applicationTypeId), cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
-    
-
 }

@@ -1,38 +1,36 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Api.Dtos.Authentication.Requests;
+using Api.Dtos.Authentication.Responses;
+using Application.Features.Authenticaiton.Commands.RefreshTokenCommand;
+using Application.Features.Authenticaiton.Commands.ResetPasswordCommand;
+using Application.Features.Authenticaiton.Commands.RevokeRefreshTokenCommand;
 
-using Microsoft.AspNetCore.Mvc;
-using DVLD.Contracts.User;
-using DVLD.Extensions;
-using DVLD.Services;
-using DVLD.Abstractions;
+namespace Api.Controllers;
 
-namespace DVLD.Controllers;
-
-[Route("[controller]")]
 [ApiController]
+[Route("api/my-info")]
 [Authorize]
-public class MyInfoController(IUserInfoService userInfoService) : ControllerBase
+public sealed class MyInfoController(ISender sender) : ControllerBase
 {
-    private readonly IUserInfoService _userInfoService = userInfoService;
-
-    [HttpGet]
-    public async Task<IActionResult> Get(CancellationToken cancellationToken)
+    
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh([FromBody] RefreshTokenDto request, CancellationToken cancellationToken)
     {
-        var userId = User.GetUserId();
-        var result = await _userInfoService.GetInfoAsync(userId!, cancellationToken);
-        return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
+        var result = await sender.Send(request.Adapt<RefreshTokenCommand>(), cancellationToken);
+        return result.IsSuccess ? Ok(result.Value.Adapt<AuthDto>()) : result.ToProblem();
     }
 
-    [HttpPut("change-password")]
-    public async Task<IActionResult> ChangePassword(
-        [FromBody] ChangePasswordRequest request,
-        CancellationToken cancellationToken)
+    [HttpPost("revoke")]
+    public async Task<IActionResult> Revoke([FromBody] RefreshTokenDto request, CancellationToken cancellationToken)
     {
-        var result = await _userInfoService.ChangePasswordAsync(
-            request.CurrentPassword,
-            request.NewPassword,
-            cancellationToken);
+        var result = await sender.Send(request.Adapt<RevokeRefreshTokenCommand>(), cancellationToken);
+        return result.IsSuccess ? NoContent() : result.ToProblem();
+    }
 
+    
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto request, CancellationToken cancellationToken)
+    {
+        var result = await sender.Send(request.Adapt<ResetPasswordCommand>(), cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 }

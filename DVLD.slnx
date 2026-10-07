@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="DVLD.csproj" />
+  <Project Path="../Application/Application.csproj" Id="fccdc2b9-3ed7-4945-8783-4becaf09f5c3" />
+  <Project Path="../Domain/Domain.csproj" Id="fc2e36db-586a-4e19-84e8-fc590722798d" />
+  <Project Path="../Infrastructure/Infrastructure.csproj" Id="376c3b86-06a7-4565-b6f3-d507421246c7" />
+  <Project Path="Api.csproj" />
 </Solution>
